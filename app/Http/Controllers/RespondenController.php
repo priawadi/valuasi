@@ -216,140 +216,37 @@ class RespondenController extends Controller
         $request->session()->put('id_responden', $id_responden);
         $kuesioner = [];
 
-        $kuesioner['aspek_modal_sosial'] = [
+        $kuesioner['usaha_budidaya_tambak'] = [
             [
-                'kuesioner' => 'Partisipasi Sosial',
-                'is_done'   => (JwbPartisipasi::where('id_responden', $request->session()->get('id_responden'))->where('kateg_partisipasi', 1)->count()),
+                'kuesioner' => 'Informasi Umum',
+                'is_done'   => 0,
                 'link'      => 'partisipasi-sosial',
             ],
             [
-                'kuesioner' => 'Partisipasi Organisasi',
-                'is_done'   => (JwbPartisipasi::where('id_responden', $request->session()->get('id_responden'))->where('kateg_partisipasi', 2)->count()),
+                'kuesioner' => 'Biaya Investasi',
+                'is_done'   => 0,
                 'link'      => 'partisipasi-organisasi',
             ],
             [
-                'kuesioner' => 'Partisipasi Politik',
-                'is_done'   => (JwbPartisipasi::where('id_responden', $request->session()->get('id_responden'))->where('kateg_partisipasi', 3)->count()),
+                'kuesioner' => 'Biaya Variabel',
+                'is_done'   => 0,
                 'link'      => 'partisipasi-politik',
             ],
             [
-                'kuesioner' => 'Rasa Percaya Antar Masyarakat',
-                'is_done'   => (JwbRasaPercaya::where('id_responden', $request->session()->get('id_responden'))->where('kateg_rasa_percaya', 1)->count()),
+                'kuesioner' => 'Biaya Tetap',
+                'is_done'   => 0,
                 'link'      => 'rasa-percaya-masyarakat',
             ],
             [
-                'kuesioner' => 'Rasa Percaya terhadap Organisasi Sosial',
-                'is_done'   => (JwbRasaPercaya::where('id_responden', $request->session()->get('id_responden'))->where('kateg_rasa_percaya', 2)->count()),
+                'kuesioner' => 'Hasil Panen Per Siklus',
+                'is_done'   => 0,
                 'link'      => 'rasa-percaya-organisasi',
             ],
-            [
-                'kuesioner' => 'Rasa Percaya Politik',
-                'is_done'   => (JwbRasaPercaya::where('id_responden', $request->session()->get('id_responden'))->where('kateg_rasa_percaya', 3)->count()),
-                'link'      => 'rasa-percaya-politik',
-            ],
-            [
-                'kuesioner' => 'Nilai dan Norma',
-                'is_done'   => (JwbNilaiNorma::where('id_responden', $request->session()->get('id_responden'))->count()),
-                'link'      => 'nilai-norma',
-            ]
         ];
-        $kuesioner['karakteristik_rt'] = [
-            [
-                'kuesioner' => 'Karakteristik Anggota Rumah Tangga dan Pendapatan',
-                'is_done'   => (KarakteristikRumahTangga::where('id_responden', $request->session()->get('id_responden'))->count()),
-                'link'      => 'karakteristik-rumah-tangga',
-            ],
-            [
-                'kuesioner' => 'Jenis Pekerjaan Rumah Tangga',
-                'is_done'   => (JenisPekerjaanRumahTg::where('id_responden', $request->session()->get('id_responden'))->count()),
-                'link'      => 'jenis-pekerjaan-rumah-tangga',
-            ],
-            [
-                'kuesioner' => 'Aset Rumah Tangga',
-                'is_done'   => (AsetRumahTangga::where('id_responden', $request->session()->get('id_responden'))->count()),
-                'link'      => 'aset-rumah-tangga',
-            ],
-            [
-                'kuesioner' => 'Kesehatan',
-                'is_done'   => (Kesehatan::where('id_responden', $request->session()->get('id_responden'))->count()),
-                'link'      => 'kesehatan',
-            ],
-        ];
-
-        $kuesioner['konsumsi'] = [
-            [
-                'kuesioner' => 'Pengeluaran Pangan Mingguan Rumah Tangga Perikanan',
-                'is_done'   => (JawabanKonsumsi::where('id_responden', $request->session()->get('id_responden'))->count()),
-                'link'      => 'konsumsi',
-            ],
-            [
-                'kuesioner' => 'Pengeluaran Non Pangan Bulanan Rumah Tangga',
-                'is_done'   => (JawabanKonsumsi::where('id_responden', $request->session()->get('id_responden'))->count()),
-                'link'      => 'konsumsi',
-            ],
-            [
-                'kuesioner' => 'Pengeluaran Non Pangan Tahunan Rumah Tangga Perikanan',
-                'is_done'   => (JawabanKonsumsi::where('id_responden', $request->session()->get('id_responden'))->count()),
-                'link'      => 'konsumsi',
-            ],
-        ];
-
-        $kuesioner['usaha_tenaga_kerja'] = [
-            [
-                'kuesioner' => 'Perahu',
-                'is_done'   => (Perahu::where('id_responden', $request->session()->get('id_responden'))->count()),
-                'link'      => 'perahu',
-            ],
-            [
-                'kuesioner' => 'Tenaga Penggerak / Mesin',
-                'is_done'   => (Mesin::where('id_responden', $request->session()->get('id_responden'))->count()),
-                'link'      => 'tenaga-penggerak',
-            ],
-            [
-                'kuesioner' => 'Alat Tangkap',
-                'is_done'   => (AlatTangkap::where('id_responden', $request->session()->get('id_responden'))->count()),
-                'link'      => 'alat-tangkap',
-            ],
-            [
-                'kuesioner' => 'Aset Pendukung Usaha',
-                'is_done'   => (AsetPendukungUsaha::where('id_responden', $request->session()->get('id_responden'))->count()),
-                'link'      => 'aset-pendukung-usaha',
-            ],
-            [
-                'kuesioner' => 'Biaya Perizinan dan Pemeliharaan Selama 1 Tahun',
-                'is_done'   => (BiayaPerijinan::where('id_responden', $request->session()->get('id_responden'))->count()),
-                'link'      => 'biaya-perijinan',
-            ],
-            [
-                'kuesioner' => 'Biaya Variabel Berdasarkan Musim (Biaya Operasional per Trip)',
-                'is_done'   => (BiayaOperasional::where('id_responden', $request->session()->get('id_responden'))->count()),
-                'link'      => 'biaya-operasional',
-            ],
-            [
-                'kuesioner' => 'Biaya Variabel Berdasarkan Musim (Biaya Ransum / Perbekalan per Trip)',
-                'is_done'   => (BiayaRansum::where('id_responden', $request->session()->get('id_responden'))->count()),
-                'link'      => 'biaya-ransum',
-            ],
-            [
-                'kuesioner' => 'Biaya Jasa',
-                'is_done'   => (BiayaJasa::where('id_responden', $request->session()->get('id_responden'))->count()),
-                'link'      => 'biaya-jasa',
-            ],
-            [
-                'kuesioner' => 'Penerimaan Usaha Berdasarkan Musim',
-                'is_done'   => (HasilTangkapan::where('id_responden', $request->session()->get('id_responden'))->count()),
-                'link'      => 'hasil-tangkapan-ikan',
-            ],
-            [
-                'kuesioner' => 'Ketenagakerjaan',
-                'is_done'   => (Ketenagakerjaan::where('id_responden', $request->session()->get('id_responden'))->count()),
-                'link'      => 'ketenagakerjaan',
-            ],
-        ];
+        
         return view('responden.detail', [
             'responden'  => Responden::find($id_responden),
             'kuesioner'  => $kuesioner,
-            'enumerator' => Enumerator::where('id_responden', $request->session()->get('id_responden'))->get(),
         ]);
     }
 }
