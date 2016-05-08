@@ -15,7 +15,7 @@
                     <b>Nama Responden : {{$responden->nama}}</b>
                     <br>
                     <br>
-                    <b>A. <em>EFFECT ON PRODUCTION</em> (EOP) PETAMBAK</b>
+                    <b>A. <em>EFFECT ON PRODUCTION</em> (EOP) PEMBUDIDAYA IKAN</b>
                     <table class="table table-bordered">
                         <thead>
                             <tr> 
@@ -26,7 +26,7 @@
                             </tr> 
                         </thead> 
                         <tbody> 
-                            @foreach($kuesioner['usaha_budidaya_tambak'] as $key => $item)
+                            @foreach($kuesioner['pembudidaya_ikan'] as $key => $item)
                             <tr>
                                 <td>{{($key + 1)}}</td>
                                 <td>{{$item['kuesioner']}}</td>

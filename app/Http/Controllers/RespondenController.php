@@ -216,7 +216,7 @@ class RespondenController extends Controller
         $request->session()->put('id_responden', $id_responden);
         $kuesioner = [];
 
-        $kuesioner['usaha_budidaya_tambak'] = [
+        $kuesioner['pembudidaya_ikan'] = [
             [
                 'kuesioner' => 'Informasi Umum',
                 'is_done'   => 0,
