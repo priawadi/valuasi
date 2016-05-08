@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
-                <div class="panel-heading">Data Responden</div>
+                <div class="panel-heading">{{$subtitle}}</div>
                 <ul>
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -13,422 +13,238 @@
                 </ul>
                 <div class="panel-body">
                     {!! Form::open(array('url' => $action, 'class' => 'form-horizontal', 'method' => 'patch')) !!}
-                        <div class="form-group @if ($errors->has('nama_responden')) has-error @endif">
-                            {{
-                                Form::label(
-                                    'nama', 
-                                    'Nama', 
-                                    [
-                                        'class' => 'col-sm-4 control-label'
-                                    ]
-                                )
-                            }}
-                        
-                            <div class="col-sm-6">
-                                {{
-                                    Form::text(
-                                        'nama', 
-                                        $responden->nama, 
-                                        [
-                                            'class'       => 'form-control',
-                                            'placeholder' => 'Nama',
-                                            'maxlength'   => 255
+                        <table class="table table-hover">
+                            <tr>
+                                <td width="400">1. Lama Usaha</td>
+                                <td>
+                                    {{
+                                        Form::text(
+                                            'lama_usaha', 
+                                            $budidaya_keramba['lama_usaha'], 
+                                            [
+                                                'class'       => 'form-control',
+                                                'placeholder' => 'tahun',
+                                                'maxlength'   => 2
 
-                                        ]
-                                    )
-                                }}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            {{
-                                Form::label(
-                                    'telepon', 
-                                    'Telepon', 
-                                    [
-                                        'class' => 'col-sm-4 control-label'
-                                    ]
-                                )
-                            }}
-                        
-                            <div class="col-sm-6">
-                                {{
-                                    Form::text(
-                                        'telepon', 
-                                        $responden->telepon, 
-                                        [
-                                            'class'       => 'form-control',
-                                            'placeholder' => 'Telepon'
-                                        ]
-                                    )
-                                }}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            {{
-                                Form::label(
-                                    'alamat', 
-                                    'Alamat', 
-                                    [
-                                        'class' => 'col-sm-4 control-label'
-                                    ]
-                                )
-                            }}
-                        
-                            <div class="col-sm-6">
-                                {{
-                                    Form::textarea(
-                                        'alamat', 
-                                        $responden->alamat, 
-                                        [
-                                            'class'       => 'form-control col-sm-6',
-                                            'placeholder' => 'Alamat',
-                                            'rows'        => 4
-                                        ]
-                                    )
-                                }}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            {{
-                                Form::label(
-                                    'umur', 
-                                    'Umur', 
-                                    [
-                                        'class' => 'col-sm-4 control-label'
-                                    ]
-                                )
-                            }}
-                        
-                            <div class="col-sm-2">
-                                {{
-                                    Form::text(
-                                        'umur', 
-                                        $responden->umur, 
-                                        [
-                                            'class'       => 'form-control',
-                                            'placeholder' => 'Umur',
-                                            'maxlength'   => 2
-                                        ]
-                                    )
-                                }}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            {{
-                                Form::label(
-                                    'jenis_kelamin', 
-                                    'Jenis Kelamin', 
-                                    [
-                                        'class' => 'col-sm-4 control-label'
-                                    ]
-                                )
-                            }}
-                            <div class="col-sm-4">
-                                @foreach ($jenis_kelamin as $k => $v)
-                                    <div class="radio">
-                                        <label>
+                                            ]
+                                        )
+                                    }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2. Status Usaha</td>
+                                <td>
+                                    @foreach ($status_usaha as $k => $v)
+                                        <div class="radio">
+                                            <label>
+                                                {{
+                                                    Form::radio(
+                                                        'status_usaha', 
+                                                        $k,
+                                                        $budidaya_keramba['status_usaha'] == $k,
+                                                        [
+                                                            'class' => 'control-label'
+                                                        ]
+                                                    )
+                                                }} 
+                                                {{ $v }}
+                                            </label>
+                                        </div>
+                                    @endforeach
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>3. Mata Pencaharian sebelum menjadi Pembudidaya</td>
+                                <td>
+                                    {{
+                                        Form::text(
+                                            'mapen_sblm_keramba', 
+                                            $budidaya_keramba['mapen_sblm_keramba'], 
+                                            [
+                                                'class'       => 'form-control',
+                                                'placeholder' => 'Mata Pencarian',
+                                                'maxlength'   => 255
+                                            ]
+                                        )
+                                    }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>4. Luas Lahan Budidaya Keramba</td>
+                                <td>
+                                    {{
+                                        Form::text(
+                                            'luas_lahan', 
+                                            $budidaya_keramba['luas_lahan'], 
+                                            [
+                                                'class'       => 'form-control',
+                                                'placeholder' => 'meter persegi',
+                                            ]
+                                        )
+                                    }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>5. Jumlah Total Keramba</td>
+                                <td>
+                                    {{
+                                        Form::text(
+                                            'keramba_total', 
+                                            $budidaya_keramba['keramba_total'], 
+                                            [
+                                                'class'       => 'form-control',
+                                                'placeholder' => 'unit',
+                                            ]
+                                        )
+                                    }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Jumlah Keramba yang Aktif</td>
+                                <td>
+                                    {{
+                                        Form::text(
+                                            'keramba_aktif', 
+                                            $budidaya_keramba['keramba_aktif'], 
+                                            [
+                                                'class'       => 'form-control',
+                                                'placeholder' => 'unit',
+                                            ]
+                                        )
+                                    }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Jumlah Keramba yang Tidak Aktif</td>
+                                <td>
+                                    {{
+                                        Form::text(
+                                            'keramba_tidak_aktif', 
+                                            $budidaya_keramba['keramba_tidak_aktif'], 
+                                            [
+                                                'class'       => 'form-control',
+                                                'placeholder' => 'unit',
+                                            ]
+                                        )
+                                    }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>6. Jenis komoditas yang Diusahakan</td>
+                                <td>
+                                    {{
+                                        Form::select(
+                                            'jenis_komoditas[]', 
+                                            $jenis_komoditas, 
+                                            null, 
+                                            [
+                                                'class'    => 'form-control',
+                                                'multiple' => 'multiple',
+                                                'id'       => 'jenis-komoditas'
+                                            ]
+                                        )
+                                    }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>7. Waktu Pemeliharaan</td>
+                                <td>
+                                    {{
+                                        Form::text(
+                                            'waktu_pemeliharaan', 
+                                            $budidaya_keramba['waktu_pemeliharaan'], 
+                                            [
+                                                'class'       => 'form-control',
+                                                'placeholder' => 'bulan',
+                                            ]
+                                        )
+                                    }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>8. Jumlah Siklus/Panen per Tahun pada Unit Usaha</td>
+                                <td>
+                                    {{
+                                        Form::text(
+                                            'jum_siklus_panen', 
+                                            $budidaya_keramba['jum_siklus_panen'], 
+                                            [
+                                                'class'       => 'form-control',
+                                                'placeholder' => 'kali',
+                                            ]
+                                        )
+                                    }}
+                                </td>
+                            </tr>
+                        </table>
+                        11. Hasil Panen per Siklus (per Unit)
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Jenis Komoditas</th>
+                                    <th>Satuan</th>
+                                    <th>Jumlah Produksi</th>
+                                    <th>Harga Jual (Rp/Kg)</th>
+                                    <th>Jumlah Penerimaan (Rp)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($komoditas as $idx => $item)
+                                    <tr>
+                                        <td>{{$idx + 1}}</td>
+                                        <td>{{$item['komoditas']}}</td>
+                                        <td>{{$item['satuan']}}</td>
+                                        <td>
                                             {{
-                                                Form::radio(
-                                                    'jenis_kelamin', 
-                                                    $k,
-                                                    $k == $responden->jenis_kelamin,
+                                                Form::text(
+                                                    'jumlah[' . $hasil_panen[$item->id_master_komoditas]['id_hasil_panen'] . ']', 
+                                                    $hasil_panen[$item->id_master_komoditas]['jumlah'], 
                                                     [
-                                                        'class' => 'control-label'
+                                                        'class'       => 'form-control',
+                                                        'placeholder' => '',
                                                     ]
                                                 )
-                                            }} 
-                                            {{ $v }}
-                                        </label>
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            {{
-                                Form::label(
-                                    'pendidikan', 
-                                    'Pendidikan', 
-                                    [
-                                        'class' => 'col-sm-4 control-label'
-                                    ]
-                                )
-                            }}
-                            <div class="col-sm-4">
-                                @foreach ($pendidikan as $k => $v)
-                                    <div class="radio">
-                                        <label>
+                                            }}
+                                        </td>
+                                        <td>
                                             {{
-                                                Form::radio(
-                                                    'pendidikan', 
-                                                    $k,
-                                                    $k == $responden->pendidikan,
+                                                Form::text(
+                                                    'harga_jual[' . $hasil_panen[$item->id_master_komoditas]['id_hasil_panen'] . ']', 
+                                                    $hasil_panen[$item->id_master_komoditas]['harga_jual'], 
                                                     [
-                                                        'class' => 'control-label'
+                                                        'class'       => 'form-control',
+                                                        'placeholder' => '',
                                                     ]
                                                 )
-                                            }} 
-                                            {{ $v }}
-                                        </label>
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            {{
-                                Form::label(
-                                    'lama_pendidikan', 
-                                    'Lama Pendidikan', 
-                                    [
-                                        'class' => 'col-sm-4 control-label'
-                                    ]
-                                )
-                            }}
-                            <div class="col-sm-2">
-                                {{
-                                    Form::text(
-                                        'lama_pendidikan', 
-                                        $responden->lama_pendidikan, 
-                                        [
-                                            'class'       => 'form-control',
-                                            'placeholder' => 'Lama Pendidikan',
-                                            'maxlength'   => 2
-                                        ]
-                                    )
-                                }}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            {{
-                                Form::label(
-                                    'stat_kawin', 
-                                    'Status Kawin', 
-                                    [
-                                        'class' => 'col-sm-4 control-label'
-                                    ]
-                                )
-                            }}
-                            <div class="col-sm-4">
-                                @foreach ($status_kawin as $k => $v)
-                                    <div class="radio">
-                                        <label>
+                                            }}
+                                        </td>
+                                        <td>
                                             {{
-                                                Form::radio(
-                                                    'stat_kawin', 
-                                                    $k,
-                                                    $k == $responden->stat_kawin,
+                                                Form::text(
+                                                    'jumlah_penerimaan[' . $hasil_panen[$item->id_master_komoditas]['id_hasil_panen'] . ']', 
+                                                    $hasil_panen[$item->id_master_komoditas]['jumlah_penerimaan'], 
                                                     [
-                                                        'class' => 'control-label'
+                                                        'class'       => 'form-control',
+                                                        'placeholder' => '',
                                                     ]
                                                 )
-                                            }} 
-                                            {{ $v }}
-                                        </label>
-                                    </div>
+                                            }}
+                                        </td>
+                                    </tr>
                                 @endforeach
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            {{
-                                Form::label(
-                                    'jum_ang_kel', 
-                                    'Jumlah Anggota Keluarga', 
-                                    [
-                                        'class' => 'col-sm-4 control-label'
-                                    ]
-                                )
-                            }}
-                            <div class="col-sm-2">
-                                {{
-                                    Form::text(
-                                        'jum_ang_kel_total', 
-                                        $responden->jum_ang_kel_total, 
-                                        [
-                                            'class'       => 'form-control',
-                                            'placeholder' => 'Jumlah Anggota Keluarga',
-                                            'maxlength'   => 2
-                                        ]
-                                    )
-                                }}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            {{
-                                Form::label(
-                                    'anak', 
-                                    'a. Anak-Anak', 
-                                    [
-                                        'class' => 'col-sm-4 control-label'
-                                    ]
-                                )
-                            }}
-                            <div class="col-sm-2">
-                                {{
-                                    Form::text(
-                                        'jum_ang_kel_anak', 
-                                        $responden->jum_ang_kel_anak, 
-                                        [
-                                            'class'       => 'form-control',
-                                            'placeholder' => 'Anak-Anak',
-                                            'maxlength'   => 2
-                                        ]
-                                    )
-                                }}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            {{
-                                Form::label(
-                                    'dewasa', 
-                                    'b. Dewasa', 
-                                    [
-                                        'class' => 'col-sm-4 control-label'
-                                    ]
-                                )
-                            }}
-                            <div class="col-sm-2">
-                                {{
-                                    Form::text(
-                                        'jum_ang_kel_dewasa', 
-                                        $responden->jum_ang_kel_dewasa, 
-                                        [
-                                            'class'       => 'form-control',
-                                            'placeholder' => 'Dewasa',
-                                            'maxlength'   => 2
-                                        ]
-                                    )
-                                }}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            {{
-                                Form::label(
-                                    'stat_keluarga', 
-                                    'Status dalam Keluarga', 
-                                    [
-                                        'class' => 'col-sm-4 control-label'
-                                    ]
-                                )
-                            }}
-                            <div class="col-sm-4">
-                                @foreach ($status_keluarga as $k => $v)
-                                    <div class="radio">
-                                        <label>
-                                            {{
-                                                Form::radio(
-                                                    'stat_keluarga', 
-                                                    $k,
-                                                    $k == $responden->stat_keluarga,
-                                                    [
-                                                        'class' => 'control-label'
-                                                    ]
-                                                )
-                                            }} 
-                                            {{ $v }}
-                                        </label>
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            {{
-                                Form::label(
-                                    'pendapatan', 
-                                    'Pendapatan Rumah Tangga (Rp/tahun)', 
-                                    [
-                                        'class' => 'col-sm-4 control-label'
-                                    ]
-                                )
-                            }}
-                            <div class="col-sm-4">
-                                @foreach ($jenis_pendapatan as $k => $v)
-                                    <div class="radio">
-                                        <label>
-                                            {{
-                                                Form::radio(
-                                                    'pendapatan', 
-                                                    $k,
-                                                    $k == $responden->pendapatan,
-                                                    [
-                                                        'class' => 'control-label'
-                                                    ]
-                                                )
-                                            }} 
-                                            {{ $v }}
-                                        </label>
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            {{
-                                Form::label(
-                                    'pekerjaan_utama', 
-                                    'Pekerjaan Utama', 
-                                    [
-                                        'class' => 'col-sm-4 control-label'
-                                    ]
-                                )
-                            }}
-                            <div class="col-sm-4">
-                                @foreach ($pekerjaan as $k => $v)
-                                    <div class="radio">
-                                        <label>
-                                            {{
-                                                Form::radio(
-                                                    'pekerjaan_utama', 
-                                                    $k,
-                                                    $k == $responden->pekerjaan_utama,
-                                                    [
-                                                        'class' => 'control-label'
-                                                    ]
-                                                )
-                                            }} 
-                                            {{ $v }}
-                                        </label>
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            {{
-                                Form::label(
-                                    'pekerjaan_sampingan', 
-                                    'Pekerjaan Sampingan', 
-                                    [
-                                        'class' => 'col-sm-4 control-label'
-                                    ]
-                                )
-                            }}
-                            <div class="col-sm-4">
-                                @foreach ($pekerjaan as $k => $v)
-                                    <div class="radio">
-                                        <label>
-                                            {{
-                                                Form::radio(
-                                                    'pekerjaan_sampingan', 
-                                                    $k,
-                                                    $k == $responden->pekerjaan_sampingan,
-                                                    [
-                                                        'class' => 'control-label'
-                                                    ]
-                                                )
-                                            }} 
-                                            {{ $v }}
-                                        </label>
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
-                      <div class="form-group">
-                        <div class="col-sm-offset-4 col-sm-4">
-                            <a href="{{ url('responden') }}" class="btn btn-link btn-sm">Batal</a>
-                            <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
-                        </div>
-                      </div>
+                            </tbody>
+                        </table>
+                      @include('components.form.prev_next_btn')
                     {!! Form::close() !!}
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#jenis-komoditas').multiselect();
+    });
+</script>
 @endsection

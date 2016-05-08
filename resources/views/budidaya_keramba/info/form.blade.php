@@ -13,249 +13,228 @@
                 </ul>
                 <div class="panel-body">
                     {!! Form::open(array('url' => $action, 'class' => 'form-horizontal')) !!}
-                        <div class="form-group">
-                            {{
-                                Form::label(
-                                    'lama_usaha', 
-                                    'Lama Usaha (tahun)', 
-                                    [
-                                        'class' => 'col-sm-4 control-label'
-                                    ]
-                                )
-                            }}
-                        
-                            <div class="col-sm-1">
-                                {{
-                                    Form::text(
-                                        'lama_usaha', 
-                                        '', 
-                                        [
-                                            'class'       => 'form-control',
-                                            'placeholder' => 'Lama Usaha',
-                                            'maxlength'   => 2
+                        <table class="table table-hover">
+                            <tr>
+                                <td width="400">1. Lama Usaha</td>
+                                <td>
+                                    {{
+                                        Form::text(
+                                            'lama_usaha', 
+                                            '', 
+                                            [
+                                                'class'       => 'form-control',
+                                                'placeholder' => 'tahun',
+                                                'maxlength'   => 2
 
-                                        ]
-                                    )
-                                }}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            {{
-                                Form::label(
-                                    'status_usaha', 
-                                    'Status Usaha', 
-                                    [
-                                        'class' => 'col-sm-4 control-label'
-                                    ]
-                                )
-                            }}
-                            <div class="col-sm-4">
-                                @foreach ($status_usaha as $k => $v)
-                                    <div class="radio">
-                                        <label>
+                                            ]
+                                        )
+                                    }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2. Status Usaha</td>
+                                <td>
+                                    @foreach ($status_usaha as $k => $v)
+                                        <div class="radio">
+                                            <label>
+                                                {{
+                                                    Form::radio(
+                                                        'status_usaha', 
+                                                        $k,
+                                                        false,
+                                                        [
+                                                            'class' => 'control-label'
+                                                        ]
+                                                    )
+                                                }} 
+                                                {{ $v }}
+                                            </label>
+                                        </div>
+                                    @endforeach
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>3. Mata Pencaharian sebelum menjadi Pembudidaya</td>
+                                <td>
+                                    {{
+                                        Form::text(
+                                            'mapen_sblm_keramba', 
+                                            '', 
+                                            [
+                                                'class'       => 'form-control',
+                                                'placeholder' => 'Mata Pencarian',
+                                                'maxlength'   => 255
+                                            ]
+                                        )
+                                    }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>4. Luas Lahan Budidaya Keramba</td>
+                                <td>
+                                    {{
+                                        Form::text(
+                                            'luas_lahan', 
+                                            '', 
+                                            [
+                                                'class'       => 'form-control',
+                                                'placeholder' => 'meter persegi',
+                                            ]
+                                        )
+                                    }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>5. Jumlah Total Keramba</td>
+                                <td>
+                                    {{
+                                        Form::text(
+                                            'keramba_total', 
+                                            '', 
+                                            [
+                                                'class'       => 'form-control',
+                                                'placeholder' => 'unit',
+                                            ]
+                                        )
+                                    }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Jumlah Keramba yang Aktif</td>
+                                <td>
+                                    {{
+                                        Form::text(
+                                            'keramba_aktif', 
+                                            '', 
+                                            [
+                                                'class'       => 'form-control',
+                                                'placeholder' => 'unit',
+                                            ]
+                                        )
+                                    }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Jumlah Keramba yang Tidak Aktif</td>
+                                <td>
+                                    {{
+                                        Form::text(
+                                            'keramba_tidak_aktif', 
+                                            '', 
+                                            [
+                                                'class'       => 'form-control',
+                                                'placeholder' => 'unit',
+                                            ]
+                                        )
+                                    }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>6. Jenis komoditas yang Diusahakan</td>
+                                <td>
+                                    {{
+                                        Form::select(
+                                            'jenis_komoditas[]', 
+                                            $jenis_komoditas, 
+                                            null, 
+                                            [
+                                                'class'    => 'form-control',
+                                                'multiple' => 'multiple',
+                                                'id'       => 'jenis-komoditas'
+                                            ]
+                                        )
+                                    }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>7. Waktu Pemeliharaan</td>
+                                <td>
+                                    {{
+                                        Form::text(
+                                            'waktu_pemeliharaan', 
+                                            '', 
+                                            [
+                                                'class'       => 'form-control',
+                                                'placeholder' => 'bulan',
+                                            ]
+                                        )
+                                    }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>8. Jumlah Siklus/Panen per Tahun pada Unit Usaha</td>
+                                <td>
+                                    {{
+                                        Form::text(
+                                            'jum_siklus_panen', 
+                                            '', 
+                                            [
+                                                'class'       => 'form-control',
+                                                'placeholder' => 'kali',
+                                            ]
+                                        )
+                                    }}
+                                </td>
+                            </tr>
+                        </table>
+                        11. Hasil Panen per Siklus (per Unit)
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Jenis Komoditas</th>
+                                    <th>Satuan</th>
+                                    <th>Jumlah Produksi</th>
+                                    <th>Harga Jual (Rp/Kg)</th>
+                                    <th>Jumlah Penerimaan (Rp)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($komoditas as $idx => $item)
+                                    <tr>
+                                        <td>{{$idx + 1}}</td>
+                                        <td>{{$item['komoditas']}}</td>
+                                        <td>{{$item['satuan']}}</td>
+                                        <td>
                                             {{
-                                                Form::radio(
-                                                    'status_usaha', 
-                                                    $k,
-                                                    false,
+                                                Form::text(
+                                                    'jumlah[' . $item->id_master_komoditas . ']', 
+                                                    '', 
                                                     [
-                                                        'class' => 'control-label'
+                                                        'class'       => 'form-control',
+                                                        'placeholder' => '',
                                                     ]
                                                 )
-                                            }} 
-                                            {{ $v }}
-                                        </label>
-                                    </div>
+                                            }}
+                                        </td>
+                                        <td>
+                                            {{
+                                                Form::text(
+                                                    'harga_jual[' . $item->id_master_komoditas . ']', 
+                                                    '', 
+                                                    [
+                                                        'class'       => 'form-control',
+                                                        'placeholder' => '',
+                                                    ]
+                                                )
+                                            }}
+                                        </td>
+                                        <td>
+                                            {{
+                                                Form::text(
+                                                    'jumlah_penerimaan[' . $item->id_master_komoditas . ']', 
+                                                    '', 
+                                                    [
+                                                        'class'       => 'form-control',
+                                                        'placeholder' => '',
+                                                    ]
+                                                )
+                                            }}
+                                        </td>
+                                    </tr>
                                 @endforeach
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            {{
-                                Form::label(
-                                    'mata_pencaharian', 
-                                    'Mata Pencaharian sebelum menjadi pembudidaya', 
-                                    [
-                                        'class' => 'col-sm-4 control-label'
-                                    ]
-                                )
-                            }}
-                            <div class="col-sm-5">
-                                {{
-                                    Form::text(
-                                        'mapen_sblm_keramba', 
-                                        '', 
-                                        [
-                                            'class'       => 'form-control',
-                                            'placeholder' => 'Mata Pencarian',
-                                            'maxlength'   => 255
-                                        ]
-                                    )
-                                }}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            {{
-                                Form::label(
-                                    'luas_lahan', 
-                                    'Luas Lahan Budidaya Keramba (meter persegi)', 
-                                    [
-                                        'class' => 'col-sm-4 control-label'
-                                    ]
-                                )
-                            }}
-                            <div class="col-sm-2">
-                                {{
-                                    Form::text(
-                                        'luas_lahan', 
-                                        '', 
-                                        [
-                                            'class'       => 'form-control',
-                                            'placeholder' => 'Luas Lahan',
-                                        ]
-                                    )
-                                }}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            {{
-                                Form::label(
-                                    'jumlah_total', 
-                                    'Jumlah Total Keramba (unit)', 
-                                    [
-                                        'class' => 'col-sm-4 control-label'
-                                    ]
-                                )
-                            }}
-                            <div class="col-sm-2">
-                                {{
-                                    Form::text(
-                                        'keramba_total', 
-                                        '', 
-                                        [
-                                            'class'       => 'form-control',
-                                            'placeholder' => 'Jumlah Total Keramba',
-                                        ]
-                                    )
-                                }}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            {{
-                                Form::label(
-                                    'keramba_aktif', 
-                                    'Jumlah Keramba yang Aktif (unit)', 
-                                    [
-                                        'class' => 'col-sm-4 control-label'
-                                    ]
-                                )
-                            }}
-                            <div class="col-sm-2">
-                                {{
-                                    Form::text(
-                                        'keramba_aktif', 
-                                        '', 
-                                        [
-                                            'class'       => 'form-control',
-                                            'placeholder' => 'Jumlah Keramba yang Aktif',
-                                        ]
-                                    )
-                                }}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            {{
-                                Form::label(
-                                    'keramba_tidak_aktif', 
-                                    'Jumlah Keramba yang Tidak Aktif (unit)', 
-                                    [
-                                        'class' => 'col-sm-4 control-label'
-                                    ]
-                                )
-                            }}
-                            <div class="col-sm-2">
-                                {{
-                                    Form::text(
-                                        'keramba_tidak_aktif', 
-                                        '', 
-                                        [
-                                            'class'       => 'form-control',
-                                            'placeholder' => 'Jumlah Keramba yang Tidak Aktif',
-                                        ]
-                                    )
-                                }}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            {{
-                                Form::label(
-                                    'jenis_komoditas', 
-                                    'Jenis komoditas yang diusahakan', 
-                                    [
-                                        'class' => 'col-sm-4 control-label'
-                                    ]
-                                )
-                            }}
-                            <div class="col-sm-2">
-                                {{
-                                    Form::select(
-                                        'jenis_komoditas[]', 
-                                        $jenis_komoditas, 
-                                        null, 
-                                        [
-                                            'class'    => 'form-control',
-                                            'multiple' => 'multiple',
-                                            'id'       => 'jenis-komoditas'
-                                        ]
-                                    )
-                                }}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            {{
-                                Form::label(
-                                    'waktu_pemeliharaan', 
-                                    'Waktu Pemeliharaan (bulan)', 
-                                    [
-                                        'class' => 'col-sm-4 control-label'
-                                    ]
-                                )
-                            }}
-                            <div class="col-sm-2">
-                                {{
-                                    Form::text(
-                                        'waktu_pemeliharaan', 
-                                        '', 
-                                        [
-                                            'class'       => 'form-control',
-                                            'placeholder' => 'Waktu Pemeliharaan',
-                                        ]
-                                    )
-                                }}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            {{
-                                Form::label(
-                                    'jum_siklus_panen', 
-                                    'Jumlah Siklus/Panen per Tahun pada Unit Usaha (kali)', 
-                                    [
-                                        'class' => 'col-sm-4 control-label'
-                                    ]
-                                )
-                            }}
-                            <div class="col-sm-2">
-                                {{
-                                    Form::text(
-                                        'jum_siklus_panen', 
-                                        '', 
-                                        [
-                                            'class'       => 'form-control',
-                                            'placeholder' => 'Jumlah Siklus Panen',
-                                        ]
-                                    )
-                                }}
-                            </div>
-                        </div>
+                            </tbody>
+                        </table>
                       @include('components.form.prev_next_btn')
                     {!! Form::close() !!}
                 </div>

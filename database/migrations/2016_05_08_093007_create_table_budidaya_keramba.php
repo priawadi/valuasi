@@ -15,16 +15,16 @@ class CreateTableBudidayaKeramba extends Migration
         Schema::create('budidaya_keramba', function (Blueprint $table) {
             $table->increments('id_budidaya_keramba');
             $table->integer('id_responden');
-            $table->integer('lama_usaha');
-            $table->integer('status_usaha');
-            $table->string('mapen_sblm_keramba', 255);
-            $table->integer('luas_lahan');
-            $table->integer('keramba_total');
-            $table->integer('keramba_aktif');
-            $table->integer('keramba_tidak_aktif');
-            $table->string('jenis_komoditas');
-            $table->integer('waktu_pemeliharaan');
-            $table->integer('jum_siklus_panen');
+            $table->integer('lama_usaha')->nullable();
+            $table->integer('status_usaha')->nullable();
+            $table->string('mapen_sblm_keramba', 255)->nullable();
+            $table->integer('luas_lahan')->nullable();
+            $table->integer('keramba_total')->nullable();
+            $table->integer('keramba_aktif')->nullable();
+            $table->integer('keramba_tidak_aktif')->nullable();
+            $table->string('jenis_komoditas')->nullable();
+            $table->integer('waktu_pemeliharaan')->nullable();
+            $table->integer('jum_siklus_panen')->nullable();
 
             $table->softDeletes();
             $table->timestamps();
