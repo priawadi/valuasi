@@ -15,7 +15,8 @@ class MasterBiayaSeeder extends Seeder
         $master_biaya = [
         	[
         		'id_master_biaya' 	=> 1,
-        		'kateg_mst_biaya'	=> 1,
+        		'kateg_biaya'		=> Config::get('constants.BIAYA.INVESTASI'),
+        		'kateg_modul'		=> Config::get('constants.MODULE.TAMBAK'),
         		'biaya'				=> 'Lahan Tambak',
         		'satuan'			=> 'Ha',
         		'created_at'		=> \Carbon\Carbon::now()->toDateTimeString(),
@@ -23,7 +24,8 @@ class MasterBiayaSeeder extends Seeder
 
         	[
         		'id_master_biaya' 	=> 2,
-        		'kateg_mst_biaya'	=> 1,
+        		'kateg_biaya'		=> Config::get('constants.BIAYA.INVESTASI'),
+        		'kateg_modul'		=> Config::get('constants.MODULE.TAMBAK'),
         		'biaya'				=> 'Bangunan',
         		'satuan'			=> 'Unit',
         		'created_at'		=> \Carbon\Carbon::now()->toDateTimeString(),
@@ -31,7 +33,8 @@ class MasterBiayaSeeder extends Seeder
 
         	[
         		'id_master_biaya' 	=> 3,
-        		'kateg_mst_biaya'	=> 1,
+        		'kateg_biaya'		=> Config::get('constants.BIAYA.INVESTASI'),
+        		'kateg_modul'		=> Config::get('constants.MODULE.TAMBAK'),
         		'biaya'				=> 'Konstruksi Tambak',
         		'satuan'			=> 'Petak',
         		'created_at'		=> \Carbon\Carbon::now()->toDateTimeString(),
@@ -39,7 +42,8 @@ class MasterBiayaSeeder extends Seeder
 
         	[
         		'id_master_biaya' 	=> 4,
-        		'kateg_mst_biaya'	=> 1,
+        		'kateg_biaya'		=> Config::get('constants.BIAYA.INVESTASI'),
+        		'kateg_modul'		=> Config::get('constants.MODULE.TAMBAK'),
         		'biaya'				=> 'Genset',
         		'satuan'			=> 'Unit',
         		'created_at'		=> \Carbon\Carbon::now()->toDateTimeString(),
@@ -47,7 +51,8 @@ class MasterBiayaSeeder extends Seeder
 
         	[
         		'id_master_biaya' 	=> 5,
-        		'kateg_mst_biaya'	=> 1,
+        		'kateg_biaya'		=> Config::get('constants.BIAYA.INVESTASI'),
+        		'kateg_modul'		=> Config::get('constants.MODULE.TAMBAK'),
         		'biaya'				=> 'Kincir Air',
         		'satuan'			=> 'Unit',
         		'created_at'		=> \Carbon\Carbon::now()->toDateTimeString(),
@@ -55,7 +60,8 @@ class MasterBiayaSeeder extends Seeder
 
         	[
         		'id_master_biaya' 	=> 6,
-        		'kateg_mst_biaya'	=> 1,
+        		'kateg_biaya'		=> Config::get('constants.BIAYA.INVESTASI'),
+        		'kateg_modul'		=> Config::get('constants.MODULE.TAMBAK'),
         		'biaya'				=> 'Pintu Air',
         		'satuan'			=> 'Unit',
         		'created_at'		=> \Carbon\Carbon::now()->toDateTimeString(),
@@ -63,7 +69,8 @@ class MasterBiayaSeeder extends Seeder
 
         	[
         		'id_master_biaya' 	=> 7,
-        		'kateg_mst_biaya'	=> 1,
+        		'kateg_biaya'		=> Config::get('constants.BIAYA.INVESTASI'),
+        		'kateg_modul'		=> Config::get('constants.MODULE.TAMBAK'),
         		'biaya'				=> 'Paralon',
         		'satuan'			=> 'Unit',
         		'created_at'		=> \Carbon\Carbon::now()->toDateTimeString(),

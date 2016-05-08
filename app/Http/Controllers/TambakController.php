@@ -69,6 +69,15 @@ class TambakController extends Controller
 
         $tambak->save();
 
+        $biaya 								= new MasterBiaya;
+        $biaya->kateg_biaya					= Config::get('constants.BIAYA.INVESTASI');
+        $biaya->kateg_modul					= Config::get('constants.MODULE.TAMBAK');
+        $biaya->volume						= $request->input('volume', null);
+        $biaya->harga_satuan				= $request->input('harga_satuan', null);
+        $biaya->total 						= $request->input('total', null);
+
+        $biaya->save();
+
         return redirect('tambak');
     }
 
