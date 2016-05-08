@@ -22,3 +22,12 @@ Route::post('/responden/tambah', 'RespondenController@store');
 Route::get('/responden/edit/{id_responden}', 'RespondenController@edit');
 Route::patch('/responden/edit/{id_responden}', 'RespondenController@update');
 Route::get('/responden/lihat/{id_responden}', 'RespondenController@detail');
+
+// PEMBUDIDAYA IKAN
+// Informasi Umum
+Route::get('/budidaya-keramba/info', 'BudidayaKerambaInfoController@index');
+Route::get('/budidaya-keramba/info/tambah', 'BudidayaKerambaInfoController@create');
+Route::post('/budidaya-keramba/info/tambah', 'BudidayaKerambaInfoController@store');
+Route::get('/budidaya-keramba/info/edit/{id_responden}', 'BudidayaKerambaInfoController@edit');
+Route::patch('/budidaya-keramba/info/edit/{id_responden}', 'BudidayaKerambaInfoController@update');
+Route::get('/budidaya-keramba/info/lihat/{id_responden}', 'BudidayaKerambaInfoController@detail');

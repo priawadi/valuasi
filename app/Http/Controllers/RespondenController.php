@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Responden;
+use App\BudidayaKeramba;
 
 class RespondenController extends Controller
 {
@@ -220,8 +221,8 @@ class RespondenController extends Controller
         $kuesioner['pembudidaya_ikan'] = [
             [
                 'kuesioner' => 'Informasi Umum',
-                'is_done'   => 0,
-                'link'      => 'partisipasi-sosial',
+                'is_done'   => (BudidayaKeramba::where('id_responden', $request->session()->get('id_responden'))->count()),
+                'link'      => 'budidaya-keramba/info',
             ],
             [
                 'kuesioner' => 'Biaya Investasi',
