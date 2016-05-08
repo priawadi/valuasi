@@ -19,4 +19,10 @@ return [
         'WISATA'           => 7,
         'RUMPUT_LAUT'      => 8,
     ],
+
+    'BIAYA' => [
+        'INVESTASI' => 1,
+        'VARIABEL'  => 2,
+        'TETAP'     => 3,
+    ],
 ];
