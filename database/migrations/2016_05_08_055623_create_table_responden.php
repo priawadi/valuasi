@@ -20,6 +20,7 @@ class CreateTableResponden extends Migration
             $table->integer('umur')->nullable();
             $table->integer('jenis_kelamin')->nullable();
             $table->integer('pendidikan')->nullable();
+            $table->float('lama_pendidikan')->nullable();
             $table->integer('stat_kawin')->nullable();
             $table->integer('jum_ang_kel_total')->nullable();
             $table->integer('jum_ang_kel_anak')->nullable();
