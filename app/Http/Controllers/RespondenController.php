@@ -216,6 +216,7 @@ class RespondenController extends Controller
         $request->session()->put('id_responden', $id_responden);
         $kuesioner = [];
 
+        // EOP Pembudidaya Ikan
         $kuesioner['pembudidaya_ikan'] = [
             [
                 'kuesioner' => 'Informasi Umum',
@@ -243,6 +244,239 @@ class RespondenController extends Controller
                 'link'      => 'rasa-percaya-organisasi',
             ],
         ];
+
+        // EOP petambak
+        $kuesioner['petambak'] = [
+            [
+                'kuesioner' => 'Informasi Umum',
+                'is_done'   => 0,
+                'link'      => 'partisipasi-sosial',
+            ],
+            [
+                'kuesioner' => 'Biaya Investasi',
+                'is_done'   => 0,
+                'link'      => 'partisipasi-organisasi',
+            ],
+            [
+                'kuesioner' => 'Biaya Variabel',
+                'is_done'   => 0,
+                'link'      => 'partisipasi-politik',
+            ],
+            [
+                'kuesioner' => 'Biaya Tetap',
+                'is_done'   => 0,
+                'link'      => 'rasa-percaya-masyarakat',
+            ],
+            [
+                'kuesioner' => 'Hasil Panen Per Siklus',
+                'is_done'   => 0,
+                'link'      => 'rasa-percaya-organisasi',
+            ],
+        ];
+
+        // Nilai Keberadaan (Existence Value)
+        $kuesioner['nilai_keberadaan'] = [
+            [
+                'kuesioner' => 'Informasi Umum',
+                'is_done'   => 0,
+                'link'      => 'partisipasi-sosial',
+            ],
+            [
+                'kuesioner' => 'Biaya Investasi',
+                'is_done'   => 0,
+                'link'      => 'partisipasi-organisasi',
+            ],
+            [
+                'kuesioner' => 'Biaya Variabel',
+                'is_done'   => 0,
+                'link'      => 'partisipasi-politik',
+            ],
+            [
+                'kuesioner' => 'Biaya Tetap',
+                'is_done'   => 0,
+                'link'      => 'rasa-percaya-masyarakat',
+            ],
+            [
+                'kuesioner' => 'Hasil Panen Per Siklus',
+                'is_done'   => 0,
+                'link'      => 'rasa-percaya-organisasi',
+            ],
+        ];
+
+        // Pemanfaatan Ekosistem Mangrove
+        $kuesioner['pemanfaatan_mangrove'] = [
+            [
+                'kuesioner' => 'Informasi Umum',
+                'is_done'   => 0,
+                'link'      => 'partisipasi-sosial',
+            ],
+            [
+                'kuesioner' => 'Biaya Investasi',
+                'is_done'   => 0,
+                'link'      => 'partisipasi-organisasi',
+            ],
+            [
+                'kuesioner' => 'Biaya Variabel',
+                'is_done'   => 0,
+                'link'      => 'partisipasi-politik',
+            ],
+            [
+                'kuesioner' => 'Biaya Tetap',
+                'is_done'   => 0,
+                'link'      => 'rasa-percaya-masyarakat',
+            ],
+            [
+                'kuesioner' => 'Hasil Panen Per Siklus',
+                'is_done'   => 0,
+                'link'      => 'rasa-percaya-organisasi',
+            ],
+        ];
+
+        // Pemanfaatan Ekosistem Mangrove (Pemanfaat Kayu)
+        $kuesioner['pemanfaat_kayu'] = [
+            [
+                'kuesioner' => 'Informasi Umum',
+                'is_done'   => 0,
+                'link'      => 'partisipasi-sosial',
+            ],
+            [
+                'kuesioner' => 'Biaya Investasi',
+                'is_done'   => 0,
+                'link'      => 'partisipasi-organisasi',
+            ],
+            [
+                'kuesioner' => 'Biaya Variabel',
+                'is_done'   => 0,
+                'link'      => 'partisipasi-politik',
+            ],
+            [
+                'kuesioner' => 'Biaya Tetap',
+                'is_done'   => 0,
+                'link'      => 'rasa-percaya-masyarakat',
+            ],
+            [
+                'kuesioner' => 'Hasil Panen Per Siklus',
+                'is_done'   => 0,
+                'link'      => 'rasa-percaya-organisasi',
+            ],
+        ];
+
+        // Pemanfaatan Ekosistem Mangrove (Pencari Satwa)
+        $kuesioner['pencari_satwa'] = [
+            [
+                'kuesioner' => 'Informasi Umum',
+                'is_done'   => 0,
+                'link'      => 'partisipasi-sosial',
+            ],
+            [
+                'kuesioner' => 'Biaya Investasi',
+                'is_done'   => 0,
+                'link'      => 'partisipasi-organisasi',
+            ],
+            [
+                'kuesioner' => 'Biaya Variabel',
+                'is_done'   => 0,
+                'link'      => 'partisipasi-politik',
+            ],
+            [
+                'kuesioner' => 'Biaya Tetap',
+                'is_done'   => 0,
+                'link'      => 'rasa-percaya-masyarakat',
+            ],
+            [
+                'kuesioner' => 'Hasil Panen Per Siklus',
+                'is_done'   => 0,
+                'link'      => 'rasa-percaya-organisasi',
+            ],
+        ];
+
+        // Pemanfaatan Sumber Daya Perikanan Tangkap Ekosistem Terumbu Karang
+        $kuesioner['terumbu_karang'] = [
+            [
+                'kuesioner' => 'Informasi Umum',
+                'is_done'   => 0,
+                'link'      => 'partisipasi-sosial',
+            ],
+            [
+                'kuesioner' => 'Biaya Investasi',
+                'is_done'   => 0,
+                'link'      => 'partisipasi-organisasi',
+            ],
+            [
+                'kuesioner' => 'Biaya Variabel',
+                'is_done'   => 0,
+                'link'      => 'partisipasi-politik',
+            ],
+            [
+                'kuesioner' => 'Biaya Tetap',
+                'is_done'   => 0,
+                'link'      => 'rasa-percaya-masyarakat',
+            ],
+            [
+                'kuesioner' => 'Hasil Panen Per Siklus',
+                'is_done'   => 0,
+                'link'      => 'rasa-percaya-organisasi',
+            ],
+        ];
+
+        // Pemanfaatan Ekosistem Terumbu Karang dan Mangrove (Travel Cost Method/TCM)
+        $kuesioner['travel_cost_method'] = [
+            [
+                'kuesioner' => 'Informasi Umum',
+                'is_done'   => 0,
+                'link'      => 'partisipasi-sosial',
+            ],
+            [
+                'kuesioner' => 'Biaya Investasi',
+                'is_done'   => 0,
+                'link'      => 'partisipasi-organisasi',
+            ],
+            [
+                'kuesioner' => 'Biaya Variabel',
+                'is_done'   => 0,
+                'link'      => 'partisipasi-politik',
+            ],
+            [
+                'kuesioner' => 'Biaya Tetap',
+                'is_done'   => 0,
+                'link'      => 'rasa-percaya-masyarakat',
+            ],
+            [
+                'kuesioner' => 'Hasil Panen Per Siklus',
+                'is_done'   => 0,
+                'link'      => 'rasa-percaya-organisasi',
+            ],
+        ];
+
+        // Pemanfaatan Sumber Daya Perikanan Budidaya Rumput Laut
+        $kuesioner['rumput_laut'] = [
+            [
+                'kuesioner' => 'Informasi Umum',
+                'is_done'   => 0,
+                'link'      => 'partisipasi-sosial',
+            ],
+            [
+                'kuesioner' => 'Biaya Investasi',
+                'is_done'   => 0,
+                'link'      => 'partisipasi-organisasi',
+            ],
+            [
+                'kuesioner' => 'Biaya Variabel',
+                'is_done'   => 0,
+                'link'      => 'partisipasi-politik',
+            ],
+            [
+                'kuesioner' => 'Biaya Tetap',
+                'is_done'   => 0,
+                'link'      => 'rasa-percaya-masyarakat',
+            ],
+            [
+                'kuesioner' => 'Hasil Panen Per Siklus',
+                'is_done'   => 0,
+                'link'      => 'rasa-percaya-organisasi',
+            ],
+        ];
+        
         
         return view('responden.detail', [
             'responden'  => Responden::find($id_responden),
