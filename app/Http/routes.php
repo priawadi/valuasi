@@ -31,3 +31,11 @@ Route::post('/budidaya-keramba/info/tambah', 'BudidayaKerambaInfoController@stor
 Route::get('/budidaya-keramba/info/edit/{id_responden}', 'BudidayaKerambaInfoController@edit');
 Route::patch('/budidaya-keramba/info/edit/{id_responden}', 'BudidayaKerambaInfoController@update');
 Route::get('/budidaya-keramba/info/lihat/{id_responden}', 'BudidayaKerambaInfoController@detail');
+
+// Tambak
+Route::get('/tambak', 'TambakController@index');
+Route::get('/tambak/tambah', 'TambakController@create');
+Route::post('/tambak/tambah', 'TambakController@store');
+Route::get('/tambak/edit/{id_responden}', 'TambakController@edit');
+Route::patch('/tambak/edit/{id_responden}', 'TambakController@update');
+Route::get('/tambak/lihat/{id_responden}', 'TambakController@detail');
