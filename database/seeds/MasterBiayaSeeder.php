@@ -74,7 +74,124 @@ class MasterBiayaSeeder extends Seeder
         		'biaya'				=> 'Paralon',
         		'satuan'			=> 'Unit',
         		'created_at'		=> \Carbon\Carbon::now()->toDateTimeString(),
+        	],  
+
+        	[
+        		'id_master_biaya' 	=> 8,
+        		'kateg_biaya'		=> Config::get('constants.BIAYA.VARIABEL'),
+        		'kateg_modul'		=> Config::get('constants.MODULE.TAMBAK'),
+        		'biaya'				=> 'Bibit',
+        		'satuan'			=> 'Ekor',
+        		'created_at'		=> \Carbon\Carbon::now()->toDateTimeString(),
+        	], 
+
+        	[
+        		'id_master_biaya' 	=> 9,
+        		'kateg_biaya'		=> Config::get('constants.BIAYA.VARIABEL'),
+        		'kateg_modul'		=> Config::get('constants.MODULE.TAMBAK'),
+        		'biaya'				=> 'Biaya Persiapan Lahan',
+        		'satuan'			=> 'Rp/Siklus',
+        		'created_at'		=> \Carbon\Carbon::now()->toDateTimeString(),
+        	],
+
+        	[
+        		'id_master_biaya' 	=> 10,
+        		'kateg_biaya'		=> Config::get('constants.BIAYA.VARIABEL'),
+        		'kateg_modul'		=> Config::get('constants.MODULE.TAMBAK'),
+        		'biaya'				=> 'Biaya Pemeliharaan',
+        		'satuan'			=> 'Rp/Siklus',
+        		'created_at'		=> \Carbon\Carbon::now()->toDateTimeString(),
+        	],
+
+        	[
+        		'id_master_biaya' 	=> 11,
+        		'kateg_biaya'		=> Config::get('constants.BIAYA.VARIABEL'),
+        		'kateg_modul'		=> Config::get('constants.MODULE.TAMBAK'),
+        		'biaya'				=> 'Obat-obatan',
+        		'satuan'			=> 'Paket',
+        		'created_at'		=> \Carbon\Carbon::now()->toDateTimeString(),
+        	],
+
+        	[
+        		'id_master_biaya' 	=> 12,
+        		'kateg_biaya'		=> Config::get('constants.BIAYA.VARIABEL'),
+        		'kateg_modul'		=> Config::get('constants.MODULE.TAMBAK'),
+        		'biaya'				=> 'Obat-Obatan',
+        		'satuan'			=> 'Paket',
+        		'created_at'		=> \Carbon\Carbon::now()->toDateTimeString(),
         	],        	
+
+        	[
+        		'id_master_biaya' 	=> 13,
+        		'kateg_biaya'		=> Config::get('constants.BIAYA.VARIABEL'),
+        		'kateg_modul'		=> Config::get('constants.MODULE.TAMBAK'),
+        		'biaya'				=> 'Pakan',
+        		'satuan'			=> 'Kg',
+        		'created_at'		=> \Carbon\Carbon::now()->toDateTimeString(),
+        	],        	
+
+        	[
+        		'id_master_biaya' 	=> 14,
+        		'kateg_biaya'		=> Config::get('constants.BIAYA.VARIABEL'),
+        		'kateg_modul'		=> Config::get('constants.MODULE.TAMBAK'),
+        		'biaya'				=> 'Pupuk',
+        		'satuan'			=> 'Kg',
+        		'created_at'		=> \Carbon\Carbon::now()->toDateTimeString(),
+        	],        	
+
+        	[
+        		'id_master_biaya' 	=> 15,
+        		'kateg_biaya'		=> Config::get('constants.BIAYA.VARIABEL'),
+        		'kateg_modul'		=> Config::get('constants.MODULE.TAMBAK'),
+        		'biaya'				=> 'Listrik',
+        		'satuan'			=> 'Bulan',
+        		'created_at'		=> \Carbon\Carbon::now()->toDateTimeString(),
+        	],        	
+
+        	[
+        		'id_master_biaya' 	=> 16,
+        		'kateg_biaya'		=> Config::get('constants.BIAYA.VARIABEL'),
+        		'kateg_modul'		=> Config::get('constants.MODULE.TAMBAK'),
+        		'biaya'				=> 'BBM',
+        		'satuan'			=> 'Liter',
+        		'created_at'		=> \Carbon\Carbon::now()->toDateTimeString(),
+        	], 
+
+        	[
+        		'id_master_biaya' 	=> 17,
+        		'kateg_biaya'		=> Config::get('constants.BIAYA.TETAP'),
+        		'kateg_modul'		=> Config::get('constants.MODULE.TAMBAK'),
+        		'biaya'				=> 'Pajak',
+        		'satuan'			=> 'Rp',
+        		'created_at'		=> \Carbon\Carbon::now()->toDateTimeString(),
+        	], 
+
+        	[
+        		'id_master_biaya' 	=> 18,
+        		'kateg_biaya'		=> Config::get('constants.BIAYA.TETAP'),
+        		'kateg_modul'		=> Config::get('constants.MODULE.TAMBAK'),
+        		'biaya'				=> 'Retribusi',
+        		'satuan'			=> 'Rp',
+        		'created_at'		=> \Carbon\Carbon::now()->toDateTimeString(),
+        	],         	       	       	
+
+        	[
+        		'id_master_biaya' 	=> 19,
+        		'kateg_biaya'		=> Config::get('constants.BIAYA.TETAP'),
+        		'kateg_modul'		=> Config::get('constants.MODULE.TAMBAK'),
+        		'biaya'				=> 'Perawatan Lahan',
+        		'satuan'			=> 'Rp',
+        		'created_at'		=> \Carbon\Carbon::now()->toDateTimeString(),
+        	],         	
+
+        	[
+        		'id_master_biaya' 	=> 20,
+        		'kateg_biaya'		=> Config::get('constants.BIAYA.TETAP'),
+        		'kateg_modul'		=> Config::get('constants.MODULE.TAMBAK'),
+        		'biaya'				=> 'Perawatan Mesin',
+        		'satuan'			=> 'Rp',
+        		'created_at'		=> \Carbon\Carbon::now()->toDateTimeString(),
+        	],         	
         ];
         DB::table('master_biaya')->insert($master_biaya);
     }

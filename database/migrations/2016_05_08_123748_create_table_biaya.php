@@ -18,7 +18,7 @@ class CreateTableBiaya extends Migration
             $table->integer('kateg_modul');
             $table->integer('volume');
             $table->float('harga_satuan');
-            $table->integer('total');
+            $table->float('total');
             
             $table->softDeletes();
             $table->timestamps();
