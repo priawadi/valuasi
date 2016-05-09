@@ -40,3 +40,11 @@ Route::post('/tambak/tambah', 'TambakController@store');
 Route::get('/tambak/edit/{id_responden}', 'TambakController@edit');
 Route::patch('/tambak/edit/{id_responden}', 'TambakController@update');
 Route::get('/tambak/lihat/{id_responden}', 'TambakController@detail');
+
+// Existence Value
+Route::get('/eval', 'EvalController@index');
+Route::get('/eval/tambah', 'EvalController@create');
+Route::post('/eval/tambah', 'EvalController@store');
+Route::get('/eval/edit/{id_responden}', 'EvalController@edit');
+Route::patch('/eval/edit/{id_responden}', 'EvalController@update');
+Route::get('/eval/lihat/{id_responden}', 'EvalController@detail');
