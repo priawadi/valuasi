@@ -14,9 +14,9 @@ class CreateTableMasterKomoditas extends Migration
     {
         Schema::create('master_komoditas', function (Blueprint $table) {
             $table->increments('id_master_komoditas');
-            $table->integer('kateg_modul');
-            $table->string('komoditas', 100);
-            $table->string('satuan', 30);
+            $table->integer('kateg_modul')->nullable();
+            $table->string('komoditas', 100)->nullable();
+            $table->string('satuan', 30)->nullable();
             
             $table->softDeletes();
             $table->timestamps();

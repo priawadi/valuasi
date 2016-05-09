@@ -21,8 +21,8 @@ return [
     ],
 
     'BIAYA' => [
-        'INVESTASI' => 1,
-        'VARIABEL'  => 2,
-        'TETAP'     => 3,
+        'INVESTASI'         => 1,
+        'VARIABEL'          => 2,
+        'TETAP'             => 3,
     ],
 ];

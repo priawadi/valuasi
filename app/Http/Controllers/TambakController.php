@@ -8,6 +8,8 @@ use App\Http\Requests;
 use App\Tambak;
 use App\MasterBiaya;
 use App\Biaya;
+use App\HasilPanen;
+use App\MasterKomoditas;
 
 class TambakController extends Controller
 {
@@ -29,6 +31,7 @@ class TambakController extends Controller
 		$master_biaya               = MasterBiaya::where('kateg_modul', \Config::get('constants.MODULE.TAMBAK'))->where('kateg_biaya', \Config::get('constants.BIAYA.INVESTASI'))->get();
         $master_biaya_var           = MasterBiaya::where('kateg_modul', \Config::get('constants.MODULE.TAMBAK'))->where('kateg_biaya', \Config::get('constants.BIAYA.VARIABEL'))->get();
         $master_biaya_tetap         = MasterBiaya::where('kateg_modul', \Config::get('constants.MODULE.TAMBAK'))->where('kateg_biaya', \Config::get('constants.BIAYA.TETAP'))->get();
+        $hasil_panen                = MasterKomoditas::where('kateg_modul', \Config::get('constants.MODULE.TAMBAK'))->get();
     }
 
     /**
@@ -45,6 +48,7 @@ class TambakController extends Controller
 			'master_biaya' 				=> MasterBiaya::where('kateg_modul', \Config::get('constants.MODULE.TAMBAK'))->where('kateg_biaya', \Config::get('constants.BIAYA.INVESTASI'))->get(),
             'master_biaya_var'          => MasterBiaya::where('kateg_modul', \Config::get('constants.MODULE.TAMBAK'))->where('kateg_biaya', \Config::get('constants.BIAYA.VARIABEL'))->get(),
             'master_biaya_tetap'        => MasterBiaya::where('kateg_modul', \Config::get('constants.MODULE.TAMBAK'))->where('kateg_biaya', \Config::get('constants.BIAYA.TETAP'))->get(),
+            'hasil_panen'               => MasterKomoditas::where('kateg_modul', \Config::get('constants.MODULE.TAMBAK'))->get(),
         ]);
     }
 
@@ -105,7 +109,19 @@ class TambakController extends Controller
         $biaya->total                       = $request->input('total.' .$value->id_master_biaya, null);
 
         $biaya->save();
-        }                
+        }     
+
+        foreach (MasterKomoditas::where('kateg_modul', \Config::get('constants.MODULE.TAMBAK'))->get() as $key => $value) {
+        $hasil_panen                        = new HasilPanen;
+
+        $hasil_panen->kateg_modul           = \Config::get('constants.MODULE.TAMBAK');
+        $hasil_panen->id_master_komoditas   = $value->id_master_komoditas;
+        $hasil_panen->jumlah                = $request->input('jumlah.' .$value->id_master_biaya, null);
+        $hasil_panen->harga_jual            = $request->input('harga_jual.' .$value->id_master_biaya, null);
+        $hasil_panen->jumlah_penerimaan     = $request->input('jumlah_penerimaan.' .$value->id_master_biaya, null);
+
+        $hasil_panen->save();
+        }                     
 
         return redirect('tambak');
     }

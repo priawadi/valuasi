@@ -14,11 +14,11 @@ class CreateTableBiaya extends Migration
     {
         Schema::create('biaya', function (Blueprint $table) {
             $table->increments('id_biaya');
-            $table->integer('kateg_biaya');
-            $table->integer('kateg_modul');
-            $table->integer('volume');
-            $table->float('harga_satuan');
-            $table->float('total');
+            $table->integer('kateg_biaya')->nullable();
+            $table->integer('kateg_modul')->nullable();
+            $table->integer('volume')->nullable();
+            $table->float('harga_satuan')->nullable();
+            $table->float('total')->nullable();
             
             $table->softDeletes();
             $table->timestamps();

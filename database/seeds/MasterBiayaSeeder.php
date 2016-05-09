@@ -191,7 +191,7 @@ class MasterBiayaSeeder extends Seeder
         		'biaya'				=> 'Perawatan Mesin',
         		'satuan'			=> 'Rp',
         		'created_at'		=> \Carbon\Carbon::now()->toDateTimeString(),
-        	],         	
+        	],                   
         ];
         DB::table('master_biaya')->insert($master_biaya);
     }

@@ -387,7 +387,63 @@
                             </tr>
                             @endforeach
                         </tbody>
-                    </table>                                     
+                    </table>    
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Jenis komoditas</th>
+                                <th>Satuan</th>
+                                <th>Jumlah Produksi</th>
+                                <th>Harga Jual<br/> (Rp/Kg)</th>
+                                <th>Jumlah Penerimaan<br/> (Rp)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($hasil_panen as $id_hasil_panen => $item)
+                            <tr>
+                                <td> {{$item -> komoditas}} </td>
+                                <td> {{$item -> satuan}} </td>
+                                <td>
+                                    {{  
+                                        Form::text(
+                                            'volume['. $item -> id_master_biaya .']', 
+                                            '', 
+                                            [
+                                                'class'       => 'form-control',
+                                                'placeholder' => ''
+                                            ]
+                                        )
+                                    }}
+                                </td>
+                                <td>
+                                    {{  
+                                        Form::text(
+                                            'harga_satuan['. $item -> id_master_biaya .']', 
+                                            '', 
+                                            [
+                                                'class'       => 'form-control',
+                                                'placeholder' => ''
+                                            ]
+                                        )
+                                    }}
+                                </td>
+                                <td>
+                                    {{  
+                                        Form::text(
+                                            'total['. $item -> id_master_biaya .']', 
+                                            '', 
+                                            [
+                                                'class'       => 'form-control',
+                                                'placeholder' => ''
+                                            ]
+                                        )
+                                    }}
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>                                                       
 
                     <div class="col-md-10 col-md-offset-1">
                       <button type="submit" class="btn btn-primary col-md-offset-11">Simpan</button>

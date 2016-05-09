@@ -16,11 +16,11 @@ class CreateTableHasilPanen extends Migration
             $table->increments('id_hasil_panen');
             $table->integer('id_responden');
 
-            $table->integer('kateg_modul');
-            $table->integer('id_master_komoditas');
-            $table->integer('jumlah');
-            $table->integer('harga_jual');
-            $table->integer('jumlah_penerimaan');
+            $table->integer('kateg_modul')->nullable();
+            $table->integer('id_master_komoditas')->nullable();
+            $table->integer('jumlah')->nullable();
+            $table->integer('harga_jual')->nullable();
+            $table->integer('jumlah_penerimaan')->nullable();
             
             $table->softDeletes();
             $table->timestamps();
