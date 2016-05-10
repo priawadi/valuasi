@@ -25,4 +25,10 @@ return [
         'VARIABEL'          => 2,
         'TETAP'             => 3,
     ],
+
+    'KAYU' => [
+        'PRODUKSI'          => 1,
+        'BIAYA_OPERASIONAL' => 2,
+        'NON_KOMERSIL'      => 3,
+    ],
 ];
