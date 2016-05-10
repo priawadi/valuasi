@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\ExistenceValue;
 
 class EvalController extends Controller
 {
@@ -39,7 +40,17 @@ class EvalController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $existence                     = new ExistenceValue();
+        $existence->keindahan          = $request->input('keindahan', null);
+        $existence->spiritual          = $request->input('spiritual', null);
+        $existence->budaya             = $request->input('budaya', null);
+        $existence->anekaragam         = $request->input('anekaragam', null);
+        $existence->tkt_kepentingan    = $request->input('tkt_kepentingan', null);
+        $existence->sedia_lestari      = $request->input('sedia_lestari', null);
+        $existence->korban_tenaga      = $request->input('korban_tenaga', null);
+        $existence->sumbang_iuran      = $request->input('sumbang_iuran', null);
+
+        $existence->save();
     }
 
     /**

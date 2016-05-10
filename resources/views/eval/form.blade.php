@@ -30,7 +30,7 @@
                                         <label>
                                             {{
                                                 Form::radio(
-                                                    'status_tambak', 
+                                                    'keindahan', 
                                                     1,
                                                     false,
                                                     [
@@ -45,7 +45,7 @@
                                         <label>
                                             {{
                                                 Form::radio(
-                                                    'status_tambak', 
+                                                    'keindahan', 
                                                     2,
                                                     false,
                                                     [
@@ -64,7 +64,7 @@
                                         <label>
                                             {{
                                                 Form::radio(
-                                                    'status_tambak', 
+                                                    'spiritual', 
                                                     1,
                                                     false,
                                                     [
@@ -79,7 +79,7 @@
                                         <label>
                                             {{
                                                 Form::radio(
-                                                    'status_tambak', 
+                                                    'spiritual', 
                                                     2,
                                                     false,
                                                     [
@@ -98,7 +98,7 @@
                                         <label>
                                             {{
                                                 Form::radio(
-                                                    'status_tambak', 
+                                                    'budaya', 
                                                     1,
                                                     false,
                                                     [
@@ -113,7 +113,7 @@
                                         <label>
                                             {{
                                                 Form::radio(
-                                                    'status_tambak', 
+                                                    'budaya', 
                                                     2,
                                                     false,
                                                     [
@@ -132,7 +132,7 @@
                                         <label>
                                             {{
                                                 Form::radio(
-                                                    'status_tambak', 
+                                                    'anekaragam', 
                                                     1,
                                                     false,
                                                     [
@@ -147,7 +147,7 @@
                                         <label>
                                             {{
                                                 Form::radio(
-                                                    'status_tambak', 
+                                                    'anekaragam', 
                                                     2,
                                                     false,
                                                     [
@@ -169,7 +169,7 @@
                                         <label>
                                             {{
                                                 Form::radio(
-                                                    'status_tambak', 
+                                                    'tkt_kepentingan', 
                                                     1,
                                                     false,
                                                     [
@@ -184,7 +184,7 @@
                                         <label>
                                             {{
                                                 Form::radio(
-                                                    'status_tambak', 
+                                                    'tkt_kepentingan', 
                                                     1,
                                                     false,
                                                     [
@@ -199,7 +199,7 @@
                                         <label>
                                             {{
                                                 Form::radio(
-                                                    'status_tambak', 
+                                                    'tkt_kepentingan', 
                                                     1,
                                                     false,
                                                     [
@@ -214,7 +214,7 @@
                                         <label>
                                             {{
                                                 Form::radio(
-                                                    'status_tambak', 
+                                                    'tkt_kepentingan', 
                                                     1,
                                                     false,
                                                     [
@@ -236,7 +236,7 @@
                                         <label>
                                             {{
                                                 Form::radio(
-                                                    'status_tambak', 
+                                                    'sedia_lestari', 
                                                     1,
                                                     false,
                                                     [
@@ -251,7 +251,7 @@
                                         <label>
                                             {{
                                                 Form::radio(
-                                                    'status_tambak', 
+                                                    'sedia_lestari', 
                                                     1,
                                                     false,
                                                     [
@@ -262,6 +262,37 @@
                                             Tidak Bersedia
                                         </label>
                                     </div>                                    
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>4.  Bila bersedia, dengan cara berpartisipasi dalam gerakan pelestarian lingkungan seperti transplantasi karang/ penanaman mangrove</td>
+                            </tr>
+                            <tr>
+                                <td>-   Berkorban tenaga dengan kerja sukarela selama 
+                                    {{  
+                                        Form::text(
+                                            'korban_tenaga', 
+                                            '', 
+                                            [
+                                                'class'       => 'form-control',
+                                                'placeholder' => 'hari/minggu'
+                                            ]
+                                        )
+                                    }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>-   Menyumbang iuran pelestarian lingkungan sebesar 
+                                    {{  
+                                        Form::text(
+                                            'sumbang_iuran', 
+                                            '', 
+                                            [
+                                                'class'       => 'form-control',
+                                                'placeholder' => '(Rp/bulan) atau (Rp/tahun)'
+                                            ]
+                                        )
+                                    }}
                                 </td>
                             </tr>                                                                                                              
                         </tbody>
