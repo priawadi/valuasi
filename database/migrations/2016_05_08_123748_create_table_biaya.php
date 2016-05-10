@@ -14,6 +14,9 @@ class CreateTableBiaya extends Migration
     {
         Schema::create('biaya', function (Blueprint $table) {
             $table->increments('id_biaya');
+            $table->integer('id_responden');
+            $table->integer('id_master_biaya');
+
             $table->integer('kateg_biaya')->nullable();
             $table->integer('kateg_modul')->nullable();
             $table->integer('volume')->nullable();

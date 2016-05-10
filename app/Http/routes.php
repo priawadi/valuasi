@@ -25,13 +25,13 @@ Route::get('/responden/lihat/{id_responden}', 'RespondenController@detail');
 
 // PEMBUDIDAYA IKAN
 // Informasi Umum
-Route::get('/budidaya-keramba/info', 'BudidayaKerambaInfoController@index');
-Route::get('/budidaya-keramba/info/tambah', 'BudidayaKerambaInfoController@create');
-Route::post('/budidaya-keramba/info/tambah', 'BudidayaKerambaInfoController@store');
-Route::get('/budidaya-keramba/info/edit/{id_responden}', 'BudidayaKerambaInfoController@edit');
-Route::patch('/budidaya-keramba/info/edit/{id_responden}', 'BudidayaKerambaInfoController@update');
-Route::get('/budidaya-keramba/info/lihat/{id_responden}', 'BudidayaKerambaInfoController@detail');
-Route::get('/budidaya-keramba/info/hapus/{id_responden}', 'BudidayaKerambaInfoController@destroy');
+Route::get('/budidaya-keramba/info', 'BudidayaKerambaController@index');
+Route::get('/budidaya-keramba/info/tambah', 'BudidayaKerambaController@create');
+Route::post('/budidaya-keramba/info/tambah', 'BudidayaKerambaController@store');
+Route::get('/budidaya-keramba/info/edit/{id_responden}', 'BudidayaKerambaController@edit');
+Route::patch('/budidaya-keramba/info/edit/{id_responden}', 'BudidayaKerambaController@update');
+Route::get('/budidaya-keramba/info/lihat/{id_responden}', 'BudidayaKerambaController@detail');
+Route::get('/budidaya-keramba/info/hapus/{id_responden}', 'BudidayaKerambaController@destroy');
 
 // Tambak
 Route::get('/tambak', 'TambakController@index');
