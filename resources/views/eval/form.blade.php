@@ -185,7 +185,7 @@
                                             {{
                                                 Form::radio(
                                                     'tkt_kepentingan', 
-                                                    1,
+                                                    2,
                                                     false,
                                                     [
                                                         'class' => 'control-label'
@@ -200,7 +200,7 @@
                                             {{
                                                 Form::radio(
                                                     'tkt_kepentingan', 
-                                                    1,
+                                                    3,
                                                     false,
                                                     [
                                                         'class' => 'control-label'
@@ -215,7 +215,7 @@
                                             {{
                                                 Form::radio(
                                                     'tkt_kepentingan', 
-                                                    1,
+                                                    4,
                                                     false,
                                                     [
                                                         'class' => 'control-label'
@@ -252,7 +252,7 @@
                                             {{
                                                 Form::radio(
                                                     'sedia_lestari', 
-                                                    1,
+                                                    2,
                                                     false,
                                                     [
                                                         'class' => 'control-label'
