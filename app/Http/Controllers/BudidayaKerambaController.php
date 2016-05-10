@@ -168,6 +168,44 @@ class BudidayaKerambaController extends Controller
      */
     public function edit($id, Request $request)
     {
+
+        // data biaya investasi
+        $jwb_biaya_invest = [];
+        foreach (Biaya::where('id_responden', $request->session()->get('id_responden'))->where('kateg_modul', \Config::get('constants.MODULE.KERAMBA'))->where('kateg_biaya', \Config::get('constants.BIAYA.INVESTASI'))->get() as $idx => $item) {
+            $jwb_biaya_invest[$item->id_master_biaya] = 
+            [
+                'id_biaya'     => $item->id_biaya,
+                'volume'       => $item->volume,
+                'harga_satuan' => $item->harga_satuan,
+                'total'        => $item->total,
+            ];
+        }
+
+        // data biaya variabel
+        $jwb_biaya_var = [];
+        foreach (Biaya::where('id_responden', $request->session()->get('id_responden'))->where('kateg_modul', \Config::get('constants.MODULE.KERAMBA'))->where('kateg_biaya', \Config::get('constants.BIAYA.VARIABEL'))->get() as $idx => $item) {
+            $jwb_biaya_var[$item->id_master_biaya] = 
+            [
+                'id_biaya'     => $item->id_biaya,
+                'volume'       => $item->volume,
+                'harga_satuan' => $item->harga_satuan,
+                'total'        => $item->total,
+            ];
+        }
+
+        // data biaya tetap
+        $jwb_biaya_tetap = [];
+        foreach (Biaya::where('id_responden', $request->session()->get('id_responden'))->where('kateg_modul', \Config::get('constants.MODULE.KERAMBA'))->where('kateg_biaya', \Config::get('constants.BIAYA.TETAP'))->get() as $idx => $item) {
+            $jwb_biaya_tetap[$item->id_master_biaya] = 
+            [
+                'id_biaya'     => $item->id_biaya,
+                'volume'       => $item->volume,
+                'harga_satuan' => $item->harga_satuan,
+                'total'        => $item->total,
+            ];
+        }
+
+        // data hasil panen
         $hasil_panen = [];
         foreach (HasilPanen::where('kateg_modul', \Config::get('constants.MODULE.KERAMBA'))->where('id_responden', $request->session()->get('id_responden'))->get() as $idx => $item) {
             $hasil_panen[$item->id_master_komoditas] = 
@@ -186,9 +224,7 @@ class BudidayaKerambaController extends Controller
             $budidaya_keramba['jenis_komoditas'] = "[2,3,4,5]";
             // $budidaya_keramba['jenis_komoditas'] = json_encode(explode(",", $budidaya_keramba['jenis_komoditas']));
         }
-
-        print_r($budidaya_keramba['jenis_komoditas']);
-
+        
         return view('budidaya_keramba.info.edit', [
             'subtitle'         => 'Edit Budidaya Keramba',
             'action'           => 'budidaya-keramba/info/edit/' . $id,
@@ -196,6 +232,12 @@ class BudidayaKerambaController extends Controller
             'jenis_komoditas'  => $this->jenis_komoditas,
             'budidaya_keramba' => $budidaya_keramba,
             'komoditas'        => MasterKomoditas::where('kateg_modul', \Config::get('constants.MODULE.KERAMBA'))->get(),
+            'biaya_invest'     => MasterBiaya::where('kateg_modul', \Config::get('constants.MODULE.KERAMBA'))->where('kateg_biaya', \Config::get('constants.BIAYA.INVESTASI'))->get(),
+            'biaya_var'        => MasterBiaya::where('kateg_modul', \Config::get('constants.MODULE.KERAMBA'))->where('kateg_biaya', \Config::get('constants.BIAYA.VARIABEL'))->get(),
+            'biaya_tetap'      => MasterBiaya::where('kateg_modul', \Config::get('constants.MODULE.KERAMBA'))->where('kateg_biaya', \Config::get('constants.BIAYA.TETAP'))->get(),
+            'jwb_biaya_invest' => $jwb_biaya_invest,
+            'jwb_biaya_var'    => $jwb_biaya_var,
+            'jwb_biaya_tetap'  => $jwb_biaya_tetap,
             'hasil_panen'      => $hasil_panen
         ]);
     }
@@ -232,6 +274,15 @@ class BudidayaKerambaController extends Controller
         $budidaya_keramba->jum_siklus_panen    = $request->input('jum_siklus_panen');
 
         $budidaya_keramba->save();
+
+        // save biaya investasi, variabel, dan tetap
+        foreach ($request->input('volume') as $id_biaya => $item) {
+            $biaya               = Biaya::find($id_biaya);
+            $biaya->volume       = $request->input('volume.' . $id_biaya);
+            $biaya->harga_satuan = $request->input('harga_satuan.' . $id_biaya);
+            $biaya->total        = $request->input('total.' . $id_biaya);
+            $biaya->save();
+        }
 
         // save hasil panen
         foreach ($request->input('jumlah') as $id_hasil_panen => $item) {

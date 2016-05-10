@@ -178,7 +178,7 @@
                             </tr>
                         </table>
                         <br>
-                        9. Biaya Tetap
+                        9. Biaya Invetasi
                         <table class="table table-hover">
                             <thead>
                                 <tr>
