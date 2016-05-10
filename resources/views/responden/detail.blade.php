@@ -117,41 +117,7 @@
                             @endforeach
                         </tbody> 
                     </table>
-                    <b>D. PEMANFAATAN EKOSISTEM MANGROVE</b>
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr> 
-                                <th width="40px">#</th> 
-                                <th>Kuesioner</th> 
-                                <th width="100px">Status</th> 
-                                <th width="150px">Aksi</th>
-                            </tr> 
-                        </thead> 
-                        <tbody> 
-                            @foreach($kuesioner['pemanfaatan_mangrove'] as $key => $item)
-                            <tr>
-                                <td>{{($key + 1)}}</td>
-                                <td>{{$item['kuesioner']}}</td>
-                                <td>
-                                    <center>
-                                        <span class="label label-{{$item['is_done']? 'success': 'warning'}}">{{$item['is_done']? 'Sudah': 'Belum'}}</span>
-                                    </center>
-                                </td>
-                                <td>
-                                    <center>
-                                        @if ($item['is_done'])
-                                            <a class="btn btn-danger btn-sm" href="{{url($item['link'])}}/hapus/{{$responden['id_responden']}}">Hapus</a>
-                                            <a class="btn btn-success btn-sm" href="{{url($item['link'])}}/edit/{{$responden['id_responden']}}">Edit</a>
-                                        @else
-                                            <a class="btn btn-primary btn-sm" href="{{url($item['link'])}}/tambah">Tambah</a>
-                                        @endif
-                                    </center>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody> 
-                    </table>
-                    <b>E. PEMANFAATAN EKOSISTEM MANGROVE (PEMANFAAT KAYU)</b>
+                    <b>D. PEMANFAATAN EKOSISTEM MANGROVE (PEMANFAAT KAYU)</b>
                     <table class="table table-bordered">
                         <thead>
                             <tr> 
@@ -185,7 +151,7 @@
                             @endforeach
                         </tbody> 
                     </table>
-                    <b>F. PEMANFAATAN EKOSISTEM MANGROVE (PENCARI SATWA)</b>
+                    <b>E. PEMANFAATAN EKOSISTEM MANGROVE (PENCARI SATWA)</b>
                     <table class="table table-bordered">
                         <thead>
                             <tr> 
@@ -219,7 +185,7 @@
                             @endforeach
                         </tbody> 
                     </table>
-                    <b>G. PEMANFAATAN SUMBER DAYA PERIKANAN TANGKAP EKOSISTEM TERUMBU KARANG</b>
+                    <b>F. PEMANFAATAN SUMBER DAYA PERIKANAN TANGKAP EKOSISTEM TERUMBU KARANG</b>
                     <table class="table table-bordered">
                         <thead>
                             <tr> 
@@ -253,7 +219,7 @@
                             @endforeach
                         </tbody> 
                     </table>
-                    <b>H. PEMANFAATAN EKOSISTEM TERUMBU KARANG DAN MANGROVE (TRAVEL COST METHOD/TCM)</b>
+                    <b>G. PEMANFAATAN EKOSISTEM TERUMBU KARANG DAN MANGROVE (TRAVEL COST METHOD/TCM)</b>
                     <table class="table table-bordered">
                         <thead>
                             <tr> 
@@ -287,7 +253,7 @@
                             @endforeach
                         </tbody> 
                     </table>
-                    <b>I. PEMANFAATAN SUMBER DAYA PERIKANAN BUDIDAYA RUMPUT LAUT</b>
+                    <b>H. PEMANFAATAN SUMBER DAYA PERIKANAN BUDIDAYA RUMPUT LAUT</b>
                     <table class="table table-bordered">
                         <thead>
                             <tr> 
