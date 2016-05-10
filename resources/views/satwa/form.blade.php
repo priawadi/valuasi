@@ -380,7 +380,7 @@
                                         <label>
                                             {{  
                                                 Form::text(
-                                                    'jumlah_satwa', 
+                                                    'jumlah_satwa['. $item -> id_master_pencari_satwa .']',
                                                     '', 
                                                     [
                                                         'class'       => 'form-control',
@@ -395,7 +395,7 @@
                                         <label>
                                             {{  
                                                 Form::text(
-                                                    'harga_jual', 
+                                                    'harga_jual['. $item -> id_master_pencari_satwa .']', 
                                                     '', 
                                                     [
                                                         'class'       => 'form-control',
@@ -428,7 +428,7 @@
                                         <label>
                                             {{  
                                                 Form::text(
-                                                    'volume', 
+                                                    'volume['. $item -> id_master_pencari_satwa .']',
                                                     '', 
                                                     [
                                                         'class'       => 'form-control',
@@ -443,7 +443,7 @@
                                         <label>
                                             {{  
                                                 Form::text(
-                                                    'harga_beli', 
+                                                    'harga_beli['. $item -> id_master_pencari_satwa .']', 
                                                     '', 
                                                     [
                                                         'class'       => 'form-control',
@@ -457,7 +457,7 @@
                                         <label>
                                             {{  
                                                 Form::text(
-                                                    'umur_ekonomis', 
+                                                    'umur_ekonomis['. $item -> id_master_pencari_satwa .']', 
                                                     '', 
                                                     [
                                                         'class'       => 'form-control',
@@ -490,7 +490,7 @@
                                         <label>
                                             {{  
                                                 Form::text(
-                                                    'volume', 
+                                                    'volume['. $item -> id_master_pencari_satwa .']',
                                                     '', 
                                                     [
                                                         'class'       => 'form-control',
@@ -505,7 +505,7 @@
                                         <label>
                                             {{  
                                                 Form::text(
-                                                    'harga_satuan', 
+                                                    'harga_satuan['. $item -> id_master_pencari_satwa .']', 
                                                     '', 
                                                     [
                                                         'class'       => 'form-control',
@@ -519,7 +519,7 @@
                                         <label>
                                             {{  
                                                 Form::text(
-                                                    'jumlah', 
+                                                    'jumlah['. $item -> id_master_pencari_satwa .']', 
                                                     '', 
                                                     [
                                                         'class'       => 'form-control',
