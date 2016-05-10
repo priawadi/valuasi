@@ -14,6 +14,8 @@ class CreateTableTambak extends Migration
     {
         Schema::create('tambak', function (Blueprint $table) {
             $table->increments('id_tambak');
+            $table->integer('id_responden');
+
             $table->integer('lama_tambak')->nullable();
             $table->integer('status_tambak')->nullable();
             $table->string('mapen_sblm_tambak', 150)->nullable();

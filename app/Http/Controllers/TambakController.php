@@ -66,51 +66,62 @@ class TambakController extends Controller
             $jenis_komoditas_tambak .= ($key)? ',' . $value: $value;
         } 
 
-        $tambak                      		= new Tambak;
-        $tambak->lama_tambak         		= $request->input('lama_tambak', null);
-        $tambak->status_tambak       		= $request->input('status_tambak', null);
-        $tambak->mapen_sblm_tambak       	= $request->input('mapen_sblm_tambak', null);
-        $tambak->luas_tambak				= $request->input('luas_tambak', null);
-        $tambak->status_kepem_tambak		= $request->input('status_kepem_tambak', null);
-        $tambak->jenis_komoditas_tambak 	= $jenis_komoditas_tambak;
-        $tambak->waktu_pemeliharaan_tambak 	= $request->input('waktu_pemeliharaan_tambak', null);
-        $tambak->jum_panen_tambak			= $request->input('jum_panen_tambak', null);
+        $tambak                            = new Tambak;
+        $tambak->id_responden              = $request->session()->get('id_responden');
+        $tambak->lama_tambak               = $request->input('lama_tambak', null);
+        $tambak->status_tambak             = $request->input('status_tambak', null);
+        $tambak->mapen_sblm_tambak         = $request->input('mapen_sblm_tambak', null);
+        $tambak->luas_tambak               = $request->input('luas_tambak', null);
+        $tambak->status_kepem_tambak       = $request->input('status_kepem_tambak', null);
+        $tambak->jenis_komoditas_tambak    = $jenis_komoditas_tambak;
+        $tambak->waktu_pemeliharaan_tambak = $request->input('waktu_pemeliharaan_tambak', null);
+        $tambak->jum_panen_tambak          = $request->input('jum_panen_tambak', null);
 
         $tambak->save();
 
+        // save biaya investasi
         foreach (MasterBiaya::where('kateg_modul', \Config::get('constants.MODULE.TAMBAK'))->where('kateg_biaya', \Config::get('constants.BIAYA.INVESTASI'))->get() as $key => $value) {
-        $biaya 								= new Biaya;
-        $biaya->kateg_biaya					= \Config::get('constants.BIAYA.INVESTASI');
-        $biaya->kateg_modul					= \Config::get('constants.MODULE.TAMBAK');
-        $biaya->volume						= $request->input('volume.' .$value->id_master_biaya, null);
-        $biaya->harga_satuan				= $request->input('harga_satuan.' .$value->id_master_biaya, null);
-        $biaya->total 						= $request->input('total.' .$value->id_master_biaya, null);
+            $biaya                  = new Biaya;
+            $biaya->id_responden    = $request->session()->get('id_responden');
+            $biaya->id_master_biaya = $value->id_master_biaya;
+            $biaya->kateg_biaya     = \Config::get('constants.BIAYA.INVESTASI');
+            $biaya->kateg_modul     = \Config::get('constants.MODULE.TAMBAK');
+            $biaya->volume          = $request->input('volume.' .$value->id_master_biaya, null);
+            $biaya->harga_satuan    = $request->input('harga_satuan.' .$value->id_master_biaya, null);
+            $biaya->total           = $request->input('total.' .$value->id_master_biaya, null);
 
-        $biaya->save();
+            $biaya->save();
     	}
 
+        // save biaya variabel
         foreach (MasterBiaya::where('kateg_modul', \Config::get('constants.MODULE.TAMBAK'))->where('kateg_biaya', \Config::get('constants.BIAYA.VARIABEL'))->get() as $key => $value) {
-        $biaya                              = new Biaya;
-        $biaya->kateg_biaya                 = \Config::get('constants.BIAYA.VARIABEL');
-        $biaya->kateg_modul                 = \Config::get('constants.MODULE.TAMBAK');
-        $biaya->volume                      = $request->input('volume.' .$value->id_master_biaya, null);
-        $biaya->harga_satuan                = $request->input('harga_satuan.' .$value->id_master_biaya, null);
-        $biaya->total                       = $request->input('total.' .$value->id_master_biaya, null);
+            $biaya                  = new Biaya;
+            $biaya->id_responden    = $request->session()->get('id_responden');
+            $biaya->id_master_biaya = $value->id_master_biaya;
+            $biaya->kateg_biaya     = \Config::get('constants.BIAYA.VARIABEL');
+            $biaya->kateg_modul     = \Config::get('constants.MODULE.TAMBAK');
+            $biaya->volume          = $request->input('volume.' .$value->id_master_biaya, null);
+            $biaya->harga_satuan    = $request->input('harga_satuan.' .$value->id_master_biaya, null);
+            $biaya->total           = $request->input('total.' .$value->id_master_biaya, null);
 
-        $biaya->save();
+            $biaya->save();
         }
 
+        // save biaya tetap
         foreach (MasterBiaya::where('kateg_modul', \Config::get('constants.MODULE.TAMBAK'))->where('kateg_biaya', \Config::get('constants.BIAYA.TETAP'))->get() as $key => $value) {
-        $biaya                              = new Biaya;
-        $biaya->kateg_biaya                 = \Config::get('constants.BIAYA.TETAP');
-        $biaya->kateg_modul                 = \Config::get('constants.MODULE.TAMBAK');
-        $biaya->volume                      = $request->input('volume.' .$value->id_master_biaya, null);
-        $biaya->harga_satuan                = $request->input('harga_satuan.' .$value->id_master_biaya, null);
-        $biaya->total                       = $request->input('total.' .$value->id_master_biaya, null);
+            $biaya                  = new Biaya;
+            $biaya->id_responden    = $request->session()->get('id_responden');
+            $biaya->id_master_biaya = $value->id_master_biaya;
+            $biaya->kateg_biaya     = \Config::get('constants.BIAYA.TETAP');
+            $biaya->kateg_modul     = \Config::get('constants.MODULE.TAMBAK');
+            $biaya->volume          = $request->input('volume.' .$value->id_master_biaya, null);
+            $biaya->harga_satuan    = $request->input('harga_satuan.' .$value->id_master_biaya, null);
+            $biaya->total           = $request->input('total.' .$value->id_master_biaya, null);
 
-        $biaya->save();
+            $biaya->save();
         }     
 
+        // save hasil panen
         foreach (MasterKomoditas::where('kateg_modul', \Config::get('constants.MODULE.TAMBAK'))->get() as $key => $value) {
         $hasil_panen                        = new HasilPanen;
 
@@ -123,7 +134,7 @@ class TambakController extends Controller
         $hasil_panen->save();
         }                     
 
-        return redirect('tambak');
+        return redirect('responden/lihat/' . $request->session()->get('id_responden'));
     }
 
     /**
