@@ -31,4 +31,10 @@ return [
         'BIAYA_OPERASIONAL' => 2,
         'NON_KOMERSIL'      => 3,
     ],
+
+    'PENCARI_SATWA' => [
+        'HASIL_PENERIMAAN'  => 1,
+        'BIAYA_INVESTASI'   => 2,
+        'BIAYA_OPERASIONAL' => 3,
+    ],    
 ];
