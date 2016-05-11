@@ -68,7 +68,7 @@
                                 <td>
                                     {{
                                         Form::text(
-                                            'panjang', 
+                                            'perahu[panjang]', 
                                             '', 
                                             [
                                                 'class'       => 'form-control',
@@ -79,7 +79,7 @@
                                     }}
                                     {{
                                         Form::text(
-                                            'lebar', 
+                                            'perahu[lebar]', 
                                             '', 
                                             [
                                                 'class'       => 'form-control',
@@ -90,7 +90,7 @@
                                     }}
                                     {{
                                         Form::text(
-                                            'tinggi', 
+                                            'perahu[tinggi]', 
                                             '', 
                                             [
                                                 'class'       => 'form-control',
@@ -107,7 +107,7 @@
                                 <td>
                                     {{
                                         Form::text(
-                                            'tonase', 
+                                            'perahu[tonase]', 
                                             '', 
                                             [
                                                 'class'       => 'form-control',
@@ -124,7 +124,7 @@
                                 <td>
                                     {{
                                         Form::text(
-                                            'jumlah', 
+                                            'perahu[jumlah]', 
                                             '', 
                                             [
                                                 'class'       => 'form-control',
@@ -141,7 +141,7 @@
                                 <td>
                                     {{
                                         Form::text(
-                                            'harga_beli', 
+                                            'perahu[harga_beli]', 
                                             '', 
                                             [
                                                 'class'       => 'form-control',
@@ -158,12 +158,12 @@
                                 <td>
                                     {{
                                         Form::text(
-                                            'umur_teknis', 
+                                            'perahu[umur_teknis]', 
                                             '', 
                                             [
                                                 'class'       => 'form-control',
                                                 'placeholder' => 'tahun',
-                                                'maxlength'   => 255
+                                                'maxlength'   => 2
                                             ]
                                         )
                                     }}
@@ -186,7 +186,7 @@
                                 <td>
                                     {{
                                         Form::text(
-                                            'nama', 
+                                            'alat_tangkap[' . $id_alat_tangkap . '][nama]', 
                                             '', 
                                             [
                                                 'class'       => 'form-control',
@@ -203,7 +203,7 @@
                                 <td>
                                     {{
                                         Form::text(
-                                            'panjang', 
+                                            'alat_tangkap[' . $id_alat_tangkap . '][panjang]', 
                                             '', 
                                             [
                                                 'class'       => 'form-control',
@@ -214,7 +214,7 @@
                                     }}
                                     {{
                                         Form::text(
-                                            'lebar', 
+                                            'alat_tangkap[' . $id_alat_tangkap . '][lebar]', 
                                             '', 
                                             [
                                                 'class'       => 'form-control',
@@ -225,7 +225,7 @@
                                     }}
                                     {{
                                         Form::text(
-                                            'tinggi', 
+                                            'alat_tangkap[' . $id_alat_tangkap . '][tinggi]', 
                                             '', 
                                             [
                                                 'class'       => 'form-control',
@@ -242,7 +242,7 @@
                                 <td>
                                     {{
                                         Form::text(
-                                            'jumlah', 
+                                            'alat_tangkap[' . $id_alat_tangkap . '][jumlah]', 
                                             '', 
                                             [
                                                 'class'       => 'form-control',
@@ -253,7 +253,7 @@
                                     }}
                                     {{
                                         Form::text(
-                                            'satuan_jumlah', 
+                                            'alat_tangkap[' . $id_alat_tangkap . '][satuan_jumlah]', 
                                             '', 
                                             [
                                                 'class'       => 'form-control',
@@ -270,7 +270,7 @@
                                 <td>
                                     {{
                                         Form::text(
-                                            'harga_beli', 
+                                            'alat_tangkap[' . $id_alat_tangkap . '][harga_beli]', 
                                             '', 
                                             [
                                                 'class'       => 'form-control',
@@ -281,7 +281,7 @@
                                     }}
                                     {{
                                         Form::text(
-                                            'satuan_harga_beli', 
+                                            'alat_tangkap[' . $id_alat_tangkap . '][satuan_harga_beli]', 
                                             '', 
                                             [
                                                 'class'       => 'form-control',
@@ -298,7 +298,7 @@
                                 <td>
                                     {{
                                         Form::text(
-                                            'umur_teknis', 
+                                            'alat_tangkap[' . $id_alat_tangkap . '][umur_teknis]', 
                                             '', 
                                             [
                                                 'class'       => 'form-control',
@@ -344,7 +344,7 @@
                                         <td>
                                             {{
                                                 Form::text(
-                                                    'mesin_penggerak[merk]', 
+                                                    'mesin_penggerak[' . $id_mesin_penggerak . '][merk]', 
                                                     '', 
                                                     [
                                                         'class'       => 'form-control',
@@ -361,7 +361,7 @@
                                         <td>
                                             {{
                                                 Form::text(
-                                                    'mesin_penggerak[kekuatan]', 
+                                                    'mesin_penggerak[' . $id_mesin_penggerak . '][kekuatan]', 
                                                     '', 
                                                     [
                                                         'class'       => 'form-control',
@@ -378,7 +378,7 @@
                                         <td>
                                             {{
                                                 Form::text(
-                                                    'mesin_penggerak[jumlah]', 
+                                                    'mesin_penggerak[' . $id_mesin_penggerak . '][jumlah]', 
                                                     '', 
                                                     [
                                                         'class'       => 'form-control',
@@ -395,7 +395,7 @@
                                         <td>
                                             {{
                                                 Form::text(
-                                                    'mesin_penggerak[harga_beli]', 
+                                                    'mesin_penggerak[' . $id_mesin_penggerak . '][harga_beli]', 
                                                     '', 
                                                     [
                                                         'class'       => 'form-control',
@@ -412,7 +412,7 @@
                                         <td>
                                             {{
                                                 Form::text(
-                                                    'mesin_penggerak[umur_teknis]', 
+                                                    'mesin_penggerak[' . $id_mesin_penggerak . '][umur_teknis]', 
                                                     '', 
                                                     [
                                                         'class'       => 'form-control',
@@ -441,6 +441,7 @@
                                     <th>No</th>
                                     <th>Jenis Alat Bantu</th>
                                     <th>Spesifikasi Ukuran</th>
+                                    <th>Jumlah Satuan</th>
                                     <th>Satuan</th>
                                     <th>Biaya Pembuatan/Harga Beli per Satuan Unit<br/> (Rp/satuan unit)</th>
                                     <th>Umur Teknis</th>
@@ -454,7 +455,7 @@
                                         <td>
                                             {{
                                                 Form::text(
-                                                    'alat_bantu_tangkap[spesifikasi_ukuran][' . $id_jenis_alat_bantu_tangkap . ']', 
+                                                    'alat_bantu_tangkap[' . $id_jenis_alat_bantu_tangkap . '][spesifikasi_ukuran]', 
                                                     '', 
                                                     [
                                                         'class'       => 'form-control',
@@ -465,7 +466,7 @@
                                         <td>
                                             {{
                                                 Form::text(
-                                                    'alat_bantu_tangkap[jumlah][' . $id_jenis_alat_bantu_tangkap . ']', 
+                                                    'alat_bantu_tangkap[' . $id_jenis_alat_bantu_tangkap . '][jumlah]', 
                                                     '', 
                                                     [
                                                         'class'       => 'form-control',
@@ -476,7 +477,7 @@
                                         <td>
                                             {{
                                                 Form::text(
-                                                    'alat_bantu_tangkap[satuan_jumlah][' . $id_jenis_alat_bantu_tangkap . ']', 
+                                                    'alat_bantu_tangkap[' . $id_jenis_alat_bantu_tangkap . '][satuan_jumlah]', 
                                                     '', 
                                                     [
                                                         'class'       => 'form-control',
@@ -487,7 +488,18 @@
                                         <td>
                                             {{
                                                 Form::text(
-                                                    'alat_bantu_tangkap[umur_teknis][' . $id_jenis_alat_bantu_tangkap . ']', 
+                                                    'alat_bantu_tangkap[' . $id_jenis_alat_bantu_tangkap . '][harga_beli]', 
+                                                    '', 
+                                                    [
+                                                        'class'       => 'form-control',
+                                                    ]
+                                                )
+                                            }}
+                                        </td>
+                                        <td>
+                                            {{
+                                                Form::text(
+                                                    'alat_bantu_tangkap[' . $id_jenis_alat_bantu_tangkap . '][umur_teknis]', 
                                                     '', 
                                                     [
                                                         'class'       => 'form-control',
@@ -513,7 +525,7 @@
                                     <td>
                                         {{
                                             Form::text(
-                                                'tenaga_kerja[' . $id_tenaga_kerja . ']', 
+                                                'tenaga_kerja[' . $id_tenaga_kerja . '][jumlah]', 
                                                 '', 
                                                 [
                                                     'class'       => 'form-control',
@@ -573,7 +585,7 @@
                                          @if ($k == 4)
                                             {{
                                                 Form::text(
-                                                    'status_kepemilikan_lain', 
+                                                    'status_kedudukan_lain', 
                                                     '', 
                                                     [
                                                         'class'       => 'form-control',
@@ -611,7 +623,7 @@
                                         <td>
                                             {{
                                                 Form::text(
-                                                    'alat_bantu_tangkap[spesifikasi_ukuran][' . $id_jenis_alat_bantu_tangkap . ']', 
+                                                    'daerah_operasional[lokasi][]', 
                                                     '', 
                                                     [
                                                         'class'       => 'form-control',
@@ -622,7 +634,7 @@
                                         <td>
                                             {{
                                                 Form::text(
-                                                    'alat_bantu_tangkap[spesifikasi_ukuran][' . $id_jenis_alat_bantu_tangkap . ']', 
+                                                    'daerah_operasional[jarak_dr_pantai][]', 
                                                     '', 
                                                     [
                                                         'class'       => 'form-control',
@@ -633,7 +645,7 @@
                                         <td>
                                             {{
                                                 Form::text(
-                                                    'alat_bantu_tangkap[jumlah][' . $id_jenis_alat_bantu_tangkap . ']', 
+                                                    'daerah_operasional[waktu_tempuh][]', 
                                                     '', 
                                                     [
                                                         'class'       => 'form-control',
@@ -643,11 +655,13 @@
                                         </td>
                                         <td>
                                             {{
-                                                Form::text(
-                                                    'alat_bantu_tangkap[satuan_jumlah][' . $id_jenis_alat_bantu_tangkap . ']', 
-                                                    '', 
+                                                Form::select(
+                                                    'daerah_operasional[zona][]', 
+                                                    $zona_ops, 
+                                                    null, 
                                                     [
-                                                        'class'       => 'form-control',
+                                                        'class' => 'form-control',
+                                                        'placeholder' => 'Pilih'
                                                     ]
                                                 )
                                             }}
@@ -655,7 +669,7 @@
                                         <td>
                                             {{
                                                 Form::text(
-                                                    'alat_bantu_tangkap[umur_teknis][' . $id_jenis_alat_bantu_tangkap . ']', 
+                                                    'daerah_operasional[bulan][]', 
                                                     '', 
                                                     [
                                                         'class'       => 'form-control',
@@ -675,7 +689,7 @@
                                 <td>
                                     {{
                                         Form::text(
-                                            'jumlah_hari', 
+                                            'penangkapan[jumlah_hari]', 
                                             '', 
                                             [
                                                 'class'       => 'form-control',
@@ -691,7 +705,7 @@
                                 <td>
                                     {{
                                         Form::text(
-                                            'rata_jumlah', 
+                                            'penangkapan[rata_jumlah]', 
                                             '', 
                                             [
                                                 'class'       => 'form-control',
@@ -707,7 +721,7 @@
                                 <td>
                                     {{
                                         Form::text(
-                                            'jumlah_bulan_tdk_tangkap', 
+                                            'penangkapan[jumlah_bulan_tdk_tangkap]', 
                                             '', 
                                             [
                                                 'class'       => 'form-control',
@@ -722,12 +736,14 @@
                                 <td>yaitu pada bulan:</td>
                                 <td>
                                     {{
-                                        Form::text(
-                                            'bulan_tdk_tangkap', 
-                                            '', 
+                                        Form::select(
+                                             'penangkapan[bulan_tdk_tangkap][]', 
+                                            $bulan, 
+                                            null, 
                                             [
-                                                'class'       => 'form-control',
-                                                'placeholder' => ''
+                                                'class'    => 'form-control',
+                                                'multiple' => 'multiple',
+                                                'id'       => 'jenis-komoditas'
                                             ]
                                         )
                                     }}
@@ -760,12 +776,13 @@
                                         @for ($i = 1; $i <= 12; $i++)
                                             <td>
                                                 {{
-                                                    Form::text(
+                                                    Form::select(
                                                         'musim_tangkap[' . $id_jenis_ikan . '][bulan' . $i . ']', 
-                                                        '', 
+                                                        $musim, 
+                                                        null,  
                                                         [
-                                                            'class'     => 'form-control',
-                                                            'maxlength' => '1'
+                                                            'class'       => 'form-control',
+                                                            'placeholder' => 'Pilih'
                                                         ]
                                                     )
                                                 }}
@@ -775,11 +792,6 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        Ket:
-                        <br>
-                        a = musim puncak <br> 
-                        b = musim sedang <br>
-                        c = musim paceklik <br>
                         <table class="table table-hover">
                             <tr>
                                 <td width="30">15.</td>
@@ -793,7 +805,7 @@
                                         <label>
                                             {{
                                                 Form::radio(
-                                                    'penanganan_ikan', 
+                                                    'penangkapan[penanganan_ikan]', 
                                                     $id_penanganan_ikan,
                                                     false,
                                                     [
@@ -805,7 +817,7 @@
                                             @if ($id_penanganan_ikan == 4)
                                             {{
                                                 Form::text(
-                                                    'penanganan_lain', 
+                                                    'penangkapan[penanganan_ikan_lain]', 
                                                     '', 
                                                     [
                                                         'class'       => 'form-control col-sm-4',
@@ -898,7 +910,7 @@
                                 <td>
                                     {{
                                         Form::text(
-                                            'bagi_hasil_pemilik', 
+                                            'penangkapan[bagi_hasil_pemilik]', 
                                             '', 
                                             [
                                                 'class'       => 'form-control col-sm-4',
@@ -914,7 +926,7 @@
                                 <td>
                                     {{
                                         Form::text(
-                                            'bagi_hasil_awak', 
+                                            'penangkapan[bagi_hasil_awak]', 
                                             '', 
                                             [
                                                 'class'       => 'form-control col-sm-4',
@@ -949,7 +961,7 @@
                                         <td>
                                             {{
                                                 Form::text(
-                                                    'volume[' . $item->id_master_biaya . ']', 
+                                                    'biaya_ops[jumlah][' . $item->id_master_biaya . ']', 
                                                     '', 
                                                     [
                                                         'class'       => 'form-control col-sm-4',
@@ -962,7 +974,7 @@
                                         <td>
                                             {{
                                                 Form::text(
-                                                     'harga_satuan[' . $item->id_master_biaya . ']', 
+                                                    'biaya_ops[harga_satuan][' . $item->id_master_biaya . ']', 
                                                     '', 
                                                     [
                                                         'class'       => 'form-control col-sm-4',
@@ -974,7 +986,7 @@
                                         <td>
                                             {{
                                                 Form::text(
-                                                     'total[' . $item->id_master_biaya . ']', 
+                                                    'biaya_ops[total_biaya][' . $item->id_master_biaya . ']', 
                                                     '', 
                                                     [
                                                         'class'       => 'form-control col-sm-4',

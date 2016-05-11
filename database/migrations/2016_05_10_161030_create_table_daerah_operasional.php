@@ -16,12 +16,11 @@ class CreateTableDaerahOperasional extends Migration
             $table->increments('id_daerah_operasional');
             $table->integer('id_responden');
             
+            $table->string('lokasi', 200)->nullable();
             $table->float('jarak_dr_pantai')->nullable();
             $table->float('waktu_tempuh')->nullable();
             $table->integer('zona')->nullable();
-            $table->string('zona_lain', 30)->nullable();
-            $table->integer('bulan')->nullable();
-            $table->string('lokasi', 200)->nullable();
+            $table->string('bulan', 200)->nullable();
 
             $table->softDeletes();
             $table->timestamps();

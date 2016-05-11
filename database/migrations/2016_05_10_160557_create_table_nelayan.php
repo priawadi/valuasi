@@ -16,8 +16,8 @@ class CreateTableNelayan extends Migration
             $table->increments('id_nelayan');
             $table->integer('id_responden');
 
-            $table->boolean('is_nelayan')->default(FALSE);
-            $table->integer('lama_bekerja')->nullable();
+            $table->boolean('is_nelayan')->nullable();
+            $table->integer('lama_usaha')->nullable();
             $table->integer('status_kepemilikan')->nullable();
             $table->integer('status_kedudukan')->nullable();
             $table->string('status_kedudukan_lain', 100)->nullable();

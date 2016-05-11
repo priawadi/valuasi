@@ -21,7 +21,7 @@ class CreateTablePenangkapan extends Migration
             $table->string('jumlah_bulan_tdk_tangkap', 30)->nullable();
             $table->string('bulan_tdk_tangkap', 30)->nullable();
             $table->integer('penanganan_ikan')->nullable();
-            $table->integer('penanganan_ikan_lain')->nullable();
+            $table->string('penanganan_ikan_lain', 200)->nullable();
             $table->float('bagi_hasil_pemilik')->nullable();
             $table->float('bagi_hasil_awak')->nullable();
             

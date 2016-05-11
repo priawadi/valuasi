@@ -17,9 +17,9 @@ class CreateTableOpsNelayan extends Migration
             $table->integer('id_responden');
             $table->integer('id_master_biaya');
 
-            $table->float('jumlah');
-            $table->float('harga_satuan');
-            $table->integer('total_biaya');
+            $table->float('jumlah')->nullable();
+            $table->float('harga_satuan')->nullable();
+            $table->integer('total_biaya')->nullable();
 
             $table->softDeletes();
             $table->timestamps();

@@ -20,7 +20,7 @@ class CreateTableAlatBantuTangkap extends Migration
             $table->string('spesifikasi_ukuran', 200)->nullable();
             $table->integer('jumlah')->nullable();
             $table->string('satuan_jumlah', 30)->nullable();
-            $table->float('harga_beli')->nullable();
+            $table->integer('harga_beli')->nullable();
             $table->float('umur_teknis')->nullable();
             
             $table->softDeletes();
