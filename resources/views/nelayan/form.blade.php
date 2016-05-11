@@ -808,7 +808,8 @@
                                                     'penanganan_lain', 
                                                     '', 
                                                     [
-                                                        'class'     => 'form-control col-sm-4',
+                                                        'class'       => 'form-control col-sm-4',
+                                                        'placeholder' => 'Sebutkan',
                                                     ]
                                                 )
                                             }}
@@ -923,6 +924,68 @@
                                     }}
                                 </td>
                             </tr>
+                            <tr>
+                                <td>18.</td>
+                                <td>Biaya operasional per trip penangkapan ikan :</td>
+                                <td></td>
+                            </tr>
+                        </table>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th width="30">No</th>
+                                    <th>Komponen</th>
+                                    <th>Jumlah</th>
+                                    <th>Satuan Unit</th>
+                                    <th>Harga Satuan</th>
+                                    <th>Total Biaya</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($master_biaya_ops as $index => $item)
+                                    <tr>
+                                        <td>{{$index + 1}}.</td>
+                                        <td>{{$item->biaya}}</td>
+                                        <td>
+                                            {{
+                                                Form::text(
+                                                    'volume[' . $item->id_master_biaya . ']', 
+                                                    '', 
+                                                    [
+                                                        'class'       => 'form-control col-sm-4',
+                                                        'placeholder' => '',
+                                                    ]
+                                                )
+                                            }}
+                                        </td>
+                                        <td>{{$item->satuan}}</td>
+                                        <td>
+                                            {{
+                                                Form::text(
+                                                     'harga_satuan[' . $item->id_master_biaya . ']', 
+                                                    '', 
+                                                    [
+                                                        'class'       => 'form-control col-sm-4',
+                                                        'placeholder' => 'Rp/satuan',
+                                                    ]
+                                                )
+                                            }}
+                                        </td>
+                                        <td>
+                                            {{
+                                                Form::text(
+                                                     'total[' . $item->id_master_biaya . ']', 
+                                                    '', 
+                                                    [
+                                                        'class'       => 'form-control col-sm-4',
+                                                        'placeholder' => 'Rp',
+                                                    ]
+                                                )
+                                            }}
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
                         </table>
                         <table class="table table-hover">
                             <tr>

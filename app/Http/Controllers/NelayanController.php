@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\MasterBiaya;
 
 class NelayanController extends Controller
 {
@@ -103,7 +104,7 @@ class NelayanController extends Controller
         2  => 'Mesin Kapal',
         3  => 'Alat Tangkap',
         4  => 'Lainnya',
-    ];    
+    ];
 
     /**
      * Display a listing of the resource.
@@ -122,6 +123,7 @@ class NelayanController extends Controller
      */
     public function create()
     {
+
         return view('nelayan.form', [
             'subtitle'                 => 'Nelayan',
             'action'                   => 'nelayan/tambah',
@@ -135,6 +137,7 @@ class NelayanController extends Controller
             'jenis_ikan'               => $this->jenis_ikan,
             'penanganan_ikan'          => $this->penanganan_ikan,
             'master_biaya_perawatan'   => $this->master_biaya_perawatan,
+            'master_biaya_ops'         => MasterBiaya::where('kateg_modul', \Config::get('constants.MODULE.NELAYAN'))->where('kateg_biaya', \Config::get('constants.BIAYA.OPERASIONAL'))->get(),
             // 'jenis_komoditas'     => $this->jenis_komoditas,
             // 'master_biaya_invest' => MasterBiaya::where('kateg_modul', \Config::get('constants.MODULE.KERAMBA'))->where('kateg_biaya', \Config::get('constants.BIAYA.INVESTASI'))->get(),
             // 'master_biaya_var'    => MasterBiaya::where('kateg_modul', \Config::get('constants.MODULE.KERAMBA'))->where('kateg_biaya', \Config::get('constants.BIAYA.VARIABEL'))->get(),
