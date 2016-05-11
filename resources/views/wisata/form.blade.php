@@ -423,7 +423,7 @@
                             <tbody>
                                 @foreach ($fasilitas_pendukung as $id_fasilitas_Pendukung => $item)
                                 <tr>
-                                    <td></td>
+                                    <td>{{$item -> fasilitas_pendukung}}</td>
                                     <td>
                                     <div class="radio">
                                         <label>
@@ -533,14 +533,215 @@
                                             }} 
                                             Kurang Baik
                                         </label>
-                                    </div>                                     
-
+                                    </div>     
                                     </td>
                                 </tr>
                                 @endforeach
                             </tbody>
                         </table>
+                        3. Informasi Biaya Perjalanan Menuju Kawasan
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <td>(1)</td>
+                                    <td>(2)</td>
+                                    <td>(3)</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Dengan siapa datang ke kawasan?
+                                    <div class="radio">
+                                        <label>
+                                            {{
+                                                Form::radio(
+                                                    'jenis_rombongan', 
+                                                    1,
+                                                    false,
+                                                    [
+                                                        'class' => 'control-label'
+                                                    ]
+                                                )
+                                            }} 
+                                            Sendirian
+                                        </label>
+                                    </div> 
+                                    <div class="radio">
+                                        <label>
+                                            {{
+                                                Form::radio(
+                                                    'jenis_rombongan', 
+                                                    2,
+                                                    false,
+                                                    [
+                                                        'class' => 'control-label'
+                                                    ]
+                                                )
+                                            }} 
+                                            Rombongan
 
+                                            {{  
+                                                Form::text(
+                                                    'jumlah_orang', 
+                                                    '', 
+                                                    [
+                                                        'class'       => 'form-control',
+                                                        'placeholder' => ''
+                                                    ]
+                                                )
+                                            }}                                              
+                                        </label>
+                                    </div>                                    
+                                    </td>
+                                    <td>Penyelenggara menuju kawasan
+                                    <div class="radio">
+                                        <label>
+                                            {{
+                                                Form::radio(
+                                                    'penyelenggara', 
+                                                    1,
+                                                    false,
+                                                    [
+                                                        'class' => 'control-label'
+                                                    ]
+                                                )
+                                            }} 
+                                            Perseorangan
+                                        </label>
+                                    </div> 
+                                    <div class="radio">
+                                        <label>
+                                            {{
+                                                Form::radio(
+                                                    'penyelenggara', 
+                                                    2,
+                                                    false,
+                                                    [
+                                                        'class' => 'control-label'
+                                                    ]
+                                                )
+                                            }} 
+                                            Travel Agent
+                                        </label>
+                                    </div> 
+                                    </td>
+                                    <td>Jenis Transportasi yang Digunakan:
+                                    <div class="radio">
+                                        <label>
+                                            {{
+                                                Form::radio(
+                                                    'jenis_transportasi', 
+                                                    1,
+                                                    false,
+                                                    [
+                                                        'class' => 'control-label'
+                                                    ]
+                                                )
+                                            }} 
+                                            Pribadi
+                                        </label>
+                                    </div> 
+                                    <div class="radio">
+                                        <label>
+                                            {{
+                                                Form::radio(
+                                                    'jenis_transportasi', 
+                                                    2,
+                                                    false,
+                                                    [
+                                                        'class' => 'control-label'
+                                                    ]
+                                                )
+                                            }} 
+                                            Sewa
+                                        </label>
+                                    </div> 
+                                    <div class="radio">
+                                        <label>
+                                            {{
+                                                Form::radio(
+                                                    'jenis_transportasi', 
+                                                    3,
+                                                    false,
+                                                    [
+                                                        'class' => 'control-label'
+                                                    ]
+                                                )
+                                            }} 
+                                            Umum
+                                        </label>
+                                    </div>                                                                         
+                                    </td>
+                                </tr>
+                            </tbody>                            
+                        </table>
+                        4. Informasi Biaya Wisata
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <td>Jenis Pengeluaran</td>
+                                    <td>Biaya (Rp/Orang/Hari)</td>
+                                    <td>Jumlah</td>
+                                    <td>Satuan</td>
+                                    <td>Total Biaya(Rp/Org)</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($jenis_pengeluaran as $k => $v)
+                                <tr>                                    
+                                    <td>{{ $v }}</td>
+                                    <td>
+                                            {{  
+                                                Form::text(
+                                                    'biaya', 
+                                                    '', 
+                                                    [
+                                                        'class'       => 'form-control',
+                                                        'placeholder' => ''
+                                                    ]
+                                                )
+                                            }}   
+                                    </td>
+                                    <td>
+                                            {{  
+                                                Form::text(
+                                                    'jumlah', 
+                                                    '', 
+                                                    [
+                                                        'class'       => 'form-control',
+                                                        'placeholder' => ''
+                                                    ]
+                                                )
+                                            }}   
+                                    </td>
+                                    <td>
+                                            {{  
+                                                Form::text(
+                                                    'satuan_jumlah', 
+                                                    '', 
+                                                    [
+                                                        'class'       => 'form-control',
+                                                        'placeholder' => ''
+                                                    ]
+                                                )
+                                            }}   
+                                    </td>
+                                    <td>
+                                            {{  
+                                                Form::text(
+                                                    'total_biaya', 
+                                                    '', 
+                                                    [
+                                                        'class'       => 'form-control',
+                                                        'placeholder' => ''
+                                                    ]
+                                                )
+                                            }}   
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     <div class="col-md-10 col-md-offset-1">
                       <button type="submit" class="btn btn-primary col-md-offset-11">Simpan</button>
                       <br><br><br>

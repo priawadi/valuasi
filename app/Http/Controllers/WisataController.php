@@ -9,6 +9,16 @@ use App\FasilitasPendukung;
 
 class WisataController extends Controller
 {
+    var $jenis_pengeluaran = [
+        1 => 'Biaya Transportasi',
+        2 => 'Tiket Masuk Lokasi Wisata',
+        3 => 'Penginapan (Hotel/Home Stay)',
+        4 => 'Biaya Konsumsi (Makanan dll)',
+        5 => 'Biaya Sewa Kendaraan Dalam Kawasan Wisata (Motor, Perahu, Mobil)',
+        6 => 'Biaya Dokumentasi',
+        7 => 'Biaya Jasa Wisata Ex. Pemandu wisata, sewa alat snorkling dll',
+    ];
+
     /**
      * Display a listing of the resource.
      *
@@ -29,7 +39,8 @@ class WisataController extends Controller
         return view('wisata.form', [
             'action'                    => 'wisata/tambah',
             'subtitle'                  => 'Valuasi Wisata',
-            'fasilitas_pendukung'       => FasilitasPendukung::where('is_pertanyaan', 1)->get(),
+            'fasilitas_pendukung'       => FasilitasPendukung::all(),
+            'jenis_pengeluaran'         => $this->jenis_pengeluaran,
         ]);
     }
 
