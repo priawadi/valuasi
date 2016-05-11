@@ -64,3 +64,11 @@ Route::post('/satwa/tambah', 'PencariSatwaController@store');
 Route::get('/satwa/edit/{id_responden}', 'PencariSatwaController@edit');
 Route::patch('/satwa/edit/{id_responden}', 'PencariSatwaController@update');
 Route::get('/satwa/lihat/{id_responden}', 'PencariSatwaController@detail');
+
+// Nelayan
+Route::get('/nelayan', 'NelayanController@index');
+Route::get('/nelayan/tambah', 'NelayanController@create');
+Route::post('/nelayan/tambah', 'NelayanController@store');
+Route::get('/nelayan/edit/{id_responden}', 'NelayanController@edit');
+Route::patch('/nelayan/edit/{id_responden}', 'NelayanController@update');
+Route::get('/nelayan/lihat/{id_responden}', 'NelayanController@detail');
