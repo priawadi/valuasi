@@ -77,6 +77,34 @@ class NelayanController extends Controller
         12 => 'Desember',
     ];
 
+    var $jenis_ikan = [ 
+        1  => 'Kerapu', 
+        2  => 'Cumi-Cumi/Sotong',
+        3  => 'Baronang',
+        4  => 'Ekor Kuning',
+        5  => 'Kuwe',
+        6  => 'Kakap',
+        7  => 'Katamba/Lencam',
+        8  => 'Biji Nangka',
+        9  => 'Baracuda/Kacang-Kacang',
+        10 => 'Kakaktua',
+        11 => 'Lain-lain',
+    ];
+
+    var $penanganan_ikan = [ 
+        1  => 'Menggunakan palkah dan es', 
+        2  => 'Menggunakan palkah tanpa es',
+        3  => 'Dibiarkan diatas dek',
+        4  => 'Lainnya',
+    ];
+
+    var $master_biaya_perawatan = [ 
+        1  => 'Kapal/Perahu', 
+        2  => 'Mesin Kapal',
+        3  => 'Alat Tangkap',
+        4  => 'Lainnya',
+    ];    
+
     /**
      * Display a listing of the resource.
      *
@@ -104,6 +132,9 @@ class NelayanController extends Controller
             'jenis_tenaga_kerja'       => $this->jenis_tenaga_kerja,
             'status_kepemilikan'       => $this->status_kepemilikan,
             'status_kedudukan'         => $this->status_kedudukan,
+            'jenis_ikan'               => $this->jenis_ikan,
+            'penanganan_ikan'          => $this->penanganan_ikan,
+            'master_biaya_perawatan'   => $this->master_biaya_perawatan,
             // 'jenis_komoditas'     => $this->jenis_komoditas,
             // 'master_biaya_invest' => MasterBiaya::where('kateg_modul', \Config::get('constants.MODULE.KERAMBA'))->where('kateg_biaya', \Config::get('constants.BIAYA.INVESTASI'))->get(),
             // 'master_biaya_var'    => MasterBiaya::where('kateg_modul', \Config::get('constants.MODULE.KERAMBA'))->where('kateg_biaya', \Config::get('constants.BIAYA.VARIABEL'))->get(),

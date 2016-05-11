@@ -668,6 +668,287 @@
                                 @endfor
                             </tbody>
                         </table>
+                        <table class="table table-hover">
+                            <tr>
+                                <td width="30">11.</td>
+                                <td width="300">Jumlah hari penangkapan ikan untuk satu kali trip operasi</td>
+                                <td>
+                                    {{
+                                        Form::text(
+                                            'jumlah_hari', 
+                                            '', 
+                                            [
+                                                'class'       => 'form-control',
+                                                'placeholder' => 'hari'
+                                            ]
+                                        )
+                                    }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="30">12.</td>
+                                <td>Rata-rata jumlah trip operasi penangkapan ikan </td>
+                                <td>
+                                    {{
+                                        Form::text(
+                                            'rata_jumlah', 
+                                            '', 
+                                            [
+                                                'class'       => 'form-control',
+                                                'placeholder' => 'hari'
+                                            ]
+                                        )
+                                    }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="30">13.</td>
+                                <td>Bulan tidak ke laut dalam satu tahun</td>
+                                <td>
+                                    {{
+                                        Form::text(
+                                            'jumlah_bulan_tdk_tangkap', 
+                                            '', 
+                                            [
+                                                'class'       => 'form-control',
+                                                'placeholder' => 'bulan'
+                                            ]
+                                        )
+                                    }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="30"></td>
+                                <td>yaitu pada bulan:</td>
+                                <td>
+                                    {{
+                                        Form::text(
+                                            'bulan_tdk_tangkap', 
+                                            '', 
+                                            [
+                                                'class'       => 'form-control',
+                                                'placeholder' => ''
+                                            ]
+                                        )
+                                    }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="30">14.</td>
+                                <td>Musim penangkapan ikan</td>
+                                <td></td>
+                            </tr>
+                        </table>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th rowspan="2">No</th>
+                                    <th rowspan="2">Jenis Ikan</th>
+                                    <th colspan="12"><center>Bulan</center></th>
+                                </tr>
+                                <tr>
+                                    @for ($i = 1; $i <= 12; $i++)
+                                        <th><center>{{$i}}</center></th>
+                                    @endfor
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($jenis_ikan as $id_jenis_ikan => $ikan)
+                                    <tr>
+                                        <td>{{$id_jenis_ikan}}.</td>
+                                        <td>{{$ikan}}</td>
+                                        @for ($i = 1; $i <= 12; $i++)
+                                            <td>
+                                                {{
+                                                    Form::text(
+                                                        'musim_tangkap[' . $id_jenis_ikan . '][bulan' . $i . ']', 
+                                                        '', 
+                                                        [
+                                                            'class'     => 'form-control',
+                                                            'maxlength' => '1'
+                                                        ]
+                                                    )
+                                                }}
+                                            </td>
+                                        @endfor
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        Ket:
+                        <br>
+                        a = musim puncak <br> 
+                        b = musim sedang <br>
+                        c = musim paceklik <br>
+                        <table class="table table-hover">
+                            <tr>
+                                <td width="30">15.</td>
+                                <td>Penanganan ikan di atas kapal:</td>
+                            </tr>
+                            @foreach ($penanganan_ikan as $id_penanganan_ikan => $penanganan)
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <div class="radio">
+                                        <label>
+                                            {{
+                                                Form::radio(
+                                                    'penanganan_ikan', 
+                                                    $id_penanganan_ikan,
+                                                    false,
+                                                    [
+                                                        'class' => 'control-label'
+                                                    ]
+                                                )
+                                            }} 
+                                            {{ $penanganan }}
+                                            @if ($id_penanganan_ikan == 4)
+                                            {{
+                                                Form::text(
+                                                    'penanganan_lain', 
+                                                    '', 
+                                                    [
+                                                        'class'     => 'form-control col-sm-4',
+                                                    ]
+                                                )
+                                            }}
+                                            @endif
+                                        </label>
+                                    </div>
+
+                                </td>
+                            </tr>
+                            @endforeach
+                            <tr>
+                                <td>16.</td>
+                                <td>
+                                    Hasil tangkapan <br>
+                                    Sebutkan rata-rata hasil tangkapan berdasarkan musim sebagaimana tabel berikut
+                                </td>
+                            </tr>
+                        </table>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th rowspan="2">No</th>
+                                    <th rowspan="2">Jenis Ikan</th>
+                                    <th colspan="3"><center>Produksi</center></th>
+                                </tr>
+                                <tr>
+                                    <th><center>Musim Puncak</center></th>
+                                    <th><center>Musim Sedang</center></th>
+                                    <th><center>Musim Paceklik</center></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($jenis_ikan as $id_jenis_ikan => $ikan)
+                                    <tr>
+                                        <td>{{$id_jenis_ikan}}.</td>
+                                        <td>{{$ikan}}</td>
+                                        <td>
+                                            {{
+                                                Form::text(
+                                                    'hasil_tangkap[' . $id_jenis_ikan . '][produksi_musim_puncak]', 
+                                                    '', 
+                                                    [
+                                                        'class'       => 'form-control col-sm-4',
+                                                        'placeholder' => 'Kg/trip',
+                                                    ]
+                                                )
+                                            }}
+                                        </td>
+                                        <td>
+                                            {{
+                                                Form::text(
+                                                    'hasil_tangkap[' . $id_jenis_ikan . '][produksi_musim_sedang]', 
+                                                    '', 
+                                                    [
+                                                        'class'       => 'form-control col-sm-4',
+                                                        'placeholder' => 'Kg/trip',
+                                                    ]
+                                                )
+                                            }}
+                                        </td>
+                                        <td>
+                                            {{
+                                                Form::text(
+                                                    'hasil_tangkap[' . $id_jenis_ikan . '][produksi_musim_paceklik]', 
+                                                    '', 
+                                                    [
+                                                        'class'       => 'form-control col-sm-4',
+                                                        'placeholder' => 'Kg/trip',
+                                                    ]
+                                                )
+                                            }}
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        <table class="table table-hover">
+                            <tr>
+                                <td width="30">17.</td>
+                                <td width="300">Sistem bagi hasil antara pemilik dengan awak kapal:</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>a. Pemilik Kapal</td>
+                                <td>
+                                    {{
+                                        Form::text(
+                                            'bagi_hasil_pemilik', 
+                                            '', 
+                                            [
+                                                'class'       => 'form-control col-sm-4',
+                                                'placeholder' => 'bagian',
+                                            ]
+                                        )
+                                    }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>b. Awak Kapal</td>
+                                <td>
+                                    {{
+                                        Form::text(
+                                            'bagi_hasil_awak', 
+                                            '', 
+                                            [
+                                                'class'       => 'form-control col-sm-4',
+                                                'placeholder' => 'bagian',
+                                            ]
+                                        )
+                                    }}
+                                </td>
+                            </tr>
+                        </table>
+                        <table class="table table-hover">
+                            <tr>
+                                <td width="30">19.</td>
+                                <td width="300">Biaya Perawatan</td>
+                                <td></td>
+                            </tr>
+                            @foreach ($master_biaya_perawatan as $id_biaya_perawatan => $biaya_perawatan)
+                            <tr>
+                                <td></td>
+                                <td>{{$id_biaya_perawatan}}. {{$biaya_perawatan}}</td>
+                                <td>
+                                    {{
+                                        Form::text(
+                                            'biaya_perawatan[' . $id_biaya_perawatan . ']', 
+                                            '', 
+                                            [
+                                                'class'       => 'form-control col-sm-4',
+                                                'placeholder' => 'Rp/tahun',
+                                            ]
+                                        )
+                                    }}
+                                </td>
+                            </tr>
+                            @endforeach
+                        </table>
                       @include('components.form.prev_next_btn')
                     {!! Form::close() !!}
                 </div>
