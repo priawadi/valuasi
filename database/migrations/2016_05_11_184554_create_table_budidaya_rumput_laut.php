@@ -23,7 +23,8 @@ class CreateTableBudidayaRumputLaut extends Migration
             $table->boolean('is_ukuran_sama')->nullable();
             $table->integer('jumlah_lokasi')->nullable();
             $table->integer('status_kepemilikan')->nullable();
-            $table->integer('jenis_rumput_laut')->nullable();
+            $table->string('status_kepemilikan_lain', 100)->nullable();
+            $table->string('jenis_rumput_laut', 30)->nullable();
             $table->integer('jumlah_panen')->nullable();
 
             $table->softDeletes();

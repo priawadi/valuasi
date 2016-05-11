@@ -454,7 +454,7 @@ class RespondenController extends Controller
             [
                 'kuesioner' => 'Informasi Umum',
                 'is_done'   => 0,
-                'link'      => 'partisipasi-sosial',
+                'link'      => 'budidaya-rumput-laut',
             ],
             [
                 'kuesioner' => 'Biaya Investasi',

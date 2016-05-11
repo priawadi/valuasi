@@ -80,3 +80,12 @@ Route::post('/wisata/tambah', 'WisataController@store');
 Route::get('/wisata/edit/{id_responden}', 'WisataController@edit');
 Route::patch('/wisata/edit/{id_responden}', 'WisataController@update');
 Route::get('/wisata/lihat/{id_responden}', 'WisataController@detail');
+
+// Buydidaya Rumput Laut
+Route::get('/budidaya-rumput-laut', 'BudidayaRumputLautController@index');
+Route::get('/budidaya-rumput-laut/tambah', 'BudidayaRumputLautController@create');
+Route::post('/budidaya-rumput-laut/tambah', 'BudidayaRumputLautController@store');
+Route::get('/budidaya-rumput-laut/edit/{id_responden}', 'BudidayaRumputLautController@edit');
+Route::patch('/budidaya-rumput-laut/edit/{id_responden}', 'BudidayaRumputLautController@update');
+Route::get('/budidaya-rumput-laut/lihat/{id_responden}', 'BudidayaRumputLautController@detail');
+Route::get('/budidaya-rumput-laut/hapus/{id_responden}', 'BudidayaRumputLautController@destroy');

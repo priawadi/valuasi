@@ -58,7 +58,7 @@
                                 <td>
                                     {{
                                         Form::text(
-                                            'mapen_sblm_keramba', 
+                                            'pekerjaan_sebelumnya', 
                                             '', 
                                             [
                                                 'class'       => 'form-control',
@@ -70,41 +70,26 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>4. Luas Lahan Budidaya Keramba</td>
+                                <td>4. Berapa pendapatan bersih saudara dari usaha budidaya rumput laut</td>
                                 <td>
                                     {{
                                         Form::text(
-                                            'luas_lahan', 
+                                            'pendapatan_bersih', 
                                             '', 
                                             [
                                                 'class'       => 'form-control',
-                                                'placeholder' => 'meter persegi',
+                                                'placeholder' => 'Rp/tahun',
                                             ]
                                         )
                                     }}
                                 </td>
                             </tr>
                             <tr>
-                                <td>5. Jumlah Total Keramba</td>
+                                <td>5. Berapa banyak Unit/Lokasi budidaya yang dimiliki</td>
                                 <td>
                                     {{
                                         Form::text(
-                                            'keramba_total', 
-                                            '', 
-                                            [
-                                                'class'       => 'form-control',
-                                                'placeholder' => 'unit',
-                                            ]
-                                        )
-                                    }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Jumlah Keramba yang Aktif</td>
-                                <td>
-                                    {{
-                                        Form::text(
-                                            'keramba_aktif', 
+                                            'jumlah_lokasi', 
                                             '', 
                                             [
                                                 'class'       => 'form-control',
@@ -115,27 +100,68 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>Jumlah Keramba yang Tidak Aktif</td>
+                                <td>Apakah ukuran masing-masing unit sama  (ya/tdk). Jika ya isi tabel berikut</td>
                                 <td>
-                                    {{
-                                        Form::text(
-                                            'keramba_tidak_aktif', 
-                                            '', 
-                                            [
-                                                'class'       => 'form-control',
-                                                'placeholder' => 'unit',
-                                            ]
-                                        )
-                                    }}
+                                    @foreach ($ukuran_lokasi as $k => $v)
+                                        <div class="radio">
+                                            <label>
+                                                {{
+                                                    Form::radio(
+                                                        'is_ukuran_sama', 
+                                                        $k,
+                                                        false,
+                                                        [
+                                                            'class' => 'control-label'
+                                                        ]
+                                                    )
+                                                }} 
+                                                {{ $v }}
+                                            </label>
+                                        </div>
+                                    @endforeach
                                 </td>
                             </tr>
                             <tr>
-                                <td>6. Jenis komoditas yang Diusahakan</td>
+                                <td>6. Status kepemilikan lahan</td>
+                                <td>
+                                    @foreach ($status_kepemilikan as $k => $v)
+                                        <div class="radio">
+                                            <label>
+                                                {{
+                                                    Form::radio(
+                                                        'status_kepemilikan', 
+                                                        $k,
+                                                        false,
+                                                        [
+                                                            'class' => 'control-label'
+                                                        ]
+                                                    )
+                                                }} 
+                                                {{ $v }}
+                                                @if ($k == 4)
+                                                    {{
+                                                        Form::text(
+                                                            'status_kepemilikan_lain', 
+                                                            '', 
+                                                            [
+                                                                'class'       => 'form-control',
+                                                                'placeholder' => 'Sebutkan',
+                                                            ]
+                                                        )
+                                                    }}
+                                                @endif
+                                            </label>
+                                        </div>
+                                    @endforeach
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>7. Jenis rumput laut yang Diusahakan</td>
                                 <td>
                                     {{
                                         Form::select(
-                                            'jenis_komoditas[]', 
-                                            $jenis_komoditas, 
+                                            'jenis_rumput_laut[]', 
+                                            $jenis_rumput_laut, 
                                             null, 
                                             [
                                                 'class'    => 'form-control',
@@ -147,26 +173,11 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>7. Waktu Pemeliharaan</td>
+                                <td>8. Berapa kali panen yang dapat dilakukan selama satu tahun (nyatakan dalam jumlah)?</td>
                                 <td>
                                     {{
                                         Form::text(
-                                            'waktu_pemeliharaan', 
-                                            '', 
-                                            [
-                                                'class'       => 'form-control',
-                                                'placeholder' => 'bulan',
-                                            ]
-                                        )
-                                    }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>8. Jumlah Siklus/Panen per Tahun pada Unit Usaha</td>
-                                <td>
-                                    {{
-                                        Form::text(
-                                            'jum_siklus_panen', 
+                                            'jumlah_panen', 
                                             '', 
                                             [
                                                 'class'       => 'form-control',
@@ -178,7 +189,7 @@
                             </tr>
                         </table>
                         <br>
-                        9. Biaya Invetasi
+                        9. Biaya Invetasi (1/2/3/4 Pilih salah satu)
                         <table class="table table-hover">
                             <thead>
                                 <tr>
@@ -235,11 +246,11 @@
                             </tbody>
                         </table> 
                         <br>
-                        10. Biaya Variabel
+                        10. Biaya Operasional
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th>Biaya Variabel</th>
+                                    <th>Biaya Operasional</th>
                                     <th>Satuan</th>
                                     <th>Volume</th>
                                     <th>Harga Satuan<br/> (Rp/Unit)</th>
@@ -247,7 +258,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($master_biaya_var as $id_master_biaya => $item)
+                                @foreach ($master_biaya_ops as $id_master_biaya => $item)
                                 <tr>
                                     <td> {{$item -> biaya}} </td>
                                     <td> {{$item -> satuan}} </td>
@@ -348,7 +359,7 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        12. Hasil Panen per Siklus (per Unit)
+                        12. Produksi
                         <table class="table table-hover">
                             <thead>
                                 <tr>
@@ -360,51 +371,7 @@
                                     <th>Jumlah Penerimaan (Rp)</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                @foreach ($komoditas as $idx => $item)
-                                    <tr>
-                                        <td>{{$idx + 1}}</td>
-                                        <td>{{$item['komoditas']}}</td>
-                                        <td>{{$item['satuan']}}</td>
-                                        <td>
-                                            {{
-                                                Form::text(
-                                                    'jumlah[' . $item->id_master_komoditas . ']', 
-                                                    '', 
-                                                    [
-                                                        'class'       => 'form-control',
-                                                        'placeholder' => '',
-                                                    ]
-                                                )
-                                            }}
-                                        </td>
-                                        <td>
-                                            {{
-                                                Form::text(
-                                                    'harga_jual[' . $item->id_master_komoditas . ']', 
-                                                    '', 
-                                                    [
-                                                        'class'       => 'form-control',
-                                                        'placeholder' => '',
-                                                    ]
-                                                )
-                                            }}
-                                        </td>
-                                        <td>
-                                            {{
-                                                Form::text(
-                                                    'jumlah_penerimaan[' . $item->id_master_komoditas . ']', 
-                                                    '', 
-                                                    [
-                                                        'class'       => 'form-control',
-                                                        'placeholder' => '',
-                                                    ]
-                                                )
-                                            }}
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
+                            <tbody></tbody>
                         </table>
                       @include('components.form.prev_next_btn')
                     {!! Form::close() !!}

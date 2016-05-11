@@ -62,7 +62,7 @@
                                             $budidaya_keramba['mapen_sblm_keramba'], 
                                             [
                                                 'class'       => 'form-control',
-                                                'placeholder' => 'Mata Pencarian',
+                                                'placeholder' => 'Mata Pencaharian',
                                                 'maxlength'   => 255
                                             ]
                                         )
