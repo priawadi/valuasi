@@ -427,19 +427,245 @@
                             @endforeach
                         </table>
                         <br>
-                        6.  Alat bantu penangkapan dan peralatan lainnya :
+                        <br>
+                        <table class="table table-hover">
+                            <tr>
+                                <td width="30">6.</td>
+                                <td>Alat bantu penangkapan dan peralatan lainnya :</td>
+                                <td></td>
+                            </tr>
+                        </table>
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th>Investasi</th>
+                                    <th>No</th>
+                                    <th>Jenis Alat Bantu</th>
+                                    <th>Spesifikasi Ukuran</th>
                                     <th>Satuan</th>
-                                    <th>Volume</th>
-                                    <th>Harga Satuan<br/> (Rp/Unit)</th>
-                                    <th>Jumlah Biaya<br/> (Rp)</th>
+                                    <th>Biaya Pembuatan/Harga Beli per Satuan Unit<br/> (Rp/satuan unit)</th>
+                                    <th>Umur Teknis</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                
+                                @foreach ($jenis_alat_bantu_tangkap as $id_jenis_alat_bantu_tangkap => $alat_bantu_tangkap)
+                                    <tr>
+                                        <td>{{$id_jenis_alat_bantu_tangkap}}</td>
+                                        <td>{{$alat_bantu_tangkap}}</td>
+                                        <td>
+                                            {{
+                                                Form::text(
+                                                    'alat_bantu_tangkap[spesifikasi_ukuran][' . $id_jenis_alat_bantu_tangkap . ']', 
+                                                    '', 
+                                                    [
+                                                        'class'       => 'form-control',
+                                                    ]
+                                                )
+                                            }}
+                                        </td>
+                                        <td>
+                                            {{
+                                                Form::text(
+                                                    'alat_bantu_tangkap[jumlah][' . $id_jenis_alat_bantu_tangkap . ']', 
+                                                    '', 
+                                                    [
+                                                        'class'       => 'form-control',
+                                                    ]
+                                                )
+                                            }}
+                                        </td>
+                                        <td>
+                                            {{
+                                                Form::text(
+                                                    'alat_bantu_tangkap[satuan_jumlah][' . $id_jenis_alat_bantu_tangkap . ']', 
+                                                    '', 
+                                                    [
+                                                        'class'       => 'form-control',
+                                                    ]
+                                                )
+                                            }}
+                                        </td>
+                                        <td>
+                                            {{
+                                                Form::text(
+                                                    'alat_bantu_tangkap[umur_teknis][' . $id_jenis_alat_bantu_tangkap . ']', 
+                                                    '', 
+                                                    [
+                                                        'class'       => 'form-control',
+                                                        'maxlength'   => 2
+                                                    ]
+                                                )
+                                            }}
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        <table class="table table-hover">
+                            <tr>
+                                <td width="30">7.</td>
+                                <td>Jumlah tenaga penangkap per unit penangkapan </td>
+                                <td></td>
+                            </tr>
+                            @foreach ($jenis_tenaga_kerja as $id_tenaga_kerja => $tenaga_kerja)
+                                <tr>
+                                    <td></td>
+                                    <td width="300">{{$tenaga_kerja}}</td>
+                                    <td>
+                                        {{
+                                            Form::text(
+                                                'tenaga_kerja[' . $id_tenaga_kerja . ']', 
+                                                '', 
+                                                [
+                                                    'class'       => 'form-control',
+                                                    'maxlength'   => 4,
+                                                    'placeholder' => 'orang'
+                                                ]
+                                            )
+                                        }}
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </table>
+                        <table class="table table-hover">
+                            <tr>
+                                <td width="30">8.</td>
+                                <td>Status kepemilikan usaha</td>
+                                <td>
+                                    @foreach ($status_kepemilikan as $k => $v)
+                                        <div class="radio">
+                                            <label>
+                                                {{
+                                                    Form::radio(
+                                                        'status_kepemilikan', 
+                                                        $k,
+                                                        false,
+                                                        [
+                                                            'class' => 'control-label'
+                                                        ]
+                                                    )
+                                                }} 
+                                                {{ $v }}
+                                            </label>
+                                        </div>
+                                    @endforeach
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="30">9.</td>
+                                <td width="400">Status/kedudukan Bapak/Ibu/Sdr (i) sekarang</td>
+                                <td>
+                                    @foreach ($status_kedudukan as $k => $v)
+                                        <div class="radio">
+                                            <label>
+                                                {{
+                                                    Form::radio(
+                                                        'status_kedudukan', 
+                                                        $k,
+                                                        false,
+                                                        [
+                                                            'class' => 'control-label'
+                                                        ]
+                                                    )
+                                                }} 
+                                                {{ $v }}
+                                            </label>
+                                        </div>
+                                         @if ($k == 4)
+                                            {{
+                                                Form::text(
+                                                    'status_kepemilikan_lain', 
+                                                    '', 
+                                                    [
+                                                        'class'       => 'form-control',
+                                                        'placeholder' => 'Sebutkan'
+                                                    ]
+                                                )
+                                            }}
+                                        @endif
+                                    @endforeach
+                                </td>
+                            </tr>
+                        </table>
+                        <table class="table table-hover">
+                            <tr>
+                                <td width="30">10.</td>
+                                <td>Daerah operasional penangkapan ikan (<em>fishing ground</em>) :</td>
+                                <td></td>
+                            </tr>
+                        </table>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Lokasi Penangkapan</th>
+                                    <th>Jarak dr Pantai</th>
+                                    <th>Waktu Tempuh</th>
+                                    <th>Zona</th>
+                                    <th>Bulan</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for ($i = 1; $i <= 5; $i++)
+                                    <tr>
+                                        <td>{{$i}}</td>
+                                        <td>
+                                            {{
+                                                Form::text(
+                                                    'alat_bantu_tangkap[spesifikasi_ukuran][' . $id_jenis_alat_bantu_tangkap . ']', 
+                                                    '', 
+                                                    [
+                                                        'class'       => 'form-control',
+                                                    ]
+                                                )
+                                            }}
+                                        </td>
+                                        <td>
+                                            {{
+                                                Form::text(
+                                                    'alat_bantu_tangkap[spesifikasi_ukuran][' . $id_jenis_alat_bantu_tangkap . ']', 
+                                                    '', 
+                                                    [
+                                                        'class'       => 'form-control',
+                                                    ]
+                                                )
+                                            }}
+                                        </td>
+                                        <td>
+                                            {{
+                                                Form::text(
+                                                    'alat_bantu_tangkap[jumlah][' . $id_jenis_alat_bantu_tangkap . ']', 
+                                                    '', 
+                                                    [
+                                                        'class'       => 'form-control',
+                                                    ]
+                                                )
+                                            }}
+                                        </td>
+                                        <td>
+                                            {{
+                                                Form::text(
+                                                    'alat_bantu_tangkap[satuan_jumlah][' . $id_jenis_alat_bantu_tangkap . ']', 
+                                                    '', 
+                                                    [
+                                                        'class'       => 'form-control',
+                                                    ]
+                                                )
+                                            }}
+                                        </td>
+                                        <td>
+                                            {{
+                                                Form::text(
+                                                    'alat_bantu_tangkap[umur_teknis][' . $id_jenis_alat_bantu_tangkap . ']', 
+                                                    '', 
+                                                    [
+                                                        'class'       => 'form-control',
+                                                        'maxlength'   => 2
+                                                    ]
+                                                )
+                                            }}
+                                        </td>
+                                    </tr>
+                                @endfor
                             </tbody>
                         </table>
                       @include('components.form.prev_next_btn')
