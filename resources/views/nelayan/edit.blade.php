@@ -12,7 +12,7 @@
                     @endforeach
                 </ul>
                 <div class="panel-body">
-                    {!! Form::open(array('url' => $action, 'class' => 'form-horizontal')) !!}
+                    {!! Form::open(array('url' => $action, 'class' => 'form-horizontal', 'method' => 'patch')) !!}
                         <table class="table table-hover">
                             <tr>
                                 <td width="30">1.</td>
@@ -186,7 +186,7 @@
                                 <td>
                                     {{
                                         Form::text(
-                                            'alat_tangkap[' . $id_alat_tangkap . '][nama]', 
+                                            'alat_tangkap[' . $dt_alat_tangkap[$id_alat_tangkap]['id_alat_tangkap'] . '][nama]', 
                                             $dt_alat_tangkap[$id_alat_tangkap]['nama'], 
                                             [
                                                 'class'       => 'form-control',
@@ -203,7 +203,7 @@
                                 <td>
                                     {{
                                         Form::text(
-                                            'alat_tangkap[' . $id_alat_tangkap . '][panjang]', 
+                                            'alat_tangkap[' . $dt_alat_tangkap[$id_alat_tangkap]['id_alat_tangkap'] . '][panjang]', 
                                             $dt_alat_tangkap[$id_alat_tangkap]['panjang'], 
                                             [
                                                 'class'       => 'form-control',
@@ -214,7 +214,7 @@
                                     }}
                                     {{
                                         Form::text(
-                                            'alat_tangkap[' . $id_alat_tangkap . '][lebar]', 
+                                            'alat_tangkap[' . $dt_alat_tangkap[$id_alat_tangkap]['id_alat_tangkap'] . '][lebar]', 
                                             $dt_alat_tangkap[$id_alat_tangkap]['lebar'], 
                                             [
                                                 'class'       => 'form-control',
@@ -225,7 +225,7 @@
                                     }}
                                     {{
                                         Form::text(
-                                            'alat_tangkap[' . $id_alat_tangkap . '][tinggi]', 
+                                            'alat_tangkap[' . $dt_alat_tangkap[$id_alat_tangkap]['id_alat_tangkap'] . '][tinggi]', 
                                             $dt_alat_tangkap[$id_alat_tangkap]['tinggi'], 
                                             [
                                                 'class'       => 'form-control',
@@ -242,7 +242,7 @@
                                 <td>
                                     {{
                                         Form::text(
-                                            'alat_tangkap[' . $id_alat_tangkap . '][jumlah]', 
+                                            'alat_tangkap[' . $dt_alat_tangkap[$id_alat_tangkap]['id_alat_tangkap'] . '][jumlah]', 
                                             $dt_alat_tangkap[$id_alat_tangkap]['jumlah'], 
                                             [
                                                 'class'       => 'form-control',
@@ -253,7 +253,7 @@
                                     }}
                                     {{
                                         Form::text(
-                                            'alat_tangkap[' . $id_alat_tangkap . '][satuan_jumlah]', 
+                                            'alat_tangkap[' . $dt_alat_tangkap[$id_alat_tangkap]['id_alat_tangkap'] . '][satuan_jumlah]', 
                                             $dt_alat_tangkap[$id_alat_tangkap]['satuan_jumlah'], 
                                             [
                                                 'class'       => 'form-control',
@@ -270,7 +270,7 @@
                                 <td>
                                     {{
                                         Form::text(
-                                            'alat_tangkap[' . $id_alat_tangkap . '][harga_beli]', 
+                                            'alat_tangkap[' . $dt_alat_tangkap[$id_alat_tangkap]['id_alat_tangkap'] . '][harga_beli]', 
                                             $dt_alat_tangkap[$id_alat_tangkap]['harga_beli'], 
                                             [
                                                 'class'       => 'form-control',
@@ -281,7 +281,7 @@
                                     }}
                                     {{
                                         Form::text(
-                                            'alat_tangkap[' . $id_alat_tangkap . '][satuan_harga_beli]', 
+                                            'alat_tangkap[' . $dt_alat_tangkap[$id_alat_tangkap]['id_alat_tangkap'] . '][satuan_harga_beli]', 
                                             $dt_alat_tangkap[$id_alat_tangkap]['satuan_harga_beli'], 
                                             [
                                                 'class'       => 'form-control',
@@ -298,7 +298,7 @@
                                 <td>
                                     {{
                                         Form::text(
-                                            'alat_tangkap[' . $id_alat_tangkap . '][umur_teknis]', 
+                                            'alat_tangkap[' . $dt_alat_tangkap[$id_alat_tangkap]['id_alat_tangkap'] . '][umur_teknis]', 
                                             $dt_alat_tangkap[$id_alat_tangkap]['umur_teknis'], 
                                             [
                                                 'class'       => 'form-control',
