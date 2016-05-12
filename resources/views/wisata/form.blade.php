@@ -430,7 +430,7 @@
                                         <label>
                                             {{
                                                 Form::radio(
-                                                    'ketersediaan', 
+                                                    'ketersediaan[' . $id_fasilitas_Pendukung . ']' , 
                                                     1,
                                                     false,
                                                     [
@@ -445,7 +445,7 @@
                                         <label>
                                             {{
                                                 Form::radio(
-                                                    'ketersediaan', 
+                                                    'ketersediaan[' . $id_fasilitas_Pendukung . ']' ,  
                                                     2,
                                                     false,
                                                     [
@@ -462,7 +462,7 @@
                                         <label>
                                             {{
                                                 Form::radio(
-                                                    'jumlah', 
+                                                    'jumlah[' . $id_fasilitas_Pendukung . ']' ,  
                                                     1,
                                                     false,
                                                     [
@@ -477,7 +477,7 @@
                                         <label>
                                             {{
                                                 Form::radio(
-                                                    'jumlah', 
+                                                    'jumlah[' . $id_fasilitas_Pendukung . ']' , 
                                                     2,
                                                     false,
                                                     [
@@ -494,7 +494,7 @@
                                         <label>
                                             {{
                                                 Form::radio(
-                                                    'kondisi', 
+                                                    'kondisi[' . $id_fasilitas_Pendukung . ']' ,  
                                                     1,
                                                     false,
                                                     [
@@ -509,7 +509,7 @@
                                         <label>
                                             {{
                                                 Form::radio(
-                                                    'kondisi', 
+                                                    'kondisi[' . $id_fasilitas_Pendukung . ']' , 
                                                     2,
                                                     false,
                                                     [
@@ -524,7 +524,7 @@
                                         <label>
                                             {{
                                                 Form::radio(
-                                                    'kondisi', 
+                                                    'kondisi[' . $id_fasilitas_Pendukung . ']' , 
                                                     3,
                                                     false,
                                                     [

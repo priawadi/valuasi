@@ -81,9 +81,9 @@ class WisataController extends Controller
         $persepsi                           = new PersepsiResponden;
         $persepsi->id_responden             = $request->session()->get('id_responden');
         $persepsi->id_fasilitas_pendukung   = $item->id_fasilitas_pendukung;
-        $persepsi->ketersediaan             = $request->input('ketersediaan', null);
-        $persepsi->jumlah                   = $request->input('jumlah', null);
-        $persepsi->kondisi                  = $request->input('kondisi', null);
+        $persepsi->ketersediaan             = $request->input('ketersediaan.' .$id_pertanyaan, null);;
+        $persepsi->jumlah                   = $request->input('jumlah.' .$id_pertanyaan, null);
+        $persepsi->kondisi                  = $request->input('kondisi.' .$id_pertanyaan, null);
 
         $persepsi->save();
         }
@@ -98,7 +98,7 @@ class WisataController extends Controller
         $perjalanan->save();
 
         $wisata                             = new BiayaWisata;
-        $wisata->id_responden               = $request->session->get('id_responden');
+        $wisata->id_responden               = $request->session()->get('id_responden');
         $wisata->jenis_pengeluaran          = $request->input('jenis_pengeluaran', null);;
         $wisata->biaya                      = $request->input('biaya', null);
         $wisata->jumlah                     = $request->input('jumlah', null);
