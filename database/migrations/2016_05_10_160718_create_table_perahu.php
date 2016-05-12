@@ -16,9 +16,9 @@ class CreateTablePerahu extends Migration
             $table->increments('id_perahu');
             $table->integer('id_responden');
 
-            $table->float('panjang')->nullable();
-            $table->float('lebar')->nullable();
-            $table->float('tinggi')->nullable();
+            $table->double('panjang')->nullable();
+            $table->double('lebar')->nullable();
+            $table->double('tinggi')->nullable();
             $table->integer('tonase')->nullable();
             $table->integer('jumlah')->nullable();
             $table->integer('harga_beli')->nullable();

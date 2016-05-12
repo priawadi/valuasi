@@ -18,7 +18,7 @@ class CreateTableBiayaSatwa extends Migration
             $table->integer('id_responden');
 
             $table->integer('volume')->nullable();
-            $table->float('harga_beli')->nullable();
+            $table->double('harga_beli')->nullable();
             $table->integer('umur_ekonomis')->nullable();
             
             $table->softDeletes();

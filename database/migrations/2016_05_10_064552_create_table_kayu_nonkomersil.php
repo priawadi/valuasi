@@ -19,8 +19,8 @@ class CreateTableKayuNonkomersil extends Migration
 
             $table->string('satuan', 30)->nullable();
             $table->integer('jumlah')->nullable();
-            $table->float('harga')->nullable();
-            $table->float('nilai_manfaat')->nullable();
+            $table->double('harga')->nullable();
+            $table->double('nilai_manfaat')->nullable();
             
             $table->softDeletes();
             $table->timestamps();

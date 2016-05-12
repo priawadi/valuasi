@@ -17,9 +17,9 @@ class CreateTableHasilTangkap extends Migration
             $table->integer('id_responden');
 
             $table->integer('jenis_ikan')->nullable();
-            $table->float('produksi_musim_puncak')->nullable();
-            $table->float('produksi_musim_sedang')->nullable();
-            $table->float('produksi_musim_paceklik')->nullable();
+            $table->double('produksi_musim_puncak')->nullable();
+            $table->double('produksi_musim_sedang')->nullable();
+            $table->double('produksi_musim_paceklik')->nullable();
 
             $table->softDeletes();
             $table->timestamps();

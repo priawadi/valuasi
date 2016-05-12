@@ -23,7 +23,7 @@ class CreateTableExistenceValue extends Migration
             $table->integer('tkt_kepentingan')->nullable();
             $table->integer('sedia_lestari')->nullable();
             $table->integer('korban_tenaga')->nullable();
-            $table->float('sumbang_iuran')->nullable();
+            $table->double('sumbang_iuran')->nullable();
             
             $table->softDeletes();
             $table->timestamps();

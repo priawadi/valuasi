@@ -20,8 +20,8 @@ class CreateTableMesinPenggerak extends Migration
             $table->string('merk', 200)->nullable();
             $table->integer('kekuatan')->nullable();
             $table->integer('jumlah')->nullable();
-            $table->float('harga_beli')->nullable();
-            $table->float('umur_teknis')->nullable();
+            $table->double('harga_beli')->nullable();
+            $table->double('umur_teknis')->nullable();
             
             $table->softDeletes();
             $table->timestamps();

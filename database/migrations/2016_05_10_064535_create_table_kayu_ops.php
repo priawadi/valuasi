@@ -17,9 +17,9 @@ class CreateTableKayuOps extends Migration
             $table->integer('id_master_kayu');
             $table->integer('id_responden');
 
-            $table->float('biaya')->nullable();
+            $table->double('biaya')->nullable();
             $table->integer('jumlah')->nullable();
-            $table->float('total_biaya')->nullable();
+            $table->double('total_biaya')->nullable();
             
             $table->softDeletes();
             $table->timestamps();

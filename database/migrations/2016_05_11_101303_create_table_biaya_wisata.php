@@ -17,10 +17,10 @@ class CreateTableBiayaWisata extends Migration
             $table->integer('id_responden');
 
             $table->integer('jenis_pengeluaran')->nullable();
-            $table->float('biaya')->nullable();
-            $table->float('jumlah')->nullable();
+            $table->double('biaya')->nullable();
+            $table->double('jumlah')->nullable();
             $table->string('satuan_jumlah', 30)->nullable();
-            $table->float('total')->nullable();
+            $table->double('total')->nullable();
             
             $table->softDeletes();
             $table->timestamps();

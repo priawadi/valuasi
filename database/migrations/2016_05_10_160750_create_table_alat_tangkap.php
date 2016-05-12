@@ -18,14 +18,14 @@ class CreateTableAlatTangkap extends Migration
 
             $table->integer('jenis_alat_tangkap')->nullable();
             $table->string('nama', 150)->nullable();
-            $table->float('panjang')->nullable();
-            $table->float('lebar')->nullable();
-            $table->float('tinggi')->nullable();
+            $table->double('panjang')->nullable();
+            $table->double('lebar')->nullable();
+            $table->double('tinggi')->nullable();
             $table->integer('jumlah')->nullable();
             $table->string('satuan_jumlah', 30)->nullable();
-            $table->float('harga_beli')->nullable();
+            $table->double('harga_beli')->nullable();
             $table->string('satuan_harga_beli', 30)->nullable();
-            $table->float('umur_teknis')->nullable();
+            $table->double('umur_teknis')->nullable();
             
             $table->softDeletes();
             $table->timestamps();

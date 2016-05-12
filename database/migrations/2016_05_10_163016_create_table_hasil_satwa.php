@@ -18,7 +18,7 @@ class CreateTableHasilSatwa extends Migration
             $table->integer('id_responden');
 
             $table->integer('jumlah_satwa')->nullable();
-            $table->float('harga_jual')->nullable();
+            $table->double('harga_jual')->nullable();
             
             $table->softDeletes();
             $table->timestamps();

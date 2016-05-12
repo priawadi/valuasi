@@ -19,8 +19,8 @@ class CreateTableKayuProd extends Migration
 
             $table->string('satuan', 30)->nullable();
             $table->integer('produksi')->nullable();
-            $table->float('harga')->nullable();
-            $table->float('nilai_prod')->nullable();
+            $table->double('harga')->nullable();
+            $table->double('nilai_prod')->nullable();
             
             $table->softDeletes();
             $table->timestamps();

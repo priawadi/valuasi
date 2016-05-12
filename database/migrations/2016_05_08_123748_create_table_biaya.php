@@ -20,8 +20,8 @@ class CreateTableBiaya extends Migration
             $table->integer('kateg_biaya')->nullable();
             $table->integer('kateg_modul')->nullable();
             $table->integer('volume')->nullable();
-            $table->float('harga_satuan')->nullable();
-            $table->float('total')->nullable();
+            $table->double('harga_satuan')->nullable();
+            $table->double('total')->nullable();
             
             $table->softDeletes();
             $table->timestamps();

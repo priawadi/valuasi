@@ -17,13 +17,13 @@ class CreateTablePenangkapan extends Migration
             $table->integer('id_responden');
             
             $table->integer('jumlah_hari')->nullable();
-            $table->float('rata_jumlah')->nullable();
+            $table->double('rata_jumlah')->nullable();
             $table->string('jumlah_bulan_tdk_tangkap', 30)->nullable();
             $table->string('bulan_tdk_tangkap', 30)->nullable();
             $table->integer('penanganan_ikan')->nullable();
             $table->string('penanganan_ikan_lain', 200)->nullable();
-            $table->float('bagi_hasil_pemilik')->nullable();
-            $table->float('bagi_hasil_awak')->nullable();
+            $table->double('bagi_hasil_pemilik')->nullable();
+            $table->double('bagi_hasil_awak')->nullable();
             
             $table->softDeletes();
             $table->timestamps();

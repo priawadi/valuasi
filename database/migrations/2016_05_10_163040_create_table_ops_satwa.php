@@ -18,8 +18,8 @@ class CreateTableOpsSatwa extends Migration
             $table->integer('id_responden');
 
             $table->integer('volume')->nullable();
-            $table->float('harga_satuan')->nullable();
-            $table->float('jumlah')->nullable();
+            $table->double('harga_satuan')->nullable();
+            $table->double('jumlah')->nullable();
             
             $table->softDeletes();
             $table->timestamps();
