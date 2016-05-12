@@ -72,6 +72,7 @@ Route::post('/nelayan/tambah', 'NelayanController@store');
 Route::get('/nelayan/edit/{id_responden}', 'NelayanController@edit');
 Route::patch('/nelayan/edit/{id_responden}', 'NelayanController@update');
 Route::get('/nelayan/lihat/{id_responden}', 'NelayanController@detail');
+Route::get('/nelayan/hapus/{id_responden}', 'NelayanController@destroy');
 
 // Valuasi Wisata
 Route::get('/wisata', 'WisataController@index');

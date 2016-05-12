@@ -12,6 +12,7 @@ use App\ExistenceValue;
 use App\MasterKayu;
 use App\PencariSatwa;
 use App\Nelayan;
+use App\MotivasiResponden;
 use App\BudidayaRumputLaut;
 
 class RespondenController extends Controller
@@ -270,7 +271,7 @@ class RespondenController extends Controller
             [
                 'no'        => 'G',
                 'kuesioner' => 'PEMANFAATAN EKOSISTEM TERUMBU KARANG DAN MANGROVE (TRAVEL COST METHOD/TCM)',
-                'is_done'   => (BudidayaKeramba::where('id_responden', $request->session()->get('id_responden'))->count()),
+                'is_done'   => (MotivasiResponden::where('id_responden', $request->session()->get('id_responden'))->count()),
                 'link'      => 'wisata',
             ],
             [

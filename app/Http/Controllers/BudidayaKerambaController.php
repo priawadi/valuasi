@@ -227,24 +227,26 @@ class BudidayaKerambaController extends Controller
     
         if ($budidaya_keramba['jenis_komoditas'] != '')
         {
-            $budidaya_keramba['jenis_komoditas'] = "[2,3,4,5]";
-            // $budidaya_keramba['jenis_komoditas'] = json_encode(explode(",", $budidaya_keramba['jenis_komoditas']));
+            foreach (explode(",", $budidaya_keramba['jenis_komoditas']) as $key => $value) {
+                $selected_jenis_komoditas[] = $value;
+            }
         }
         
         return view('budidaya_keramba.info.edit', [
-            'subtitle'         => 'Edit Budidaya Keramba',
-            'action'           => 'budidaya-keramba/info/edit/' . $id,
-            'status_usaha'     => $this->status_usaha,
-            'jenis_komoditas'  => $this->jenis_komoditas,
-            'budidaya_keramba' => $budidaya_keramba,
-            'komoditas'        => MasterKomoditas::where('kateg_modul', \Config::get('constants.MODULE.KERAMBA'))->get(),
-            'biaya_invest'     => MasterBiaya::where('kateg_modul', \Config::get('constants.MODULE.KERAMBA'))->where('kateg_biaya', \Config::get('constants.BIAYA.INVESTASI'))->get(),
-            'biaya_var'        => MasterBiaya::where('kateg_modul', \Config::get('constants.MODULE.KERAMBA'))->where('kateg_biaya', \Config::get('constants.BIAYA.VARIABEL'))->get(),
-            'biaya_tetap'      => MasterBiaya::where('kateg_modul', \Config::get('constants.MODULE.KERAMBA'))->where('kateg_biaya', \Config::get('constants.BIAYA.TETAP'))->get(),
-            'jwb_biaya_invest' => $jwb_biaya_invest,
-            'jwb_biaya_var'    => $jwb_biaya_var,
-            'jwb_biaya_tetap'  => $jwb_biaya_tetap,
-            'hasil_panen'      => $hasil_panen
+            'subtitle'                 => 'Edit Budidaya Keramba',
+            'action'                   => 'budidaya-keramba/info/edit/' . $id,
+            'status_usaha'             => $this->status_usaha,
+            'jenis_komoditas'          => $this->jenis_komoditas,
+            'budidaya_keramba'         => $budidaya_keramba,
+            'selected_jenis_komoditas' => $selected_jenis_komoditas,
+            'komoditas'                => MasterKomoditas::where('kateg_modul', \Config::get('constants.MODULE.KERAMBA'))->get(),
+            'biaya_invest'             => MasterBiaya::where('kateg_modul', \Config::get('constants.MODULE.KERAMBA'))->where('kateg_biaya', \Config::get('constants.BIAYA.INVESTASI'))->get(),
+            'biaya_var'                => MasterBiaya::where('kateg_modul', \Config::get('constants.MODULE.KERAMBA'))->where('kateg_biaya', \Config::get('constants.BIAYA.VARIABEL'))->get(),
+            'biaya_tetap'              => MasterBiaya::where('kateg_modul', \Config::get('constants.MODULE.KERAMBA'))->where('kateg_biaya', \Config::get('constants.BIAYA.TETAP'))->get(),
+            'jwb_biaya_invest'         => $jwb_biaya_invest,
+            'jwb_biaya_var'            => $jwb_biaya_var,
+            'jwb_biaya_tetap'          => $jwb_biaya_tetap,
+            'hasil_panen'              => $hasil_panen
         ]);
     }
 

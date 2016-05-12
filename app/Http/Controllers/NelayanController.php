@@ -379,10 +379,8 @@ class NelayanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
-
-        Biaya::where('id_responden', $id)->where('kateg_modul', \Config::get('constants.MODULE.NELAYAN'))->delete();
         Nelayan::where('id_responden', $id)->delete();
         Perahu::where('id_responden', $id)->delete();
         MesinPenggerak::where('id_responden', $id)->delete();

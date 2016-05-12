@@ -136,7 +136,7 @@
                                         Form::select(
                                             'jenis_komoditas[]', 
                                             $jenis_komoditas, 
-                                            null, 
+                                            $selected_jenis_komoditas, 
                                             [
                                                 'class'    => 'form-control',
                                                 'multiple' => 'multiple',
