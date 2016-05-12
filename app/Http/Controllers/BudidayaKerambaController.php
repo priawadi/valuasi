@@ -224,7 +224,8 @@ class BudidayaKerambaController extends Controller
         }
 
         $budidaya_keramba = BudidayaKeramba::where('id_responden', $request->session()->get('id_responden'))->first();
-    
+        
+        $selected_jenis_komoditas = [];
         if ($budidaya_keramba['jenis_komoditas'] != '')
         {
             foreach (explode(",", $budidaya_keramba['jenis_komoditas']) as $key => $value) {
