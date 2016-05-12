@@ -9,6 +9,8 @@ use App\MasterBiaya;
 use App\BudidayaRumputLaut;
 use App\Biaya;
 use App\LokasiRumputLaut;
+use App\ProduksiRumputLaut;
+use App\DetilProduksi;
 
 class BudidayaRumputLautController extends Controller
 {
@@ -61,6 +63,22 @@ class BudidayaRumputLautController extends Controller
         1 => 'Ya',
     ];
 
+    var $bulan = 
+    [
+        1  => 'Januari',
+        2  => 'Februari',
+        3  => 'Maret',
+        4  => 'April',
+        5  => 'Mei',
+        6  => 'Juni',
+        7  => 'Juli',
+        8  => 'Agustus',
+        9  => 'September',
+        10 => 'Oktober',
+        11 => 'Nopember',
+        12 => 'Desember',
+    ];
+
     /**
      * Display a listing of the resource.
      *
@@ -88,6 +106,7 @@ class BudidayaRumputLautController extends Controller
             'ukuran_lokasi'       => $this->ukuran_lokasi,
             'status_kepemilikan'  => $this->status_kepemilikan,
             'jenis_musim'         => $this->jenis_musim,
+            'bulan'               => $this->bulan,
             'master_biaya_invest' => MasterBiaya::where('kateg_modul', \Config::get('constants.MODULE.RUMPUT_LAUT'))->where('kateg_biaya', \Config::get('constants.BIAYA.INVESTASI'))->get(),
             'master_biaya_ops'    => MasterBiaya::where('kateg_modul', \Config::get('constants.MODULE.RUMPUT_LAUT'))->where('kateg_biaya', \Config::get('constants.BIAYA.OPERASIONAL'))->get(),
             'master_biaya_tetap'  => MasterBiaya::where('kateg_modul', \Config::get('constants.MODULE.RUMPUT_LAUT'))->where('kateg_biaya', \Config::get('constants.BIAYA.TETAP'))->get(),
@@ -180,6 +199,36 @@ class BudidayaRumputLautController extends Controller
             $biaya->save();
         }
 
+        // save Produksi Rumput Laut
+        foreach ($this->jenis_musim as $id_musim => $musim) {
+            $produksi_rumput_laut               = new ProduksiRumputLaut;
+            $produksi_rumput_laut->id_responden = $request->session()->get('id_responden');
+            $produksi_rumput_laut->jenis_musim  = $id_musim;
+            $produksi_rumput_laut->awal_bulan   = $request->input('produksi_rumput_laut.awal_bulan.' . $id_musim, null);
+            $produksi_rumput_laut->akhir_bulan  = $request->input('produksi_rumput_laut.akhir_bulan.' . $id_musim, null);
+            $produksi_rumput_laut->total_panen  = $request->input('produksi_rumput_laut.total_panen.' . $id_musim, null);
+            $produksi_rumput_laut->save();
+
+            foreach ($this->kondisi_rumput_laut as $id_kondisi => $kondisi) {
+                foreach ($this->kondisi_rumput_laut as $id_kondisi => $kondisi) 
+                {
+                    foreach ($this->jenis_rumput_laut as $id_rumput_laut => $rumput_laut) 
+                    {
+                        $detil_produksi                      = new DetilProduksi;
+                        $detil_produksi->id_responden        = $request->session()->get('id_responden');
+                        $detil_produksi->jenis_musim         = $id_musim;
+                        $detil_produksi->kondisi_rumput_laut = $id_kondisi;
+                        $detil_produksi->jenis_rumput_laut   = $id_rumput_laut;
+                        $detil_produksi->volume              = $request->input('detil_produksi.volume.' . $id_musim . '.' . $id_kondisi . '.' . $id_rumput_laut, null);
+                        $detil_produksi->harga_satuan        = $request->input('detil_produksi.harga_satuan.' . $id_musim . '.' . $id_kondisi . '.' . $id_rumput_laut, null);
+                        $detil_produksi->save();
+                    }
+
+                }
+            }
+
+        }
+
         return redirect('responden/lihat/' . $request->session()->get('id_responden'));
     }
 
@@ -223,8 +272,14 @@ class BudidayaRumputLautController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
-        //
+        BudidayaRumputLaut::where('id_responden', $id)->delete();
+        Biaya::where('id_responden', $id)->delete();
+        LokasiRumputLaut::where('id_responden', $id)->delete();
+        ProduksiRumputLaut::where('id_responden', $id)->delete();
+        DetilProduksi::where('id_responden', $id)->delete();
+
+        return redirect('responden/lihat/' . $request->session()->get('id_responden'));
     }
 }

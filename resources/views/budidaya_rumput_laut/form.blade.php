@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
-                <div class="panel-heading">Data Responden</div>
+                <div class="panel-heading">{{$subtitle}}</div>
                 <ul>
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -423,26 +423,28 @@
                                     <td>{{$id_musim}}.</td>
                                     <td><b>{{$musim}}</b></td>
                                     <td>
-                                        {{  
-                                            Form::text(
+                                        {{
+                                            Form::select(
                                                 'produksi_rumput_laut[awal_bulan]['. $id_musim .']', 
-                                                '', 
+                                                $bulan, 
+                                                null, 
                                                 [
                                                     'class'       => 'form-control',
-                                                    'placeholder' => ''
+                                                    'placeholder' => 'Pilih'
                                                 ]
                                             )
                                         }}
                                     </td>
                                     <td>sd</td>
                                     <td>
-                                        {{  
-                                            Form::text(
+                                        {{
+                                            Form::select(
                                                 'produksi_rumput_laut[akhir_bulan]['. $id_musim .']', 
-                                                '', 
+                                                $bulan, 
+                                                null, 
                                                 [
-                                                    'class'       => 'form-control',
-                                                    'placeholder' => ''
+                                                    'class'    => 'form-control',
+                                                    'placeholder' => 'Pilih'
                                                 ]
                                             )
                                         }}
@@ -491,7 +493,7 @@
                                                 <td>
                                                     {{  
                                                         Form::text(
-                                                            'detil_produksi['. $id_musim .'][' . $id_kondisi_rumput_laut . '][' . $id_rumput_laut . ']', 
+                                                            'detil_produksi[volume]['. $id_musim .'][' . $id_kondisi_rumput_laut . '][' . $id_rumput_laut . ']', 
                                                             '', 
                                                             [
                                                                 'class'       => 'form-control',
@@ -503,7 +505,7 @@
                                                 <td>
                                                     {{  
                                                         Form::text(
-                                                            'detil_produksi['. $id_musim .'][' . $id_kondisi_rumput_laut . '][' . $id_rumput_laut . ']', 
+                                                            'detil_produksi[harga_satuan]['. $id_musim .'][' . $id_kondisi_rumput_laut . '][' . $id_rumput_laut . ']', 
                                                             '', 
                                                             [
                                                                 'class'       => 'form-control',

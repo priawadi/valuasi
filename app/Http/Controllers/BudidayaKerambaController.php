@@ -50,6 +50,7 @@ class BudidayaKerambaController extends Controller
     public function create()
     {
         return view('budidaya_keramba.info.form', [
+            'subtitle'            => 'Keramba',
             'action'              => 'budidaya-keramba/info/tambah',
             'status_usaha'        => $this->status_usaha,
             'jenis_komoditas'     => $this->jenis_komoditas,
