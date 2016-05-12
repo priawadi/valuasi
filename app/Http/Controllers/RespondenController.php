@@ -10,6 +10,7 @@ use App\BudidayaKeramba;
 use App\Tambak;
 use App\ExistenceValue;
 use App\MasterKayu;
+use App\KayuNon;
 use App\PencariSatwa;
 use App\Nelayan;
 use App\MotivasiResponden;
@@ -253,7 +254,7 @@ class RespondenController extends Controller
             [
                 'no'        => 'D',
                 'kuesioner' => 'PEMANFAATAN EKOSISTEM MANGROVE (PEMANFAAT KAYU)',
-                'is_done'   => (MasterKayu::where('id_responden', $request->session()->get('id_responden'))->count()),
+                'is_done'   => (KayuNon::where('id_responden', $request->session()->get('id_responden'))->count()),
                 'link'      => 'kayu',
             ],
             [
