@@ -135,31 +135,30 @@ class BudidayaRumputLautController extends Controller
             }
         }
 
-        $budidaya_rumput_laut                       = new BudidayaRumputLaut;
-        $budidaya_rumput_laut->id_responden         = $request->session()->get('id_responden');
-        $budidaya_rumput_laut->lama_usaha           = $request->input('lama_usaha', null);
-        $budidaya_rumput_laut->status_usaha         = $request->input('status_usaha', null);
-        $budidaya_rumput_laut->pekerjaan_sebelumnya = $request->input('pekerjaan_sebelumnya', null);
-        $budidaya_rumput_laut->pendapatan_bersih    = $request->input('pendapatan_bersih', null);
-        $budidaya_rumput_laut->is_ukuran_sama       = $request->input('is_ukuran_sama', null);
-        $budidaya_rumput_laut->jumlah_lokasi        = $request->input('jumlah_lokasi', null);
-        $budidaya_rumput_laut->status_kepemilikan   = $request->input('status_kepemilikan', null);
-        $budidaya_rumput_laut->jenis_rumput_laut    = $jenis_rumput_laut;
-        $budidaya_rumput_laut->jumlah_panen         = $request->input('jumlah_panen', null);
+        $budidaya_rumput_laut                          = new BudidayaRumputLaut;
+        $budidaya_rumput_laut->id_responden            = $request->session()->get('id_responden');
+        $budidaya_rumput_laut->lama_usaha              = $request->input('lama_usaha', null);
+        $budidaya_rumput_laut->status_usaha            = $request->input('status_usaha', null);
+        $budidaya_rumput_laut->pekerjaan_sebelumnya    = $request->input('pekerjaan_sebelumnya', null);
+        $budidaya_rumput_laut->pendapatan_bersih       = $request->input('pendapatan_bersih', null);
+        $budidaya_rumput_laut->is_ukuran_sama          = $request->input('is_ukuran_sama', null);
+        $budidaya_rumput_laut->jumlah_lokasi           = $request->input('jumlah_lokasi', null);
+        $budidaya_rumput_laut->status_kepemilikan      = $request->input('status_kepemilikan', null);
+        $budidaya_rumput_laut->status_kepemilikan_lain = $request->input('status_kepemilikan_lain', null);
+        $budidaya_rumput_laut->jenis_rumput_laut       = $jenis_rumput_laut;
+        $budidaya_rumput_laut->jumlah_panen            = $request->input('jumlah_panen', null);
 
         $budidaya_rumput_laut->save();
 
         // save lokasi budidaya
-        if ($request->input('is_ukuran_sama', null)) {
-            foreach ($this->lokasi_budidaya as $id_lokasi_budidaya => $lokasi_budidaya) {
-                $lokasi_rumput_laut                      = new LokasiRumputLaut;
-                $lokasi_rumput_laut->id_responden        = $request->session()->get('id_responden');
-                $lokasi_rumput_laut->lokasi              = $id_lokasi_budidaya;
-                $lokasi_rumput_laut->panjang_bentang     = $request->input('panjang_bentang.' . $id_lokasi_budidaya, null);
-                $lokasi_rumput_laut->jarak_antar_bentang = $request->input('jarak_antar_bentang.' . $id_lokasi_budidaya, null);
-                $lokasi_rumput_laut->jumlah_bentang      = $request->input('jumlah_bentang.' . $id_lokasi_budidaya, null);
-                $lokasi_rumput_laut->save();
-            }
+        foreach ($this->lokasi_budidaya as $id_lokasi_budidaya => $lokasi_budidaya) {
+            $lokasi_rumput_laut                      = new LokasiRumputLaut;
+            $lokasi_rumput_laut->id_responden        = $request->session()->get('id_responden');
+            $lokasi_rumput_laut->lokasi              = $id_lokasi_budidaya;
+            $lokasi_rumput_laut->panjang_bentang     = $request->input('panjang_bentang.' . $id_lokasi_budidaya, null);
+            $lokasi_rumput_laut->jarak_antar_bentang = $request->input('jarak_antar_bentang.' . $id_lokasi_budidaya, null);
+            $lokasi_rumput_laut->jumlah_bentang      = $request->input('jumlah_bentang.' . $id_lokasi_budidaya, null);
+            $lokasi_rumput_laut->save();
         }
 
         // save biaya investasi
@@ -254,9 +253,116 @@ class BudidayaRumputLautController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, Request $request)
     {
-        //
+        $rumput_laut = BudidayaRumputLaut::where('id_responden', $request->session()->get('id_responden'))->first();
+        
+        $selected_rumput_laut = [];
+        if ($rumput_laut['jenis_rumput_laut'] != '')
+        {
+            foreach (explode(",", $rumput_laut['jenis_rumput_laut']) as $key => $value) {
+                $selected_rumput_laut[] = $value;
+            }
+        }
+
+
+        // Data lokasi budidaya
+        $lokasi_rumput_laut = [];
+        foreach (LokasiRumputLaut::where('id_responden', $id)->get() as $idx => $item) {
+            $lokasi_rumput_laut[$item->id_lokasi_rumput_laut] = 
+            [
+                'id_lokasi_rumput_laut' => $item->id_lokasi_rumput_laut,
+                'lokasi'                => $item->lokasi,
+                'panjang_bentang'       => $item->panjang_bentang,
+                'jarak_antar_bentang'   => $item->jarak_antar_bentang,
+                'jumlah_bentang'        => $item->jumlah_bentang,
+            ];
+        }
+
+        // data biaya investasi
+        $dt_biaya_invest = [];
+        foreach (Biaya::where('id_responden', $request->session()->get('id_responden'))->where('kateg_modul', \Config::get('constants.MODULE.RUMPUT_LAUT'))->where('kateg_biaya', \Config::get('constants.BIAYA.INVESTASI'))->get() as $idx => $item) {
+            $dt_biaya_invest[$item->id_master_biaya] = 
+            [
+                'id_biaya'     => $item->id_biaya,
+                'volume'       => $item->volume,
+                'harga_satuan' => $item->harga_satuan,
+                'total'        => $item->total,
+            ];
+        }
+
+        // data biaya operasional
+        $dt_biaya_ops = [];
+        foreach (Biaya::where('id_responden', $request->session()->get('id_responden'))->where('kateg_modul', \Config::get('constants.MODULE.RUMPUT_LAUT'))->where('kateg_biaya', \Config::get('constants.BIAYA.OPERASIONAL'))->get() as $idx => $item) {
+            $dt_biaya_ops[$item->id_master_biaya] = 
+            [
+                'id_biaya'     => $item->id_biaya,
+                'volume'       => $item->volume,
+                'harga_satuan' => $item->harga_satuan,
+                'total'        => $item->total,
+            ];
+        }
+
+        // data biaya tetap
+        $dt_biaya_tetap = [];
+        foreach (Biaya::where('id_responden', $request->session()->get('id_responden'))->where('kateg_modul', \Config::get('constants.MODULE.RUMPUT_LAUT'))->where('kateg_biaya', \Config::get('constants.BIAYA.TETAP'))->get() as $idx => $item) {
+            $dt_biaya_tetap[$item->id_master_biaya] = 
+            [
+                'id_biaya'     => $item->id_biaya,
+                'volume'       => $item->volume,
+                'harga_satuan' => $item->harga_satuan,
+                'total'        => $item->total,
+            ];
+        }
+
+        // data biaya produksi
+        $dt_produksi_rumput_laut = [];
+        foreach (ProduksiRumputLaut::where('id_responden', $id)->get() as $idx => $item) {
+            $dt_produksi_rumput_laut[$item->jenis_musim] = 
+            [
+                'id_produksi_rumput_laut' => $item->id_produksi_rumput_laut,
+                'awal_bulan'              => $item->awal_bulan,
+                'akhir_bulan'             => $item->akhir_bulan,
+                'total_panen'             => $item->total_panen,
+            ];
+        }
+
+        // data detil produksi
+        $dt_detil_produksi = [];
+        foreach (DetilProduksi::where('id_responden', $id)->get() as $idx => $item) {
+            $dt_detil_produksi[$item->jenis_musim][$item->kondisi_rumput_laut][$item->jenis_rumput_laut] = 
+            [
+                'id_detil_produksi' => $item->id_detil_produksi,
+                'volume'            => $item->volume,
+                'harga_satuan'      => $item->harga_satuan,
+            ];
+        }
+
+        return view('budidaya_rumput_laut.edit', [
+            'subtitle'            => 'Budidaya Rumput Laut',
+            'action'              => 'budidaya-rumput-laut/edit/' . $id,
+            'status_usaha'        => $this->status_usaha,
+            'lokasi_budidaya'     => $this->lokasi_budidaya,
+            'jenis_rumput_laut'   => $this->jenis_rumput_laut,
+            'kondisi_rumput_laut' => $this->kondisi_rumput_laut,
+            'ukuran_lokasi'       => $this->ukuran_lokasi,
+            'status_kepemilikan'  => $this->status_kepemilikan,
+            'jenis_musim'         => $this->jenis_musim,
+            'bulan'               => $this->bulan,
+            'master_biaya_invest' => MasterBiaya::where('kateg_modul', \Config::get('constants.MODULE.RUMPUT_LAUT'))->where('kateg_biaya', \Config::get('constants.BIAYA.INVESTASI'))->get(),
+            'master_biaya_ops'    => MasterBiaya::where('kateg_modul', \Config::get('constants.MODULE.RUMPUT_LAUT'))->where('kateg_biaya', \Config::get('constants.BIAYA.OPERASIONAL'))->get(),
+            'master_biaya_tetap'  => MasterBiaya::where('kateg_modul', \Config::get('constants.MODULE.RUMPUT_LAUT'))->where('kateg_biaya', \Config::get('constants.BIAYA.TETAP'))->get(),
+
+            // Data
+            'dt_rumput_laut'          => $rumput_laut,
+            'selected_rumput_laut'    => $selected_rumput_laut,
+            'dt_lokasi_rumput_laut'   => $lokasi_rumput_laut,
+            'dt_biaya_invest'         => $dt_biaya_invest,
+            'dt_biaya_ops'            => $dt_biaya_ops,
+            'dt_biaya_tetap'          => $dt_biaya_tetap,
+            'dt_produksi_rumput_laut' => $dt_produksi_rumput_laut,
+            'dt_detil_produksi'       => $dt_detil_produksi,
+        ]);
     }
 
     /**
@@ -268,7 +374,67 @@ class BudidayaRumputLautController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $jenis_rumput_laut = '';
+        // check if input is not null
+        if ($request->input('jenis_rumput_laut')){
+            foreach ($request->input('jenis_rumput_laut') as $key => $value) 
+            {
+                $jenis_rumput_laut .= ($key)? ',' . $value: $value;
+            }
+        }
+
+        $budidaya_rumput_laut                          = BudidayaRumputLaut::where('id_responden', $id)->first();
+        $budidaya_rumput_laut->lama_usaha              = $request->input('lama_usaha', null);
+        $budidaya_rumput_laut->status_usaha            = $request->input('status_usaha', null);
+        $budidaya_rumput_laut->pekerjaan_sebelumnya    = $request->input('pekerjaan_sebelumnya', null);
+        $budidaya_rumput_laut->pendapatan_bersih       = $request->input('pendapatan_bersih', null);
+        $budidaya_rumput_laut->is_ukuran_sama          = $request->input('is_ukuran_sama', null);
+        $budidaya_rumput_laut->jumlah_lokasi           = $request->input('jumlah_lokasi', null);
+        $budidaya_rumput_laut->status_kepemilikan      = $request->input('status_kepemilikan', null);
+        $budidaya_rumput_laut->status_kepemilikan_lain = $request->input('status_kepemilikan_lain', null);
+        $budidaya_rumput_laut->jenis_rumput_laut       = $jenis_rumput_laut;
+        $budidaya_rumput_laut->jumlah_panen            = $request->input('jumlah_panen', null);
+
+        $budidaya_rumput_laut->save();
+
+        // save lokasi budidaya
+        foreach ($request->input('panjang_bentang') as $id_lokasi_rumput_laut => $item) {
+            $lokasi_rumput_laut                      = LokasiRumputLaut::find($id_lokasi_rumput_laut);
+            $lokasi_rumput_laut->panjang_bentang     = $request->input('panjang_bentang.' . $id_lokasi_rumput_laut, null);
+            $lokasi_rumput_laut->jarak_antar_bentang = $request->input('jarak_antar_bentang.' . $id_lokasi_rumput_laut, null);
+            $lokasi_rumput_laut->jumlah_bentang      = $request->input('jumlah_bentang.' . $id_lokasi_rumput_laut, null);
+            $lokasi_rumput_laut->save();
+        }
+
+        // save biaya investasi
+        foreach ($request->input('volume') as $id_biaya => $value) {
+            $biaya               = Biaya::find($id_biaya);
+            $biaya->volume       = $request->input('volume.' . $id_biaya, null);
+            $biaya->harga_satuan = $request->input('harga_satuan.' . $id_biaya, null);
+            $biaya->total        = $request->input('total.' . $id_biaya, null);
+            
+            $biaya->save();
+        }
+
+        // save Produksi Rumput Laut
+        foreach ($request->input('produksi_rumput_laut.awal_bulan') as $id_produksi_rumput_laut => $value) {
+            $produksi_rumput_laut              = ProduksiRumputLaut::find($id_produksi_rumput_laut);
+            $produksi_rumput_laut->awal_bulan  = $request->input('produksi_rumput_laut.awal_bulan.' . $id_produksi_rumput_laut, null);
+            $produksi_rumput_laut->akhir_bulan = $request->input('produksi_rumput_laut.akhir_bulan.' . $id_produksi_rumput_laut, null);
+            $produksi_rumput_laut->total_panen = $request->input('produksi_rumput_laut.total_panen.' . $id_produksi_rumput_laut, null);
+            $produksi_rumput_laut->save();
+        }
+
+        // save detil produksi
+        foreach ($request->input('detil_produksi.volume') as $id_detil_produksi => $value) 
+        {
+            $detil_produksi               = DetilProduksi::find($id_detil_produksi);
+            $detil_produksi->volume       = $request->input('detil_produksi.volume.' . $id_detil_produksi, null);
+            $detil_produksi->harga_satuan = $request->input('detil_produksi.harga_satuan.' . $id_detil_produksi, null);
+            $detil_produksi->save();
+        }
+
+        return redirect('responden/lihat/' . $request->session()->get('id_responden'));
     }
 
     /**
