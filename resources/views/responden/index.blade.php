@@ -30,9 +30,9 @@
                                 <td>{{$item->nama}}</td> 
                                 <td>{{$item->telepon}}</td> 
                                 <td>
-                                    <!-- <a href="" title="Hapus"><i class="glyphicon glyphicon-trash"></i></a> -->
-                                    <a href="{{url('responden/edit/' . $item->id_responden)}}" title="Edit"><i class="glyphicon glyphicon-pencil"></i></a>
-                                    <a href="{{url('responden/lihat/' . $item->id_responden)}}" title="Lihat"><i class="glyphicon glyphicon-file"></i></a>
+                                    <a href="{{url('responden/hapus/' . $item->id_responden)}}" title="Hapus data responden"><i class="glyphicon glyphicon-trash"></i></a>
+                                    <a href="{{url('responden/edit/' . $item->id_responden)}}" title="Edit data responden"><i class="glyphicon glyphicon-pencil"></i></a>
+                                    <a href="{{url('responden/lihat/' . $item->id_responden)}}" title="Lihat data responden"><i class="glyphicon glyphicon-file"></i></a>
                                 </td> 
                             </tr>
                             @endforeach

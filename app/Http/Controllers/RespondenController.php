@@ -15,6 +15,30 @@ use App\PencariSatwa;
 use App\Nelayan;
 use App\MotivasiResponden;
 use App\BudidayaRumputLaut;
+use App\HasilPanen;
+use App\Biaya;
+use App\KayuProd;
+use App\KayuOps;
+use App\HasilSatwa;
+use App\BiayaSatwa;
+use App\OpsSatwa;
+use App\Perahu;
+use App\MesinPenggerak;
+use App\AlatTangkap;
+use App\TenagaKerja;
+use App\AlatBantuTangkap;
+use App\DaerahOperasional;
+use App\MusimTangkap;
+use App\HasilTangkap;
+use App\BiayaPerawatan;
+use App\Penangkapan;
+use App\OpsNelayan;
+use App\BiayaPerjalanan;
+use App\PersepsiResponden;
+use App\BiayaWisata;
+use App\LokasiRumputLaut;
+use App\ProduksiRumputLaut;
+use App\DetilProduksi;
 
 class RespondenController extends Controller
 {
@@ -210,7 +234,61 @@ class RespondenController extends Controller
      */
     public function destroy($id)
     {
-        //
+        /// delete 1. Keramba
+        HasilPanen::where('id_responden', $id)->where('kateg_modul', \Config::get('constants.MODULE.KERAMBA'))->delete();
+        BudidayaKeramba::where('id_responden', $id)->delete();
+        Biaya::where('id_responden', $id)->where('kateg_modul', \Config::get('constants.MODULE.KERAMBA'))->delete();
+
+        // delete 2. Tambak
+        HasilPanen::where('id_responden', $id)->where('kateg_modul', \Config::get('constants.MODULE.TAMBAK'))->delete();
+        Tambak::where('id_responden', $id)->delete();
+        Biaya::where('id_responden', $id)->where('kateg_modul', \Config::get('constants.MODULE.TAMBAK'))->delete();
+
+        // delete 3. Existence Value
+        ExistenceValue::where('id_responden', $id)->delete();
+
+        // delete 4. Kayu
+        KayuProd::where('id_responden', $id)->delete();
+        KayuOps::where('id_responden', $id)->delete();
+        KayuNon::where('id_responden', $id)->delete();
+
+        // delete 5. Pencari Satwa
+        PencariSatwa::where('id_responden', $id)->delete();
+        HasilSatwa::where('id_responden', $id)->delete();
+        BiayaSatwa::where('id_responden', $id)->delete();
+        OpsSatwa::where('id_responden', $id)->delete();
+
+        // delete 6. Nelayan
+        Nelayan::where('id_responden', $id)->delete();
+        Perahu::where('id_responden', $id)->delete();
+        MesinPenggerak::where('id_responden', $id)->delete();
+        AlatTangkap::where('id_responden', $id)->delete();
+        TenagaKerja::where('id_responden', $id)->delete();
+        AlatBantuTangkap::where('id_responden', $id)->delete();
+        DaerahOperasional::where('id_responden', $id)->delete();
+        MusimTangkap::where('id_responden', $id)->delete();
+        HasilTangkap::where('id_responden', $id)->delete();
+        BiayaPerawatan::where('id_responden', $id)->delete();
+        Penangkapan::where('id_responden', $id)->delete();
+        OpsNelayan::where('id_responden', $id)->delete();
+
+        // delete 7. Wisata
+        MotivasiResponden::where('id_responden', $id)->delete();
+        BiayaPerjalanan::where('id_responden', $id)->delete();
+        PersepsiResponden::where('id_responden', $id)->delete();
+        BiayaWisata::where('id_responden', $id)->delete();
+
+        // delete 8. Rumput Laut
+        BudidayaRumputLaut::where('id_responden', $id)->delete();
+        Biaya::where('id_responden', $id)->where('kateg_modul', \Config::get('constants.MODULE.RUMPUT_LAUT'))->delete();
+        LokasiRumputLaut::where('id_responden', $id)->delete();
+        ProduksiRumputLaut::where('id_responden', $id)->delete();
+        DetilProduksi::where('id_responden', $id)->delete();
+
+        // delete Responden
+        Responden::find($id)->delete();
+
+        return redirect('responden');
     }
 
     /**

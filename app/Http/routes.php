@@ -22,6 +22,7 @@ Route::post('/responden/tambah', 'RespondenController@store');
 Route::get('/responden/edit/{id_responden}', 'RespondenController@edit');
 Route::patch('/responden/edit/{id_responden}', 'RespondenController@update');
 Route::get('/responden/lihat/{id_responden}', 'RespondenController@detail');
+Route::get('/responden/hapus/{id_responden}', 'RespondenController@destroy');
 
 // PEMBUDIDAYA IKAN
 // Informasi Umum
