@@ -445,10 +445,7 @@
                         </tbody>
                     </table>                                                       
 
-                    <div class="col-md-10 col-md-offset-1">
-                      <button type="submit" class="btn btn-primary col-md-offset-11">Simpan</button>
-                      <br><br><br>
-                    </div>                    
+                    @include('components.form.prev_next_btn')
                     {!! Form::close() !!}
                 </div>      
             </div>
