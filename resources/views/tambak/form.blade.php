@@ -407,7 +407,7 @@
                                 <td>
                                     {{  
                                         Form::text(
-                                            'volume['. $item -> id_master_biaya .']', 
+                                            'jumlah['. $item -> id_master_komoditas .']', 
                                             '', 
                                             [
                                                 'class'       => 'form-control',
@@ -419,7 +419,7 @@
                                 <td>
                                     {{  
                                         Form::text(
-                                            'harga_satuan['. $item -> id_master_biaya .']', 
+                                            'harga_jual['. $item -> id_master_komoditas .']', 
                                             '', 
                                             [
                                                 'class'       => 'form-control',
@@ -431,7 +431,7 @@
                                 <td>
                                     {{  
                                         Form::text(
-                                            'total['. $item -> id_master_biaya .']', 
+                                            'jumlah_penerimaan['. $item -> id_master_komoditas .']', 
                                             '', 
                                             [
                                                 'class'       => 'form-control',

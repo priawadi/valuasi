@@ -14,7 +14,6 @@ class CreateTableMasterKayu extends Migration
     {
         Schema::create('master_kayu', function (Blueprint $table) {
             $table->increments('id_master_kayu');
-            $table->integer('id_responden');
 
             $table->string('rincian', 50)->nullable();
             $table->integer('kategori')->nullable();
