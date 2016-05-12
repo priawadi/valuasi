@@ -18,5 +18,6 @@ class DatabaseSeeder extends Seeder
         $this->call(MasterBiayaNelayanSeeder::class);
         $this->call(MasterBiayaRumputLautSeeder::class);
         $this->call(MasterPencariSatwaSeeder::class);
+        $this->call(WisataSeeder::class);
     }
 }

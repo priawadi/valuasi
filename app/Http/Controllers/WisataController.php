@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\FasilitasPendukung;
+use App\MotivasiResponden;
 
 class WisataController extends Controller
 {
@@ -17,6 +18,16 @@ class WisataController extends Controller
         5 => 'Biaya Sewa Kendaraan Dalam Kawasan Wisata (Motor, Perahu, Mobil)',
         6 => 'Biaya Dokumentasi',
         7 => 'Biaya Jasa Wisata Ex. Pemandu wisata, sewa alat snorkling dll',
+    ];
+
+    var $pertanyaan = [
+        1 => 'Tujuan utama datang ke tempat ini?', 
+        2 => 'Kedatangan ke tempat ini merupakan:',
+        3 => 'Jika (2) adalah persinggahan, maka tujuan utama adalah:',
+        4 => 'Alasan mengunjungi tempat ini?',
+        5 => 'Sumber informasi tentang kawasan ini:',
+        6 => 'a. Berapa kali anda mengunjungi lokasi ini? Jawab:',
+        7 => 'b. Frekuensi kunjungan dalam setahun:',
     ];
 
     /**
@@ -41,6 +52,7 @@ class WisataController extends Controller
             'subtitle'                  => 'Valuasi Wisata',
             'fasilitas_pendukung'       => FasilitasPendukung::all(),
             'jenis_pengeluaran'         => $this->jenis_pengeluaran,
+            'pertanyaan'                => $this->pertanyaan,
         ]);
     }
 
@@ -52,7 +64,14 @@ class WisataController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $motivasi                           = new MotivasiResponden;
+        $motivasi->id_motivasi_responden    = $value->id_master_kayu;
+        // $motivasi->id_responden             = $request->session()->get('id_responden');
+        // $motivasi->id_pertanyaan            = $request->input('pertanyaan', null);
+        $motivasi->jawaban                  = $request->input('jawaban', null);
+        $motivasi->jawaban_lain             = $request->input('jawaban_lain', null);
+
+        $motivasi->save();
     }
 
     /**

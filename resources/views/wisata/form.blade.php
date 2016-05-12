@@ -29,12 +29,12 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>Tujuan utama datang ke tempat ini?
+                                    <td>{{$pertanyaan[1]}}
                                     <div class="radio">
                                         <label>
                                             {{
                                                 Form::radio(
-                                                    'jawaban', 
+                                                    'jawaban[1]', 
                                                     1,
                                                     false,
                                                     [
@@ -49,7 +49,7 @@
                                         <label>
                                             {{
                                                 Form::radio(
-                                                    'jawaban', 
+                                                    'jawaban[1]', 
                                                     2,
                                                     false,
                                                     [
@@ -64,7 +64,7 @@
                                         <label>
                                             {{
                                                 Form::radio(
-                                                    'jawaban', 
+                                                    'jawaban[1]', 
                                                     3,
                                                     false,
                                                     [
@@ -79,7 +79,7 @@
                                         <label>
                                             {{
                                                 Form::radio(
-                                                    'jawaban', 
+                                                    'jawaban[1]', 
                                                     4,
                                                     false,
                                                     [
@@ -94,7 +94,7 @@
                                         <label>
                                             {{
                                                 Form::radio(
-                                                    'jawaban', 
+                                                    'jawaban[1]', 
                                                     5,
                                                     false,
                                                     [
@@ -109,7 +109,7 @@
                                         <label>
                                             {{
                                                 Form::radio(
-                                                    'jawaban', 
+                                                    'jawaban[1]', 
                                                     6,
                                                     false,
                                                     [
@@ -121,7 +121,7 @@
 
                                             {{  
                                                 Form::text(
-                                                    'jawaban_lain', 
+                                                    'jawaban_lain[1]', 
                                                     '', 
                                                     [
                                                         'class'       => 'form-control',
@@ -132,12 +132,12 @@
                                         </label>
                                     </div> 
                                     </td>    
-                                    <td>Kedatangan ke tempat ini merupakan:
+                                    <td>{{$pertanyaan[2]}}
                                     <div class="radio">
                                         <label>
                                             {{
                                                 Form::radio(
-                                                    'jawaban', 
+                                                    'jawaban[2]', 
                                                     1,
                                                     false,
                                                     [
@@ -152,7 +152,7 @@
                                         <label>
                                             {{
                                                 Form::radio(
-                                                    'jawaban', 
+                                                    'jawaban[2]', 
                                                     2,
                                                     false,
                                                     [
@@ -164,10 +164,10 @@
                                         </label>
                                     </div>  
                                     </td>  
-                                    <td>Jika (2) adalah persinggahan, maka tujuan utama adalah:
+                                    <td>{{$pertanyaan[3]}}
                                             {{  
                                                 Form::text(
-                                                    'jawaban_lain', 
+                                                    'jawaban_lain[3]', 
                                                     '', 
                                                     [
                                                         'class'       => 'form-control',
@@ -183,12 +183,12 @@
                                     <td>(6)</td>
                                 </tr>
                                 <tr>
-                                    <td>Alasan mengunjungi tempat ini?
+                                    <td>{{$pertanyaan[4]}}
                                     <div class="radio">
                                         <label>
                                             {{
                                                 Form::radio(
-                                                    'jawaban', 
+                                                    'jawaban[4]', 
                                                     1,
                                                     false,
                                                     [
@@ -203,7 +203,7 @@
                                         <label>
                                             {{
                                                 Form::radio(
-                                                    'jawaban', 
+                                                    'jawaban[4]', 
                                                     2,
                                                     false,
                                                     [
@@ -218,7 +218,7 @@
                                         <label>
                                             {{
                                                 Form::radio(
-                                                    'jawaban', 
+                                                    'jawaban[4]', 
                                                     3,
                                                     false,
                                                     [
@@ -233,7 +233,7 @@
                                         <label>
                                             {{
                                                 Form::radio(
-                                                    'jawaban', 
+                                                    'jawaban[4]', 
                                                     4,
                                                     false,
                                                     [
@@ -248,7 +248,7 @@
                                         <label>
                                             {{
                                                 Form::radio(
-                                                    'jawaban', 
+                                                    'jawaban[4]', 
                                                     5,
                                                     false,
                                                     [
@@ -263,7 +263,7 @@
                                         <label>
                                             {{
                                                 Form::radio(
-                                                    'jawaban', 
+                                                    'jawaban[4]', 
                                                     6,
                                                     false,
                                                     [
@@ -275,7 +275,7 @@
 
                                             {{  
                                                 Form::text(
-                                                    'jawaban_lain', 
+                                                    'jawaban_lain[4]', 
                                                     '', 
                                                     [
                                                         'class'       => 'form-control',
@@ -286,12 +286,12 @@
                                         </label>
                                     </div> 
                                     </td>
-                                    <td>Sumber informasi tentang kawasan ini:
+                                    <td>{{$pertanyaan[5]}}
                                     <div class="radio">
                                         <label>
                                             {{
                                                 Form::radio(
-                                                    'jawaban', 
+                                                    'jawaban[5]', 
                                                     1,
                                                     false,
                                                     [
@@ -306,7 +306,7 @@
                                         <label>
                                             {{
                                                 Form::radio(
-                                                    'jawaban', 
+                                                    'jawaban[5]', 
                                                     2,
                                                     false,
                                                     [
@@ -321,7 +321,7 @@
                                         <label>
                                             {{
                                                 Form::radio(
-                                                    'jawaban', 
+                                                    'jawaban[5]', 
                                                     3,
                                                     false,
                                                     [
@@ -336,7 +336,7 @@
                                         <label>
                                             {{
                                                 Form::radio(
-                                                    'jawaban', 
+                                                    'jawaban[5]', 
                                                     4,
                                                     false,
                                                     [
@@ -348,10 +348,10 @@
                                         </label>
                                     </div>                                                                                                            
                                     </td>  
-                                    <td>a. Berapa kali anda mengunjungi lokasi ini? Jawab:
+                                    <td>{{$pertanyaan[6]}}
                                             {{  
                                                 Form::text(
-                                                    'jawaban_lain', 
+                                                    'jawaban_lain[6]', 
                                                     '', 
                                                     [
                                                         'class'       => 'form-control',
@@ -360,12 +360,12 @@
                                                 )
                                             }}   
                                         <br/>
-                                        b. Frekuensi kunjungan dalam setahun:
+                                        {{$pertanyaan[7]}}
                                     <div class="radio">
                                         <label>
                                             {{
                                                 Form::radio(
-                                                    'jawaban', 
+                                                    'jawaban[7]', 
                                                     1,
                                                     false,
                                                     [
@@ -380,7 +380,7 @@
                                         <label>
                                             {{
                                                 Form::radio(
-                                                    'jawaban', 
+                                                    'jawaban[7]', 
                                                     2,
                                                     false,
                                                     [
@@ -395,7 +395,7 @@
                                         <label>
                                             {{
                                                 Form::radio(
-                                                    'jawaban', 
+                                                    'jawaban[7]', 
                                                     3,
                                                     false,
                                                     [
@@ -424,7 +424,8 @@
                                 @foreach ($fasilitas_pendukung as $id_fasilitas_Pendukung => $item)
                                 <tr>
                                     <td>{{$item -> fasilitas_pendukung}}</td>
-                                    <td>
+                                    @if($item -> is_pertanyaan == 1)
+                                    <td>                                    
                                     <div class="radio">
                                         <label>
                                             {{
@@ -535,6 +536,9 @@
                                         </label>
                                     </div>     
                                     </td>
+                                    @else
+                                    <td></td><td></td><td></td>
+                                    @endif
                                 </tr>
                                 @endforeach
                             </tbody>
