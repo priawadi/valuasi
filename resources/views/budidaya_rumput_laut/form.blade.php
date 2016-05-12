@@ -121,6 +121,61 @@
                                     @endforeach
                                 </td>
                             </tr>
+                        </table>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Panjang bentang</th>
+                                    <th>Jarak antar tali bentang</th>
+                                    <th>Jumlah bentang</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($lokasi_budidaya as $id_lokasi_budidaya => $lokasi)
+                                    <tr>
+                                        <td>{{$lokasi}}</td>
+                                        <td>
+                                            {{
+                                                Form::text(
+                                                    'panjang_bentang[' . $id_lokasi_budidaya . ']', 
+                                                    '', 
+                                                    [
+                                                        'class'       => 'form-control',
+                                                        'placeholder' => 'm',
+                                                    ]
+                                                )
+                                            }}
+                                        </td>
+                                        <td>
+                                            {{
+                                                Form::text(
+                                                    'jarak_antar_bentang[' . $id_lokasi_budidaya . ']',
+                                                    '', 
+                                                    [
+                                                        'class'       => 'form-control',
+                                                        'placeholder' => 'm',
+                                                    ]
+                                                )
+                                            }}
+                                        </td>
+                                        <td>
+                                            {{
+                                                Form::text(
+                                                    'jumlah_bentang[' . $id_lokasi_budidaya . ']',
+                                                    '', 
+                                                    [
+                                                        'class'       => 'form-control',
+                                                        'placeholder' => 'kali',
+                                                    ]
+                                                )
+                                            }}
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        <table class="table table-hover">
                             <tr>
                                 <td>6. Status kepemilikan lahan</td>
                                 <td>
@@ -360,19 +415,120 @@
                             </tbody>
                         </table>
                         12. Produksi
-                        <table class="table table-hover">
-                            <thead>
+                        @foreach ($jenis_musim as $id_musim => $musim)
+                            <br>
+                            <br>
+                            <table class="table table-hover">
                                 <tr>
-                                    <th>No</th>
-                                    <th>Jenis Komoditas</th>
-                                    <th>Satuan</th>
-                                    <th>Jumlah Produksi</th>
-                                    <th>Harga Jual (Rp/Kg)</th>
-                                    <th>Jumlah Penerimaan (Rp)</th>
+                                    <td>{{$id_musim}}.</td>
+                                    <td><b>{{$musim}}</b></td>
+                                    <td>
+                                        {{  
+                                            Form::text(
+                                                'musim_panen[]['. $item -> id_master_biaya .']', 
+                                                '', 
+                                                [
+                                                    'class'       => 'form-control',
+                                                    'placeholder' => ''
+                                                ]
+                                            )
+                                        }}
+                                    </td>
+                                    <td>sd</td>
+                                    <td>
+                                        {{  
+                                            Form::text(
+                                                'musim['. $item -> id_master_biaya .']', 
+                                                '', 
+                                                [
+                                                    'class'       => 'form-control',
+                                                    'placeholder' => ''
+                                                ]
+                                            )
+                                        }}
+                                    </td>
                                 </tr>
-                            </thead>
-                            <tbody></tbody>
-                        </table>
+                                <tr>
+                                    <td></td>
+                                    <td><b>Total Panen</b></td>
+                                    <td>
+                                        {{  
+                                            Form::text(
+                                                'musim['. $item -> id_master_biaya .']', 
+                                                '', 
+                                                [
+                                                    'class'       => 'form-control',
+                                                    'placeholder' => 'kali/musim'
+                                                ]
+                                            )
+                                        }}
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </table>
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Biaya Penerimaan</th>
+                                        <th>Satuan</th>
+                                        <th>Volume</th>
+                                        <th>Harga Satuan</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($kondisi_rumput_laut as $id_kondisi_rumput_laut => $kondisi)
+                                        <tr>
+                                            <td>{{$id_kondisi_rumput_laut}}</td>
+                                            <td>{{$kondisi}}</td>
+                                        </tr>
+                                        @foreach ($jenis_rumput_laut as $id_rumput_laut => $rumput_laut)
+                                            <tr>
+                                                <td></td>
+                                                <td>{{$id_rumput_laut}}. {{$rumput_laut}}</td>
+                                                <td>
+                                                    {{  
+                                                        Form::text(
+                                                            'musim['. $item -> id_master_biaya .']', 
+                                                            '', 
+                                                            [
+                                                                'class'       => 'form-control',
+                                                                'placeholder' => 'kali/musim'
+                                                            ]
+                                                        )
+                                                    }}
+                                                </td>
+                                                <td>
+                                                    {{  
+                                                        Form::text(
+                                                            'musim['. $item -> id_master_biaya .']', 
+                                                            '', 
+                                                            [
+                                                                'class'       => 'form-control',
+                                                                'placeholder' => 'kali/musim'
+                                                            ]
+                                                        )
+                                                    }}
+                                                </td>
+                                                <td>
+                                                    {{  
+                                                        Form::text(
+                                                            'musim['. $item -> id_master_biaya .']', 
+                                                            '', 
+                                                            [
+                                                                'class'       => 'form-control',
+                                                                'placeholder' => 'kali/musim'
+                                                            ]
+                                                        )
+                                                    }}
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    @endforeach
+                                </tbody>   
+                            </table>
+                        @endforeach
                       @include('components.form.prev_next_btn')
                     {!! Form::close() !!}
                 </div>

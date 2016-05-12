@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\MasterBiaya;
 use App\BudidayaRumputLaut;
 use App\Biaya;
+use App\LokasiRumputLaut;
 
 class BudidayaRumputLautController extends Controller
 {
@@ -39,6 +40,13 @@ class BudidayaRumputLautController extends Controller
         1 => 'E. Spinosum',
         2 => 'E. Cottoni',
         3 => 'E. Glacilaria',
+    ];
+
+    var $jenis_musim = 
+    [
+        1 => 'Musim Puncak',
+        2 => 'Musim Sedang',
+        3 => 'Musim Paceklik',
     ];
 
     var $kondisi_rumput_laut = 
@@ -79,6 +87,7 @@ class BudidayaRumputLautController extends Controller
             'kondisi_rumput_laut' => $this->kondisi_rumput_laut,
             'ukuran_lokasi'       => $this->ukuran_lokasi,
             'status_kepemilikan'  => $this->status_kepemilikan,
+            'jenis_musim'         => $this->jenis_musim,
             'master_biaya_invest' => MasterBiaya::where('kateg_modul', \Config::get('constants.MODULE.RUMPUT_LAUT'))->where('kateg_biaya', \Config::get('constants.BIAYA.INVESTASI'))->get(),
             'master_biaya_ops'    => MasterBiaya::where('kateg_modul', \Config::get('constants.MODULE.RUMPUT_LAUT'))->where('kateg_biaya', \Config::get('constants.BIAYA.OPERASIONAL'))->get(),
             'master_biaya_tetap'  => MasterBiaya::where('kateg_modul', \Config::get('constants.MODULE.RUMPUT_LAUT'))->where('kateg_biaya', \Config::get('constants.BIAYA.TETAP'))->get(),
@@ -116,6 +125,19 @@ class BudidayaRumputLautController extends Controller
 
         $budidaya_rumput_laut->save();
 
+        // save lokasi budidaya
+        if ($request->input('is_ukuran_sama', null)) {
+            foreach ($this->lokasi_budidaya as $id_lokasi_budidaya => $lokasi_budidaya) {
+                $lokasi_rumput_laut                      = new LokasiRumputLaut;
+                $lokasi_rumput_laut->id_responden        = $request->session()->get('id_responden');
+                $lokasi_rumput_laut->lokasi              = $id_lokasi_budidaya;
+                $lokasi_rumput_laut->panjang_bentang     = $request->input('panjang_bentang.' . $id_lokasi_budidaya, null);
+                $lokasi_rumput_laut->jarak_antar_bentang = $request->input('jarak_antar_bentang.' . $id_lokasi_budidaya, null);
+                $lokasi_rumput_laut->jumlah_bentang      = $request->input('jumlah_bentang.' . $id_lokasi_budidaya, null);
+                $lokasi_rumput_laut->save();
+            }
+        }
+
         // save biaya investasi
         foreach (MasterBiaya::where('kateg_modul', \Config::get('constants.MODULE.RUMPUT_LAUT'))->where('kateg_biaya', \Config::get('constants.BIAYA.INVESTASI'))->get() as $index => $value) {
             $biaya                  = new Biaya;
@@ -131,11 +153,11 @@ class BudidayaRumputLautController extends Controller
         }
 
         // save biaya operasional
-        foreach (MasterBiaya::where('kateg_modul', \Config::get('constants.MODULE.RUMPUT_LAUT'))->where('kateg_biaya', \Config::get('constants.BIAYA.OPERAASIONAL'))->get() as $index => $value) {
+        foreach (MasterBiaya::where('kateg_modul', \Config::get('constants.MODULE.RUMPUT_LAUT'))->where('kateg_biaya', \Config::get('constants.BIAYA.OPERASIONAL'))->get() as $index => $value) {
             $biaya                  = new Biaya;
             $biaya->id_responden    = $request->session()->get('id_responden');
             $biaya->id_master_biaya = $value->id_master_biaya;
-            $biaya->kateg_biaya     = \Config::get('constants.BIAYA.OPERAASIONAL');
+            $biaya->kateg_biaya     = \Config::get('constants.BIAYA.OPERASIONAL');
             $biaya->kateg_modul     = \Config::get('constants.MODULE.RUMPUT_LAUT');
             $biaya->volume          = $request->input('volume.' . $value->id_master_biaya, null);
             $biaya->harga_satuan    = $request->input('harga_satuan.' . $value->id_master_biaya, null);
