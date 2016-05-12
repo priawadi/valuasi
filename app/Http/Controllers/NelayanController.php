@@ -141,6 +141,10 @@ class NelayanController extends Controller
      */
     public function create()
     {
+        if (Nelayan::where('id_responden', $request->session()->get('id_responden'))->count())
+        {
+            return redirect('responden/lihat/' . $request->session()->get('id_responden'));
+        }
 
         return view('nelayan.form', [
             'subtitle'                 => 'Nelayan',

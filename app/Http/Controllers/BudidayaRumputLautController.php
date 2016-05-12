@@ -96,6 +96,11 @@ class BudidayaRumputLautController extends Controller
      */
     public function create()
     {
+        if (BudidayaRumputLaut::where('id_responden', $request->session()->get('id_responden'))->count())
+        {
+            return redirect('responden/lihat/' . $request->session()->get('id_responden'));
+        }
+        
         return view('budidaya_rumput_laut.form', [
             'subtitle'            => 'Budidaya Rumput Laut',
             'action'              => 'budidaya-rumput-laut/tambah',

@@ -29,6 +29,11 @@ class KayuController extends Controller
      */
     public function create()
     {
+        if (MasterKayu::where('id_responden', $request->session()->get('id_responden'))->count())
+        {
+            return redirect('responden/lihat/' . $request->session()->get('id_responden'));
+        }
+
         return view('kayu.form', [
             'action'           			=> 'kayu/tambah',
             'subtitle'					=> 'Pemanfaatan Kayu',

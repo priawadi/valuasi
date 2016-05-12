@@ -39,8 +39,13 @@ class TambakController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
+        if (Tambak::where('id_responden', $request->session()->get('id_responden'))->count())
+        {
+            return redirect('responden/lihat/' . $request->session()->get('id_responden'));
+        }
+
         return view('tambak.form', [
             'action'           			=> 'tambak/tambah',
             'subtitle'					=> 'Usaha Budidaya Tambak',

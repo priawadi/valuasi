@@ -47,8 +47,13 @@ class BudidayaKerambaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
+        if (BudidayaKeramba::where('id_responden', $request->session()->get('id_responden'))->count())
+        {
+            return redirect('responden/lihat/' . $request->session()->get('id_responden'));
+        }
+
         return view('budidaya_keramba.info.form', [
             'subtitle'            => 'Keramba',
             'action'              => 'budidaya-keramba/info/tambah',

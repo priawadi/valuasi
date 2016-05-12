@@ -30,6 +30,10 @@ class PencariSatwaController extends Controller
      */
     public function create()
     {
+        if (PencariSatwa::where('id_responden', $request->session()->get('id_responden'))->count())
+        {
+            return redirect('responden/lihat/' . $request->session()->get('id_responden'));
+        }
         return view('satwa.form', [
             'action'                    => 'satwa/tambah',
             'subtitle'                  => 'Pencari Satwa',
