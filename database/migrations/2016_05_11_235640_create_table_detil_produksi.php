@@ -13,7 +13,17 @@ class CreateTableDetilProduksi extends Migration
     public function up()
     {
         Schema::create('detil_produksi', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id_detil_produksi');
+            $table->integer('id_responden');
+
+            $table->integer('jenis_musim')->nullable();
+            $table->integer('kondisi_rumput_laut')->nullable();
+            $table->integer('jenis_rumput_laut')->nullable();
+
+            $table->integer('volume')->nullable();
+            $table->integer('harga_satuan')->nullable();
+            
+            $table->softDeletes();
             $table->timestamps();
         });
     }
