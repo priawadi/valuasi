@@ -425,7 +425,7 @@
                                     <td>
                                         {{  
                                             Form::text(
-                                                'musim_panen[]['. $item -> id_master_biaya .']', 
+                                                'produksi_rumput_laut[awal_bulan]['. $id_musim .']', 
                                                 '', 
                                                 [
                                                     'class'       => 'form-control',
@@ -438,7 +438,7 @@
                                     <td>
                                         {{  
                                             Form::text(
-                                                'musim['. $item -> id_master_biaya .']', 
+                                                'produksi_rumput_laut[akhir_bulan]['. $id_musim .']', 
                                                 '', 
                                                 [
                                                     'class'       => 'form-control',
@@ -454,7 +454,7 @@
                                     <td>
                                         {{  
                                             Form::text(
-                                                'musim['. $item -> id_master_biaya .']', 
+                                                'produksi_rumput_laut[total_panen]['. $id_musim .']', 
                                                 '', 
                                                 [
                                                     'class'       => 'form-control',
@@ -487,14 +487,15 @@
                                             <tr>
                                                 <td></td>
                                                 <td>{{$id_rumput_laut}}. {{$rumput_laut}}</td>
+                                                <td>Kg</td>
                                                 <td>
                                                     {{  
                                                         Form::text(
-                                                            'musim['. $item -> id_master_biaya .']', 
+                                                            'detil_produksi['. $id_musim .'][' . $id_kondisi_rumput_laut . '][' . $id_rumput_laut . ']', 
                                                             '', 
                                                             [
                                                                 'class'       => 'form-control',
-                                                                'placeholder' => 'kali/musim'
+                                                                'placeholder' => 'unit'
                                                             ]
                                                         )
                                                     }}
@@ -502,23 +503,11 @@
                                                 <td>
                                                     {{  
                                                         Form::text(
-                                                            'musim['. $item -> id_master_biaya .']', 
+                                                            'detil_produksi['. $id_musim .'][' . $id_kondisi_rumput_laut . '][' . $id_rumput_laut . ']', 
                                                             '', 
                                                             [
                                                                 'class'       => 'form-control',
-                                                                'placeholder' => 'kali/musim'
-                                                            ]
-                                                        )
-                                                    }}
-                                                </td>
-                                                <td>
-                                                    {{  
-                                                        Form::text(
-                                                            'musim['. $item -> id_master_biaya .']', 
-                                                            '', 
-                                                            [
-                                                                'class'       => 'form-control',
-                                                                'placeholder' => 'kali/musim'
+                                                                'placeholder' => 'Rp'
                                                             ]
                                                         )
                                                     }}
