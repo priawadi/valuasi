@@ -86,7 +86,7 @@ class KayuController extends Controller
         $kayunon->save();
     	}    	    	
 
-    	return redirect('kayu');
+    	return redirect('responden/lihat/' . $request->session()->get('id_responden'));
     }
 
     /**
@@ -106,9 +106,29 @@ class KayuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, Request $request)
     {
-        //
+        // data kayu prod
+        $kayuprod = [];
+        foreach (KayuProd::all()->where('id_responden', $request->session()->get('id_responden')) as $idx => $item) {
+            $kayuprod[$item->id_master_kayu] = 
+            [
+                'id_master_kayu'    => $item->id_master_kayu,
+                'satuan'            => $item->satuan,
+                'produksi'          => $item->produksi,
+                'harga'             => $item->harga,
+                'nilai_prod'        => $item->nilai_prod,
+            ];
+        }
+
+        return view('kayu.edit', [
+            'subtitle'                  => 'Edit Kayu',
+            'action'                    => 'kayu/edit/' . $id,   
+            'kayuprod'                  => $kayuprod,           
+            'master_kayu'               => MasterKayu::where('kategori', \Config::get('constants.KAYU.PRODUKSI'))->get(),
+            'master_kayu_ops'           => MasterKayu::where('kategori', \Config::get('constants.KAYU.BIAYA_OPERASIONAL'))->get(),
+            'master_kayu_non'           => MasterKayu::where('kategori', \Config::get('constants.KAYU.NON_KOMERSIL'))->get(),            
+        ]);
     }
 
     /**
@@ -129,8 +149,12 @@ class KayuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
-        //
+        KayuProd::where('id_responden', $id)->delete();
+        KayuNon::where('id_responden', $id)->delete();
+        KayuOps::where('id_responden', $id)->delete();
+
+        return redirect('responden/lihat/' . $request->session()->get('id_responden'));
     }
 }

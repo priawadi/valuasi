@@ -59,6 +59,7 @@ Route::post('/kayu/tambah', 'KayuController@store');
 Route::get('/kayu/edit/{id_responden}', 'KayuController@edit');
 Route::patch('/kayu/edit/{id_responden}', 'KayuController@update');
 Route::get('/kayu/lihat/{id_responden}', 'KayuController@detail');
+Route::get('/kayu/hapus/{id_responden}', 'KayuController@destroy');
 
 // Pencari Satwa
 Route::get('/satwa', 'PencariSatwaController@index');
