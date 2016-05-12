@@ -107,6 +107,8 @@ class WisataController extends Controller
 
         $wisata->save();
 
+        return redirect('responden/lihat/' . $request->session()->get('id_responden'));
+
     }
 
     /**

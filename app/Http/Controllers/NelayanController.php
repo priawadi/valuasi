@@ -333,9 +333,7 @@ class NelayanController extends Controller
             $biaya_perawatan->biaya                 = $request->input('biaya_perawatan.' . $id_biaya_perawatan, null);
             $biaya_perawatan->save();
         }
-        
-
-        
+               
         return redirect('responden/lihat/' . $request->session()->get('id_responden'));
     }
 

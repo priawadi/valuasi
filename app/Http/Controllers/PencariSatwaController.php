@@ -94,7 +94,9 @@ class PencariSatwaController extends Controller
         $opssatwa->jumlah                         = $request->input('jumlah.' .$value->id_master_pencari_satwa, null);
 
         $opssatwa->save();
-        }               
+        }        
+
+        return redirect('responden/lihat/' . $request->session()->get('id_responden'));      
 
     }
 

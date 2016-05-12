@@ -52,6 +52,8 @@ class EvalController extends Controller
         $existence->sumbang_iuran      = $request->input('sumbang_iuran', null);
 
         $existence->save();
+
+        return redirect('responden/lihat/' . $request->session()->get('id_responden'));
     }
 
     /**
