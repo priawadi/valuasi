@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\FasilitasPendukung;
 use App\MotivasiResponden;
+use App\BiayaPerjalanan;
+use App\PersepsiResponden;
+use App\BiayaWisata;
 
 class WisataController extends Controller
 {
@@ -64,14 +67,46 @@ class WisataController extends Controller
      */
     public function store(Request $request)
     {
+        foreach ($this->pertanyaan as $id_pertanyaan => $value) {
         $motivasi                           = new MotivasiResponden;
-        $motivasi->id_motivasi_responden    = $value->id_master_kayu;
-        // $motivasi->id_responden             = $request->session()->get('id_responden');
-        // $motivasi->id_pertanyaan            = $request->input('pertanyaan', null);
-        $motivasi->jawaban                  = $request->input('jawaban', null);
-        $motivasi->jawaban_lain             = $request->input('jawaban_lain', null);
+        $motivasi->id_responden             = $request->session()->get('id_responden');
+        $motivasi->id_pertanyaan            = $id_pertanyaan;
+        $motivasi->jawaban                  = $request->input('jawaban.' .$id_pertanyaan, null);
+        $motivasi->jawaban_lain             = $request->input('jawaban_lain.' .$id_pertanyaan, null);
 
         $motivasi->save();
+        }
+
+        foreach (FasilitasPendukung::where('is_pertanyaan', 1)->get() as $id_fasilitas_Pendukung => $item) {
+        $persepsi                           = new PersepsiResponden;
+        $persepsi->id_responden             = $request->session()->get('id_responden');
+        $persepsi->id_fasilitas_pendukung   = $item->id_fasilitas_pendukung;
+        $persepsi->ketersediaan             = $request->input('ketersediaan', null);
+        $persepsi->jumlah                   = $request->input('jumlah', null);
+        $persepsi->kondisi                  = $request->input('kondisi', null);
+
+        $persepsi->save();
+        }
+
+        $perjalanan                         = new BiayaPerjalanan;
+        // $perjalanan->id_responden           = $request->session()->get('id_responden');
+        $perjalanan->jenis_rombongan        = $request->input('jenis_rombongan', null);
+        $perjalanan->jumlah_orang           = $request->input('jumlah_orang', null);
+        $perjalanan->penyelenggara          = $request->input('penyelenggara', null);
+        $perjalanan->jenis_transportasi     = $request->input('jenis_transportasi', null);
+
+        $perjalanan->save();
+
+        $wisata                             = new BiayaWisata;
+        $wisata->id_responden               = $request->session->get('id_responden');
+        $wisata->jenis_pengeluaran          = $request->input('jenis_pengeluaran', null);;
+        $wisata->biaya                      = $request->input('biaya', null);
+        $wisata->jumlah                     = $request->input('jumlah', null);
+        $wisata->satuan_jumlah              = $request->input('satuan_jumlah', null);
+        $wisata->total                      = $request->input('total', null);
+
+        $wisata->save();
+
     }
 
     /**
