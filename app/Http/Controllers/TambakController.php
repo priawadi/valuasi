@@ -129,7 +129,7 @@ class TambakController extends Controller
         // save hasil panen
         foreach (MasterKomoditas::where('kateg_modul', \Config::get('constants.MODULE.TAMBAK'))->get() as $key => $value) {
         $hasil_panen                        = new HasilPanen;
-
+        $hasil_panen->id_responden          = $request->session()->get('id_responden');
         $hasil_panen->kateg_modul           = \Config::get('constants.MODULE.TAMBAK');
         $hasil_panen->id_master_komoditas   = $value->id_master_komoditas;
         $hasil_panen->jumlah                = $request->input('jumlah.' .$value->id_master_biaya, null);

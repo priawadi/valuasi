@@ -54,6 +54,7 @@ class KayuController extends Controller
     	foreach (MasterKayu::where('kategori', \Config::get('constants.KAYU.PRODUKSI'))->get() as $key => $value) {
         $kayuprod                      	= new KayuProd;
         $kayuprod->id_master_kayu       = $value->id_master_kayu;
+        $kayuprod->id_responden         = $request->session()->get('id_responden');
         $kayuprod->satuan       		= $request->input('satuan.' .$value->id_master_kayu, null);
         $kayuprod->produksi       		= $request->input('produksi.' .$value->id_master_kayu, null);
         $kayuprod->harga				= $request->input('harga.' .$value->id_master_kayu, null);
@@ -65,6 +66,7 @@ class KayuController extends Controller
     	foreach (MasterKayu::where('kategori', \Config::get('constants.KAYU.BIAYA_OPERASIONAL'))->get() as $key => $value) {
         $kayuops                      	= new KayuOps;
         $kayuops->id_master_kayu       	= $value->id_master_kayu;
+        $kayuops->id_responden          = $request->session()->get('id_responden');
         $kayuops->biaya       			= $request->input('biaya.' .$value->id_master_kayu, null);
         $kayuops->jumlah       			= $request->input('jumlah.' .$value->id_master_kayu, null);
         $kayuops->total_biaya			= $request->input('total_biaya.' .$value->id_master_kayu, null);
@@ -75,6 +77,7 @@ class KayuController extends Controller
     	foreach (MasterKayu::where('kategori', \Config::get('constants.KAYU.NON_KOMERSIL'))->get() as $key => $value) {
         $kayunon                      	= new KayuNon;
         $kayunon->id_master_kayu       	= $value->id_master_kayu;
+        $kayunon->id_responden          = $request->session()->get('id_responden');
         $kayunon->satuan       			= $request->input('satuan.' .$value->id_master_kayu, null);
         $kayunon->jumlah       			= $request->input('jumlah.' .$value->id_master_kayu, null);
         $kayunon->harga					= $request->input('harga.' .$value->id_master_kayu, null);

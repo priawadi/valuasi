@@ -41,6 +41,7 @@ class EvalController extends Controller
     public function store(Request $request)
     {
         $existence                     = new ExistenceValue();
+        $existence->id_responden       = $request->session()->get('id_responden');
         $existence->keindahan          = $request->input('keindahan', null);
         $existence->spiritual          = $request->input('spiritual', null);
         $existence->budaya             = $request->input('budaya', null);

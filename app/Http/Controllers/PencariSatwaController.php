@@ -53,7 +53,7 @@ class PencariSatwaController extends Controller
     public function store(Request $request)
     {
         $pencarisatwa                       = new PencariSatwa;
-        // $pencarisatwa->id_responden         = $request->session()->get('id_responden');
+        $pencarisatwa->id_responden         = $request->session()->get('id_responden');
         $pencarisatwa->pencari_satwa_mgv    = $request->input('pencari_satwa_mgv', null);
         $pencarisatwa->pengalaman_usaha     = $request->input('pengalaman_usaha', null);
         $pencarisatwa->jenis_satwa          = $request->input('jenis_satwa', null);
@@ -67,7 +67,7 @@ class PencariSatwaController extends Controller
         foreach (MasterPencariSatwa::where('kategori', \Config::get('constants.PENCARI_SATWA.HASIL_PENERIMAAN'))->get() as $key => $value) {
         $hasilsatwa                                 = new HasilSatwa;
         $hasilsatwa->id_master_pencari_satwa        = $value->id_master_pencari_satwa;
-        //$hasilsatwa->id_responden                 = $request->session()->get('id_responden');
+        $hasilsatwa->id_responden                   = $request->session()->get('id_responden');
         $hasilsatwa->jumlah_satwa                   = $request->input('jumlah_satwa.' .$value->id_master_pencari_satwa, null);
         $hasilsatwa->harga_jual                     = $request->input('harga_jual.' .$value->id_master_pencari_satwa, null);
 
@@ -77,7 +77,7 @@ class PencariSatwaController extends Controller
         foreach (MasterPencariSatwa::where('kategori', \Config::get('constants.PENCARI_SATWA.BIAYA_INVESTASI'))->get() as $key => $value) {
         $biayasatwa                                 = new BiayaSatwa;
         $biayasatwa->id_master_pencari_satwa        = $value->id_master_pencari_satwa;
-        //$biayasatwa->id_responden                 = $request->session()->get('id_responden');
+        $biayasatwa->id_responden                   = $request->session()->get('id_responden');
         $biayasatwa->volume                         = $request->input('volume.' .$value->id_master_pencari_satwa, null);
         $biayasatwa->harga_beli                     = $request->input('harga_beli.' .$value->id_master_pencari_satwa, null);
         $biayasatwa->umur_ekonomis                  = $request->input('umur_ekonomis.' .$value->id_master_pencari_satwa, null);
@@ -88,7 +88,7 @@ class PencariSatwaController extends Controller
         foreach (MasterPencariSatwa::where('kategori', \Config::get('constants.PENCARI_SATWA.BIAYA_OPERASIONAL'))->get() as $key => $value) {
         $opssatwa                                 = new OpsSatwa;
         $opssatwa->id_master_pencari_satwa        = $value->id_master_pencari_satwa;
-        //$opssatwa->id_responden                 = $request->session()->get('id_responden');
+        $opssatwa->id_responden                   = $request->session()->get('id_responden');
         $opssatwa->volume                         = $request->input('volume.' .$value->id_master_pencari_satwa, null);
         $opssatwa->harga_satuan                   = $request->input('harga_satuan.' .$value->id_master_pencari_satwa, null);
         $opssatwa->jumlah                         = $request->input('jumlah.' .$value->id_master_pencari_satwa, null);
