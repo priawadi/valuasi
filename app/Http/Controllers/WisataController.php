@@ -89,7 +89,7 @@ class WisataController extends Controller
         }
 
         $perjalanan                         = new BiayaPerjalanan;
-        // $perjalanan->id_responden           = $request->session()->get('id_responden');
+        $perjalanan->id_responden           = $request->session()->get('id_responden');
         $perjalanan->jenis_rombongan        = $request->input('jenis_rombongan', null);
         $perjalanan->jumlah_orang           = $request->input('jumlah_orang', null);
         $perjalanan->penyelenggara          = $request->input('penyelenggara', null);
