@@ -48,6 +48,7 @@ Route::post('/eval/tambah', 'EvalController@store');
 Route::get('/eval/edit/{id_responden}', 'EvalController@edit');
 Route::patch('/eval/edit/{id_responden}', 'EvalController@update');
 Route::get('/eval/lihat/{id_responden}', 'EvalController@detail');
+Route::get('/eval/hapus/{id_responden}', 'EvalController@destroy');
 
 // Pemanfaatan Kayu
 Route::get('/kayu', 'KayuController@index');

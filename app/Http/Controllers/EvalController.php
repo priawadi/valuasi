@@ -73,9 +73,14 @@ class EvalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, Request $request)
     {
-        //
+        $existence_value = ExistenceValue::where('id_responden', $request->session()->get('id_responden'))->first();
+        return view('eval.edit', [
+            'subtitle'                 => 'Edit Existence Value',
+            'action'                   => 'eval/edit/' . $id,
+            'existence_value'           => $existence_value,
+        ]);
     }
 
     /**
@@ -87,7 +92,20 @@ class EvalController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $existence                     = ExistenceValue::where('id_responden', $request->session()->get('id_responden'))->first();
+        $existence->id_responden       = $request->session()->get('id_responden');
+        $existence->keindahan          = $request->input('keindahan', null);
+        $existence->spiritual          = $request->input('spiritual', null);
+        $existence->budaya             = $request->input('budaya', null);
+        $existence->anekaragam         = $request->input('anekaragam', null);
+        $existence->tkt_kepentingan    = $request->input('tkt_kepentingan', null);
+        $existence->sedia_lestari      = $request->input('sedia_lestari', null);
+        $existence->korban_tenaga      = $request->input('korban_tenaga', null);
+        $existence->sumbang_iuran      = $request->input('sumbang_iuran', null);
+
+        $existence->save();
+
+        return redirect('responden/lihat/' . $request->session()->get('id_responden'));
     }
 
     /**
@@ -96,8 +114,10 @@ class EvalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
-        //
+        ExistenceValue::where('id_responden', $id)->delete();
+
+        return redirect('responden/lihat/' . $request->session()->get('id_responden'));
     }
 }
