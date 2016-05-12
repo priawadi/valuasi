@@ -43,7 +43,7 @@
                 </button>
 
                 <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ url('/responden') }}">
                     Kuesioner
                 </a>
             </div>
@@ -51,7 +51,7 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/') }}">Home</a></li>
+                    <li><a href="{{ url('/responden') }}">Responden</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
