@@ -269,7 +269,7 @@ class BudidayaRumputLautController extends Controller
         // Data lokasi budidaya
         $lokasi_rumput_laut = [];
         foreach (LokasiRumputLaut::where('id_responden', $id)->get() as $idx => $item) {
-            $lokasi_rumput_laut[$item->id_lokasi_rumput_laut] = 
+            $lokasi_rumput_laut[$item->lokasi] = 
             [
                 'id_lokasi_rumput_laut' => $item->id_lokasi_rumput_laut,
                 'lokasi'                => $item->lokasi,
@@ -278,6 +278,8 @@ class BudidayaRumputLautController extends Controller
                 'jumlah_bentang'        => $item->jumlah_bentang,
             ];
         }
+        // print_r($lokasi_rumput_laut);
+        // die();
 
         // data biaya investasi
         $dt_biaya_invest = [];
