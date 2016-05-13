@@ -18,7 +18,7 @@ class CreateTablePencariSatwa extends Migration
 
             $table->integer('pencari_satwa_mgv')->nullable();
             $table->integer('pengalaman_usaha')->nullable();
-            $table->string('jenis_satwa', 5)->nullable();
+            $table->string('jenis_satwa', 20)->nullable();
             $table->integer('lama_buru')->nullable();
             $table->string('lama_buru_txt', 50)->nullable();
             $table->integer('setahun_buru')->nullable();
