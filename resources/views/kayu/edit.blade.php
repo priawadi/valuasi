@@ -33,7 +33,7 @@
                                 <td>
                                     {{  
                                         Form::text(
-                                            'satuan[' . $kayuprod[$item->id_master_kayu]['id_kayu_prod'] . ']',
+                                            'kayu_prod[satuan][' . $kayuprod[$item->id_master_kayu]['id_kayu_prod'] . ']',
                                             $kayuprod[$item->id_master_kayu]['satuan'],
                                             [
                                                 'class'       => 'form-control',
@@ -45,7 +45,7 @@
                                 <td>
                                     {{  
                                         Form::text(
-                                            'produksi[' . $kayuprod[$item->id_master_kayu]['id_kayu_prod'] . ']',
+                                            'kayu_prod[produksi][' . $kayuprod[$item->id_master_kayu]['id_kayu_prod'] . ']',
                                             $kayuprod[$item->id_master_kayu]['produksi'],
                                             [
                                                 'class'       => 'form-control',
@@ -57,7 +57,7 @@
                                 <td>
                                     {{  
                                         Form::text(
-                                            'harga[' . $kayuprod[$item->id_master_kayu]['id_kayu_prod'] . ']',
+                                            'kayu_prod[harga][' . $kayuprod[$item->id_master_kayu]['id_kayu_prod'] . ']',
                                             $kayuprod[$item->id_master_kayu]['harga'],
                                             [
                                                 'class'       => 'form-control',
@@ -69,7 +69,7 @@
                                 <td>
                                     {{  
                                         Form::text(
-                                            'nilai_prod[' . $kayuprod[$item->id_master_kayu]['id_kayu_prod'] . ']',
+                                            'kayu_prod[nilai_prod][' . $kayuprod[$item->id_master_kayu]['id_kayu_prod'] . ']',
                                             $kayuprod[$item->id_master_kayu]['nilai_prod'],
                                             [
                                                 'class'       => 'form-control',
@@ -99,7 +99,7 @@
                                 <td>
                                     {{  
                                         Form::text(
-                                            'biaya[' . $kayuops[$item->id_master_kayu]['id_kayu_ops'] . ']', 
+                                            'kayu_ops[biaya][' . $kayuops[$item->id_master_kayu]['id_kayu_ops'] . ']', 
                                             $kayuops[$item->id_master_kayu]['biaya'],
                                             [
                                                 'class'       => 'form-control',
@@ -111,7 +111,7 @@
                                 <td>
                                     {{  
                                         Form::text(
-                                            'jumlah[' . $kayuops[$item->id_master_kayu]['id_kayu_ops'] . ']', 
+                                            'kayu_ops[jumlah][' . $kayuops[$item->id_master_kayu]['id_kayu_ops'] . ']', 
                                             $kayuops[$item->id_master_kayu]['jumlah'],
                                             [
                                                 'class'       => 'form-control',
@@ -123,7 +123,7 @@
                                 <td>
                                     {{  
                                         Form::text(
-                                            'total_biaya[' . $kayuops[$item->id_master_kayu]['id_kayu_ops'] . ']', 
+                                            'kayu_ops[total_biaya][' . $kayuops[$item->id_master_kayu]['id_kayu_ops'] . ']', 
                                             $kayuops[$item->id_master_kayu]['total_biaya'],
                                             [
                                                 'class'       => 'form-control',
@@ -154,7 +154,7 @@
                                 <td>
                                     {{  
                                         Form::text(
-                                            'satuan[' . $kayunon[$item->id_master_kayu]['id_kayu_nonkomersil'] . ']', 
+                                            'kayu_nonkomersil[satuan][' . $kayunon[$item->id_master_kayu]['id_kayu_nonkomersil'] . ']', 
                                             $kayunon[$item->id_master_kayu]['satuan'], 
                                             [
                                                 'class'       => 'form-control',
@@ -166,7 +166,7 @@
                                <td>
                                     {{  
                                         Form::text(
-                                            'jumlah[' . $kayunon[$item->id_master_kayu]['id_kayu_nonkomersil'] . ']', 
+                                            'kayu_nonkomersil[jumlah][' . $kayunon[$item->id_master_kayu]['id_kayu_nonkomersil'] . ']', 
                                             $kayunon[$item->id_master_kayu]['jumlah'],
                                             [
                                                 'class'       => 'form-control',
@@ -178,7 +178,7 @@
                                <td>
                                     {{  
                                         Form::text(
-                                            'harga[' . $kayunon[$item->id_master_kayu]['id_kayu_nonkomersil'] . ']', 
+                                            'kayu_nonkomersil[harga][' . $kayunon[$item->id_master_kayu]['id_kayu_nonkomersil'] . ']', 
                                             $kayunon[$item->id_master_kayu]['harga'],
                                             [
                                                 'class'       => 'form-control',
@@ -190,7 +190,7 @@
                                <td>
                                     {{  
                                         Form::text(
-                                            'nilai_manfaat[' . $kayunon[$item->id_master_kayu]['id_kayu_nonkomersil'] . ']', 
+                                            'kayu_nonkomersil[nilai_manfaat][' . $kayunon[$item->id_master_kayu]['id_kayu_nonkomersil'] . ']', 
                                             $kayunon[$item->id_master_kayu]['nilai_manfaat'],
                                             [
                                                 'class'       => 'form-control',

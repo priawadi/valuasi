@@ -168,33 +168,33 @@ class KayuController extends Controller
     public function update(Request $request, $id)
     {
 
-        foreach ($request->input('satuan') as $id_kayu_prod => $item) {
-        $kayuprod                       = KayuProd::find($id_kayu_prod);
-        $kayuprod->satuan               = $request->input('satuan.' . $id_kayu_prod, null);
-        $kayuprod->produksi             = $request->input('produksi.' . $id_kayu_prod, null);
-        $kayuprod->harga                = $request->input('harga.' . $id_kayu_prod, null);
-        $kayuprod->nilai_prod           = $request->input('nilai_prod.' . $id_kayu_prod, null);
+        foreach ($request->input('kayu_prod.satuan') as $id_kayu_prod => $item) {
+            $kayuprod                       = KayuProd::find($id_kayu_prod);
+            $kayuprod->satuan               = $request->input('kayu_prod.satuan.' . $id_kayu_prod, null);
+            $kayuprod->produksi             = $request->input('kayu_prod.produksi.' . $id_kayu_prod, null);
+            $kayuprod->harga                = $request->input('kayu_prod.harga.' . $id_kayu_prod, null);
+            $kayuprod->nilai_prod           = $request->input('kayu_prod.nilai_prod.' . $id_kayu_prod, null);
 
-        $kayuprod->save();
+            $kayuprod->save();
         }
 
-        foreach ($request->input('biaya') as $id_kayu_ops => $item) {
-        $kayuops                       = KayuOps::find($id_kayu_ops);
-        $kayuops->biaya                = $request->input('biaya.' . $id_kayu_ops, null);
-        $kayuops->jumlah               = $request->input('jumlah.' . $id_kayu_ops, null);
-        $kayuops->total_biaya          = $request->input('total_biaya.' . $id_kayu_ops, null);
+        foreach ($request->input('kayu_ops.biaya') as $id_kayu_ops => $item) {
+            $kayuops                       = KayuOps::find($id_kayu_ops);
+            $kayuops->biaya                = $request->input('kayu_ops.biaya.' . $id_kayu_ops, null);
+            $kayuops->jumlah               = $request->input('kayu_ops.jumlah.' . $id_kayu_ops, null);
+            $kayuops->total_biaya          = $request->input('kayu_ops.total_biaya.' . $id_kayu_ops, null);
 
-        $kayuops->save();
+            $kayuops->save();
         }   
 
-        foreach ($request->input('satuan') as $id_kayu_nonkomersil => $item) {
-        $kayunon                       = KayuNon::find($id_kayu_nonkomersil);
-        $kayunon->satuan               = $request->input('satuan.' . $id_kayu_nonkomersil, null);
-        $kayunon->jumlah               = $request->input('jumlah.' . $id_kayu_nonkomersil, null);
-        $kayunon->harga                = $request->input('harga.' . $id_kayu_nonkomersil, null);
-        $kayunon->nilai_manfaat        = $request->input('nilai_manfaat.' . $id_kayu_nonkomersil, null);
+        foreach ($request->input('kayu_nonkomersil.satuan') as $id_kayu_nonkomersil => $item) {
+            $kayunon                       = KayuNon::find($id_kayu_nonkomersil);
+            $kayunon->satuan               = $request->input('kayu_nonkomersil.satuan.' . $id_kayu_nonkomersil, null);
+            $kayunon->jumlah               = $request->input('kayu_nonkomersil.jumlah.' . $id_kayu_nonkomersil, null);
+            $kayunon->harga                = $request->input('kayu_nonkomersil.harga.' . $id_kayu_nonkomersil, null);
+            $kayunon->nilai_manfaat        = $request->input('kayu_nonkomersil.nilai_manfaat.' . $id_kayu_nonkomersil, null);
 
-        $kayunon->save();
+            $kayunon->save();
         }                
 
         return redirect('responden/lihat/' . $request->session()->get('id_responden'));
