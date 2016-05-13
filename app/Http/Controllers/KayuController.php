@@ -110,14 +110,14 @@ class KayuController extends Controller
     {
         // data kayu prod
         $kayuprod = [];
-        foreach (KayuProd::all()->where('id_responden', $request->session()->get('id_responden')) as $idx => $item) {
+        foreach (KayuProd::where('id_responden', $request->session()->get('id_responden'))->get() as $idx => $item) {
             $kayuprod[$item->id_master_kayu] = 
             [
-                'id_master_kayu'    => $item->id_master_kayu,
-                'satuan'            => $item->satuan,
-                'produksi'          => $item->produksi,
-                'harga'             => $item->harga,
-                'nilai_prod'        => $item->nilai_prod,
+                'id_kayu_prod' => $item->id_kayu_prod,
+                'satuan'       => $item->satuan,
+                'produksi'     => $item->produksi,
+                'harga'        => $item->harga,
+                'nilai_prod'   => $item->nilai_prod,
             ];
         }
 

@@ -30,8 +30,7 @@
                             @foreach ($master_kayu as $idx => $item)
                             <tr>
                                 <td>{{$item['rincian']}}</td>
-                                {{print_r($kayuprod)}}
-                                {{die}}
+                                
                                 <td>
                                     {{  
                                         Form::text(
@@ -47,8 +46,8 @@
                                 <td>
                                     {{  
                                         Form::text(
-                                            'produksi[' . $master_kayu[$item->id_master_kayu]['id_kayu_prod'] . ']',
-                                            $master_kayu[$item->id_master_kayu]['produksi'],
+                                            'produksi[' . $kayuprod[$item->id_master_kayu]['id_kayu_prod'] . ']',
+                                            $kayuprod[$item->id_master_kayu]['produksi'],
                                             [
                                                 'class'       => 'form-control',
                                                 'placeholder' => ''
@@ -59,8 +58,8 @@
                                 <td>
                                     {{  
                                         Form::text(
-                                            'harga[' . $master_kayu[$item->id_master_kayu]['id_kayu_prod'] . ']',
-                                            $master_kayu[$item->id_master_kayu]['harga'],
+                                            'harga[' . $kayuprod[$item->id_master_kayu]['id_kayu_prod'] . ']',
+                                            $kayuprod[$item->id_master_kayu]['harga'],
                                             [
                                                 'class'       => 'form-control',
                                                 'placeholder' => ''
@@ -71,8 +70,8 @@
                                 <td>
                                     {{  
                                         Form::text(
-                                            'nilai_prod[' . $master_kayu[$item->id_master_kayu]['id_kayu_prod'] . ']',
-                                            $master_kayu[$item->id_master_kayu]['nilai_prod'],
+                                            'nilai_prod[' . $kayuprod[$item->id_master_kayu]['id_kayu_prod'] . ']',
+                                            $kayuprod[$item->id_master_kayu]['nilai_prod'],
                                             [
                                                 'class'       => 'form-control',
                                                 'placeholder' => ''
