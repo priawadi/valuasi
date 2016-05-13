@@ -128,9 +128,17 @@ class WisataController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, Request $request)
     {
-        //
+        $motivasi_responden = MotivasiResponden::where('id_responden', $request->session()->get('id_responden'))->first();
+        return view('wisata.edit', [
+            'subtitle'                  => 'Edit Wista',
+            'action'                    => 'wisata/edit/' . $id,      
+            'fasilitas_pendukung'       => FasilitasPendukung::all(),
+            'jenis_pengeluaran'         => $this->jenis_pengeluaran,
+            'pertanyaan'                => $this->pertanyaan, 
+            'motivasi_responden'        => $motivasi_responden,               
+        ]);
     }
 
     /**
@@ -151,8 +159,13 @@ class WisataController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
-        //
+        MotivasiResponden::where('id_responden', $id)->delete();
+        PersepsiResponden::where('id_responden', $id)->delete();
+        BiayaPerjalanan::where('id_responden', $id)->delete();
+        BiayaWisata::where('id_responden', $id)->delete();
+
+        return redirect('responden/lihat/' . $request->session()->get('id_responden'));
     }
 }
