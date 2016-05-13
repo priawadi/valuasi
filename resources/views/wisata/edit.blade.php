@@ -36,7 +36,7 @@
                                                 Form::radio(
                                                     'jawaban[1]', 
                                                     1,
-                                                    $motivasi_responden['jawaban[1]'] == 1,
+                                                    $motivasi_responden['jawaban'] == 1,
                                                     [
                                                         'class' => 'control-label'
                                                     ]
@@ -51,7 +51,7 @@
                                                 Form::radio(
                                                     'jawaban[1]', 
                                                     2,
-                                                    $motivasi_responden['jawaban[1]'] == 2,
+                                                    $motivasi_responden['jawaban'] == 2,
                                                     [
                                                         'class' => 'control-label'
                                                     ]
@@ -66,7 +66,7 @@
                                                 Form::radio(
                                                     'jawaban[1]', 
                                                     3,
-                                                    $motivasi_responden['jawaban[1]'] == 3,
+                                                    $motivasi_responden['jawaban'] == 3,
                                                     [
                                                         'class' => 'control-label'
                                                     ]
@@ -81,7 +81,7 @@
                                                 Form::radio(
                                                     'jawaban[1]', 
                                                     4,
-                                                    $motivasi_responden['jawaban[1]'] == 4,
+                                                    $motivasi_responden['jawaban'] == 4,
                                                     [
                                                         'class' => 'control-label'
                                                     ]
@@ -96,7 +96,7 @@
                                                 Form::radio(
                                                     'jawaban[1]', 
                                                     5,
-                                                    $motivasi_responden['jawaban[1]'] == 5,
+                                                    $motivasi_responden['jawaban'] == 5,
                                                     [
                                                         'class' => 'control-label'
                                                     ]
@@ -111,7 +111,7 @@
                                                 Form::radio(
                                                     'jawaban[1]', 
                                                     6,
-                                                    $motivasi_responden['jawaban[1]'] == 6,
+                                                    $motivasi_responden['jawaban'] == 6,
                                                     [
                                                         'class' => 'control-label'
                                                     ]
@@ -122,7 +122,7 @@
                                             {{  
                                                 Form::text(
                                                     'jawaban_lain[1]', 
-                                                    $motivasi_responden['jawaban_lain[1]'],  
+                                                    $motivasi_responden['jawaban_lain'],  
                                                     [
                                                         'class'       => 'form-control',
                                                         'placeholder' => ''
@@ -139,7 +139,7 @@
                                                 Form::radio(
                                                     'jawaban[2]', 
                                                     1,
-                                                    $motivasi_responden['jawaban[2]'] == 1,
+                                                    $motivasi_responden['jawaban'] == 1,
                                                     [
                                                         'class' => 'control-label'
                                                     ]
@@ -154,7 +154,7 @@
                                                 Form::radio(
                                                     'jawaban[2]', 
                                                     2,
-                                                    $motivasi_responden['jawaban[2]'] == 2,
+                                                    $motivasi_responden['jawaban'] == 2,
                                                     [
                                                         'class' => 'control-label'
                                                     ]
@@ -168,7 +168,7 @@
                                             {{  
                                                 Form::text(
                                                     'jawaban_lain[3]', 
-                                                    $motivasi_responden['jawaban_lain[3]'],  
+                                                    $motivasi_responden['jawaban_lain'],  
                                                     [
                                                         'class'       => 'form-control',
                                                         'placeholder' => ''
@@ -190,7 +190,7 @@
                                                 Form::radio(
                                                     'jawaban[4]', 
                                                     1,
-                                                    $motivasi_responden['jawaban[4]'] == 1,
+                                                    $motivasi_responden['jawaban'] == 1,
                                                     [
                                                         'class' => 'control-label'
                                                     ]
@@ -205,7 +205,7 @@
                                                 Form::radio(
                                                     'jawaban[4]', 
                                                     2,
-                                                    $motivasi_responden['jawaban[4]'] == 2,
+                                                    $motivasi_responden['jawaban'] == 2,
                                                     [
                                                         'class' => 'control-label'
                                                     ]
@@ -220,7 +220,7 @@
                                                 Form::radio(
                                                     'jawaban[4]', 
                                                     3,
-                                                    $motivasi_responden['jawaban[4]'] == 3,
+                                                    $motivasi_responden['jawaban'] == 3,
                                                     [
                                                         'class' => 'control-label'
                                                     ]
@@ -235,7 +235,7 @@
                                                 Form::radio(
                                                     'jawaban[4]', 
                                                     4,
-                                                    $motivasi_responden['jawaban[4]'] == 4,
+                                                    $motivasi_responden['jawaban'] == 4,
                                                     [
                                                         'class' => 'control-label'
                                                     ]
@@ -250,7 +250,7 @@
                                                 Form::radio(
                                                     'jawaban[4]', 
                                                     5,
-                                                    $motivasi_responden['jawaban[4]'] == 5,
+                                                    $motivasi_responden['jawaban'] == 5,
                                                     [
                                                         'class' => 'control-label'
                                                     ]
@@ -265,7 +265,7 @@
                                                 Form::radio(
                                                     'jawaban[4]', 
                                                     6,
-                                                    $motivasi_responden['jawaban[4]'] == 6,
+                                                    $motivasi_responden['jawaban'] == 6,
                                                     [
                                                         'class' => 'control-label'
                                                     ]
@@ -276,7 +276,7 @@
                                             {{  
                                                 Form::text(
                                                     'jawaban_lain[4]', 
-                                                    $motivasi_responden['jawaban_lain[4]'],  
+                                                    $motivasi_responden['jawaban_lain'],  
                                                     [
                                                         'class'       => 'form-control',
                                                         'placeholder' => ''
@@ -293,7 +293,7 @@
                                                 Form::radio(
                                                     'jawaban[5]', 
                                                     1,
-                                                    $motivasi_responden['jawaban[5]'] == 1,
+                                                    $motivasi_responden['jawaban'] == 1,
                                                     [
                                                         'class' => 'control-label'
                                                     ]
@@ -308,7 +308,7 @@
                                                 Form::radio(
                                                     'jawaban[5]', 
                                                     2,
-                                                    $motivasi_responden['jawaban[5]'] == 2,
+                                                    $motivasi_responden['jawaban'] == 2,
                                                     [
                                                         'class' => 'control-label'
                                                     ]
@@ -323,7 +323,7 @@
                                                 Form::radio(
                                                     'jawaban[5]', 
                                                     3,
-                                                    $motivasi_responden['jawaban[5]'] == 3,
+                                                    $motivasi_responden['jawaban'] == 3,
                                                     [
                                                         'class' => 'control-label'
                                                     ]
@@ -338,7 +338,7 @@
                                                 Form::radio(
                                                     'jawaban[5]', 
                                                     4,
-                                                    $motivasi_responden['jawaban[5]'] == 4,
+                                                    $motivasi_responden['jawaban'] == 4,
                                                     [
                                                         'class' => 'control-label'
                                                     ]
@@ -352,7 +352,7 @@
                                             {{  
                                                 Form::text(
                                                     'jawaban_lain[6]', 
-                                                    $motivasi_responden['jawaban_lain[6]'],  
+                                                    $motivasi_responden['jawaban_lain'],  
                                                     [
                                                         'class'       => 'form-control',
                                                         'placeholder' => ''
@@ -367,7 +367,7 @@
                                                 Form::radio(
                                                     'jawaban[7]', 
                                                     1,
-                                                    $motivasi_responden['jawaban[7]'] == 1,
+                                                    $motivasi_responden['jawaban'] == 1,
                                                     [
                                                         'class' => 'control-label'
                                                     ]
@@ -382,7 +382,7 @@
                                                 Form::radio(
                                                     'jawaban[7]', 
                                                     2,
-                                                    $motivasi_responden['jawaban[7]'] == 2,
+                                                    $motivasi_responden['jawaban'] == 2,
                                                     [
                                                         'class' => 'control-label'
                                                     ]
@@ -397,7 +397,7 @@
                                                 Form::radio(
                                                     'jawaban[7]', 
                                                     3,
-                                                    $motivasi_responden['jawaban[7]'] == 3,
+                                                    $motivasi_responden['jawaban'] == 3,
                                                     [
                                                         'class' => 'control-label'
                                                     ]
