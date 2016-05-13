@@ -93,14 +93,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($master_kayu_ops as $id_master_kayu => $item)
+                            @foreach ($master_kayu_ops as $idx => $item)
                             <tr>
                                 <td>{{$item -> rincian}}</td>
                                 <td>
                                     {{  
                                         Form::text(
-                                            'biaya['. $item -> id_master_kayu .']', 
-                                            '', 
+                                            'biaya[' . $kayuops[$item->id_master_kayu]['id_kayu_ops'] . ']', 
+                                            $kayuops[$item->id_master_kayu]['biaya'],
                                             [
                                                 'class'       => 'form-control',
                                                 'placeholder' => ''
@@ -111,8 +111,8 @@
                                 <td>
                                     {{  
                                         Form::text(
-                                            'jumlah['. $item -> id_master_kayu .']', 
-                                            '', 
+                                            'jumlah[' . $kayuops[$item->id_master_kayu]['id_kayu_ops'] . ']', 
+                                            $kayuops[$item->id_master_kayu]['jumlah'],
                                             [
                                                 'class'       => 'form-control',
                                                 'placeholder' => ''
@@ -123,8 +123,8 @@
                                 <td>
                                     {{  
                                         Form::text(
-                                            'total_biaya['. $item -> id_master_kayu .']', 
-                                            '', 
+                                            'total_biaya[' . $kayuops[$item->id_master_kayu]['id_kayu_ops'] . ']', 
+                                            $kayuops[$item->id_master_kayu]['total_biaya'],
                                             [
                                                 'class'       => 'form-control',
                                                 'placeholder' => ''
@@ -148,14 +148,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($master_kayu_non as $id_master_kayu => $item)
+                            @foreach ($master_kayu_non as $idx => $item)
                             <tr>
                                 <td>{{$item -> rincian}}</td>
                                 <td>
                                     {{  
                                         Form::text(
-                                            'satuan['. $item -> id_master_kayu .']', 
-                                            '', 
+                                            'satuan[' . $kayunon[$item->id_master_kayu]['id_kayu_nonkomersil'] . ']', 
+                                            $kayunon[$item->id_master_kayu]['satuan'], 
                                             [
                                                 'class'       => 'form-control',
                                                 'placeholder' => ''
@@ -166,8 +166,8 @@
                                <td>
                                     {{  
                                         Form::text(
-                                            'jumlah['. $item -> id_master_kayu .']', 
-                                            '', 
+                                            'jumlah[' . $kayunon[$item->id_master_kayu]['id_kayu_nonkomersil'] . ']', 
+                                            $kayunon[$item->id_master_kayu]['jumlah'],
                                             [
                                                 'class'       => 'form-control',
                                                 'placeholder' => ''
@@ -178,8 +178,8 @@
                                <td>
                                     {{  
                                         Form::text(
-                                            'harga['. $item -> id_master_kayu .']', 
-                                            '', 
+                                            'harga[' . $kayunon[$item->id_master_kayu]['id_kayu_nonkomersil'] . ']', 
+                                            $kayunon[$item->id_master_kayu]['harga'],
                                             [
                                                 'class'       => 'form-control',
                                                 'placeholder' => ''
@@ -190,8 +190,8 @@
                                <td>
                                     {{  
                                         Form::text(
-                                            'nilai_manfaat['. $item -> id_master_kayu .']', 
-                                            '', 
+                                            'nilai_manfaat[' . $kayunon[$item->id_master_kayu]['id_kayu_nonkomersil'] . ']', 
+                                            $kayunon[$item->id_master_kayu]['nilai_manfaat'],
                                             [
                                                 'class'       => 'form-control',
                                                 'placeholder' => ''

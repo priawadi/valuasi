@@ -121,10 +121,37 @@ class KayuController extends Controller
             ];
         }
 
+        // data kayu ops
+        $kayuops = [];
+        foreach (KayuOps::where('id_responden', $request->session()->get('id_responden'))->get() as $idx => $item) {
+            $kayuops[$item->id_master_kayu] = 
+            [
+                'id_kayu_ops'   => $item->id_kayu_ops,
+                'biaya'         => $item->biaya,
+                'jumlah'        => $item->jumlah,
+                'total_biaya'   => $item->total_biaya,
+            ];
+        } 
+
+        // data kayu non komersil
+        $kayunon = [];
+        foreach (KayuNon::where('id_responden', $request->session()->get('id_responden'))->get() as $idx => $item) {
+            $kayunon[$item->id_master_kayu] = 
+            [
+                'id_kayu_nonkomersil'   => $item->id_kayu_nonkomersil,
+                'satuan'                => $item->satuan,
+                'jumlah'                => $item->jumlah,
+                'harga'                 => $item->harga,
+                'nilai_manfaat'         => $item->nilai_manfaat,
+            ];
+        }                
+
         return view('kayu.edit', [
             'subtitle'                  => 'Edit Kayu',
             'action'                    => 'kayu/edit/' . $id,   
-            'kayuprod'                  => $kayuprod,           
+            'kayuprod'                  => $kayuprod,  
+            'kayuops'                   => $kayuops,           
+            'kayunon'                   => $kayunon,           
             'master_kayu'               => MasterKayu::where('kategori', \Config::get('constants.KAYU.PRODUKSI'))->get(),
             'master_kayu_ops'           => MasterKayu::where('kategori', \Config::get('constants.KAYU.BIAYA_OPERASIONAL'))->get(),
             'master_kayu_non'           => MasterKayu::where('kategori', \Config::get('constants.KAYU.NON_KOMERSIL'))->get(),            
@@ -143,13 +170,32 @@ class KayuController extends Controller
 
         foreach ($request->input('satuan') as $id_kayu_prod => $item) {
         $kayuprod                       = KayuProd::find($id_kayu_prod);
-        $kayuprod->satuan               = $request->input('satuan.' .$id_kayu_prod, null);
-        $kayuprod->produksi             = $request->input('produksi.' .$id_kayu_prod, null);
-        $kayuprod->harga                = $request->input('harga.' .$id_kayu_prod, null);
-        $kayuprod->nilai_prod           = $request->input('nilai_prod.' .$id_kayu_prod, null);
+        $kayuprod->satuan               = $request->input('satuan.' . $id_kayu_prod, null);
+        $kayuprod->produksi             = $request->input('produksi.' . $id_kayu_prod, null);
+        $kayuprod->harga                = $request->input('harga.' . $id_kayu_prod, null);
+        $kayuprod->nilai_prod           = $request->input('nilai_prod.' . $id_kayu_prod, null);
 
         $kayuprod->save();
         }
+
+        foreach ($request->input('biaya') as $id_kayu_ops => $item) {
+        $kayuops                       = KayuOps::find($id_kayu_ops);
+        $kayuops->biaya                = $request->input('biaya.' . $id_kayu_ops, null);
+        $kayuops->jumlah               = $request->input('jumlah.' . $id_kayu_ops, null);
+        $kayuops->total_biaya          = $request->input('total_biaya.' . $id_kayu_ops, null);
+
+        $kayuops->save();
+        }   
+
+        foreach ($request->input('satuan') as $id_kayu_nonkomersil => $item) {
+        $kayunon                       = KayuNon::find($id_kayu_nonkomersil);
+        $kayunon->satuan               = $request->input('satuan.' . $id_kayu_nonkomersil, null);
+        $kayunon->jumlah               = $request->input('jumlah.' . $id_kayu_nonkomersil, null);
+        $kayunon->harga                = $request->input('harga.' . $id_kayu_nonkomersil, null);
+        $kayunon->nilai_manfaat        = $request->input('nilai_manfaat.' . $id_kayu_nonkomersil, null);
+
+        $kayunon->save();
+        }                
 
         return redirect('responden/lihat/' . $request->session()->get('id_responden'));
     }
