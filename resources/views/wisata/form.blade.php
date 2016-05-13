@@ -29,140 +29,57 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>{{$pertanyaan[1]}}
-                                    <div class="radio">
-                                        <label>
-                                            {{
-                                                Form::radio(
-                                                    'jawaban[1]', 
-                                                    1,
-                                                    false,
-                                                    [
-                                                        'class' => 'control-label'
-                                                    ]
-                                                )
-                                            }} 
-                                            Wisata Pantai
-                                        </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label>
-                                            {{
-                                                Form::radio(
-                                                    'jawaban[1]', 
-                                                    2,
-                                                    false,
-                                                    [
-                                                        'class' => 'control-label'
-                                                    ]
-                                                )
-                                            }} 
-                                            Wisata Mangrove
-                                        </label>
-                                    </div>  
-                                    <div class="radio">
-                                        <label>
-                                            {{
-                                                Form::radio(
-                                                    'jawaban[1]', 
-                                                    3,
-                                                    false,
-                                                    [
-                                                        'class' => 'control-label'
-                                                    ]
-                                                )
-                                            }} 
-                                            Snorkling/Diving
-                                        </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label>
-                                            {{
-                                                Form::radio(
-                                                    'jawaban[1]', 
-                                                    4,
-                                                    false,
-                                                    [
-                                                        'class' => 'control-label'
-                                                    ]
-                                                )
-                                            }} 
-                                            Pengamatan Flora/Fauna
-                                        </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label>
-                                            {{
-                                                Form::radio(
-                                                    'jawaban[1]', 
-                                                    5,
-                                                    false,
-                                                    [
-                                                        'class' => 'control-label'
-                                                    ]
-                                                )
-                                            }} 
-                                            Pendidikan/Penelitian
-                                        </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label>
-                                            {{
-                                                Form::radio(
-                                                    'jawaban[1]', 
-                                                    6,
-                                                    false,
-                                                    [
-                                                        'class' => 'control-label'
-                                                    ]
-                                                )
-                                            }} 
-                                            Wisata Alam Perairan lain, sebutkan
-
-                                            {{  
-                                                Form::text(
-                                                    'jawaban_lain[1]', 
-                                                    '', 
-                                                    [
-                                                        'class'       => 'form-control',
-                                                        'placeholder' => ''
-                                                    ]
-                                                )
-                                            }}                                             
-                                        </label>
-                                    </div> 
+                                    <td>
+                                        {{$pertanyaan[1]}}
+                                        @foreach ($opsi_motivasi[1] as $id_opsi => $opsi)
+                                            <div class="radio">
+                                                <label>
+                                                    {{
+                                                        Form::radio(
+                                                            'jawaban[1]', 
+                                                            $id_opsi,
+                                                            false,
+                                                            [
+                                                                'class' => 'control-label'
+                                                            ]
+                                                        )
+                                                    }} 
+                                                    {{$opsi}}
+                                                    @if ($id_opsi == 6)
+                                                        {{  
+                                                            Form::text(
+                                                                'jawaban_lain[1]', 
+                                                                '', 
+                                                                [
+                                                                    'class'       => 'form-control',
+                                                                    'placeholder' => 'Sebutkan'
+                                                                ]
+                                                            )
+                                                        }}
+                                                    @endif
+                                                </label>
+                                            </div>
+                                        @endforeach 
                                     </td>    
-                                    <td>{{$pertanyaan[2]}}
-                                    <div class="radio">
-                                        <label>
-                                            {{
-                                                Form::radio(
-                                                    'jawaban[2]', 
-                                                    1,
-                                                    false,
-                                                    [
-                                                        'class' => 'control-label'
-                                                    ]
-                                                )
-                                            }} 
-                                            Tujuan Utama
-                                        </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label>
-                                            {{
-                                                Form::radio(
-                                                    'jawaban[2]', 
-                                                    2,
-                                                    false,
-                                                    [
-                                                        'class' => 'control-label'
-                                                    ]
-                                                )
-                                            }} 
-                                            Persinggahan
-                                        </label>
-                                    </div>  
+                                    <td>
+                                        {{$pertanyaan[2]}}
+                                        @foreach ($opsi_motivasi[2] as $id_opsi => $opsi)
+                                            <div class="radio">
+                                                <label>
+                                                    {{
+                                                        Form::radio(
+                                                            'jawaban[2]', 
+                                                            $id_opsi,
+                                                            false,
+                                                            [
+                                                                'class' => 'control-label'
+                                                            ]
+                                                        )
+                                                    }}
+                                                    {{$opsi}}
+                                                </label>
+                                            </div>
+                                        @endforeach
                                     </td>  
                                     <td>{{$pertanyaan[3]}}
                                             {{  
@@ -183,169 +100,57 @@
                                     <td>(6)</td>
                                 </tr>
                                 <tr>
-                                    <td>{{$pertanyaan[4]}}
-                                    <div class="radio">
-                                        <label>
-                                            {{
-                                                Form::radio(
-                                                    'jawaban[4]', 
-                                                    1,
-                                                    false,
-                                                    [
-                                                        'class' => 'control-label'
-                                                    ]
-                                                )
-                                            }} 
-                                            Jarak yang dekat
-                                        </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label>
-                                            {{
-                                                Form::radio(
-                                                    'jawaban[4]', 
-                                                    2,
-                                                    false,
-                                                    [
-                                                        'class' => 'control-label'
-                                                    ]
-                                                )
-                                            }} 
-                                            Kemudahan transportasi
-                                        </label>
-                                    </div>  
-                                    <div class="radio">
-                                        <label>
-                                            {{
-                                                Form::radio(
-                                                    'jawaban[4]', 
-                                                    3,
-                                                    false,
-                                                    [
-                                                        'class' => 'control-label'
-                                                    ]
-                                                )
-                                            }} 
-                                            Biaya yang murah
-                                        </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label>
-                                            {{
-                                                Form::radio(
-                                                    'jawaban[4]', 
-                                                    4,
-                                                    false,
-                                                    [
-                                                        'class' => 'control-label'
-                                                    ]
-                                                )
-                                            }} 
-                                            Potensi alamnya
-                                        </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label>
-                                            {{
-                                                Form::radio(
-                                                    'jawaban[4]', 
-                                                    5,
-                                                    false,
-                                                    [
-                                                        'class' => 'control-label'
-                                                    ]
-                                                )
-                                            }} 
-                                            Lingkungan yang alami
-                                        </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label>
-                                            {{
-                                                Form::radio(
-                                                    'jawaban[4]', 
-                                                    6,
-                                                    false,
-                                                    [
-                                                        'class' => 'control-label'
-                                                    ]
-                                                )
-                                            }} 
-                                            Lainnya, sebutkan
-
-                                            {{  
-                                                Form::text(
-                                                    'jawaban_lain[4]', 
-                                                    '', 
-                                                    [
-                                                        'class'       => 'form-control',
-                                                        'placeholder' => ''
-                                                    ]
-                                                )
-                                            }}                                             
-                                        </label>
-                                    </div> 
+                                    <td>
+                                        {{$pertanyaan[4]}}
+                                        @foreach ($opsi_motivasi[4] as $id_opsi => $opsi)
+                                            <div class="radio">
+                                                <label>
+                                                    {{
+                                                        Form::radio(
+                                                            'jawaban[4]', 
+                                                            $id_opsi,
+                                                            false,
+                                                            [
+                                                                'class' => 'control-label'
+                                                            ]
+                                                        )
+                                                    }}
+                                                    {{$opsi}}
+                                                    @if ($id_opsi == 6)
+                                                        {{  
+                                                            Form::text(
+                                                                'jawaban_lain[4]', 
+                                                                '', 
+                                                                [
+                                                                    'class'       => 'form-control',
+                                                                    'placeholder' => 'Sebutkan'
+                                                                ]
+                                                            )
+                                                        }}
+                                                    @endif
+                                                </label>
+                                            </div>
+                                        @endforeach 
                                     </td>
-                                    <td>{{$pertanyaan[5]}}
-                                    <div class="radio">
-                                        <label>
-                                            {{
-                                                Form::radio(
-                                                    'jawaban[5]', 
-                                                    1,
-                                                    false,
-                                                    [
-                                                        'class' => 'control-label'
-                                                    ]
-                                                )
-                                            }} 
-                                            Media cetak dan Elektronik
-                                        </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label>
-                                            {{
-                                                Form::radio(
-                                                    'jawaban[5]', 
-                                                    2,
-                                                    false,
-                                                    [
-                                                        'class' => 'control-label'
-                                                    ]
-                                                )
-                                            }} 
-                                            Teman/Keluarga
-                                        </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label>
-                                            {{
-                                                Form::radio(
-                                                    'jawaban[5]', 
-                                                    3,
-                                                    false,
-                                                    [
-                                                        'class' => 'control-label'
-                                                    ]
-                                                )
-                                            }} 
-                                            Organisasi
-                                        </label>
-                                    </div> 
-                                    <div class="radio">
-                                        <label>
-                                            {{
-                                                Form::radio(
-                                                    'jawaban[5]', 
-                                                    4,
-                                                    false,
-                                                    [
-                                                        'class' => 'control-label'
-                                                    ]
-                                                )
-                                            }} 
-                                            Internet
-                                        </label>
+                                    <td>
+                                        {{$pertanyaan[5]}}
+                                        @foreach ($opsi_motivasi[5] as $id_opsi => $opsi)
+                                            <div class="radio">
+                                                <label>
+                                                    {{
+                                                        Form::radio(
+                                                            'jawaban[5]', 
+                                                            $id_opsi,
+                                                            false,
+                                                            [
+                                                                'class' => 'control-label'
+                                                            ]
+                                                        )
+                                                    }}
+                                                    {{$opsi}}
+                                                </label>
+                                            </div>
+                                        @endforeach
                                     </div>                                                                                                            
                                     </td>  
                                     <td>{{$pertanyaan[6]}}
@@ -361,51 +166,23 @@
                                             }}   
                                         <br/>
                                         {{$pertanyaan[7]}}
-                                    <div class="radio">
-                                        <label>
-                                            {{
-                                                Form::radio(
-                                                    'jawaban[7]', 
-                                                    1,
-                                                    false,
-                                                    [
-                                                        'class' => 'control-label'
-                                                    ]
-                                                )
-                                            }} 
-                                            1 kali dalam setahun
-                                        </label>
-                                    </div>                      
-                                    <div class="radio">
-                                        <label>
-                                            {{
-                                                Form::radio(
-                                                    'jawaban[7]', 
-                                                    2,
-                                                    false,
-                                                    [
-                                                        'class' => 'control-label'
-                                                    ]
-                                                )
-                                            }} 
-                                            2 kali dalam setahun
-                                        </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label>
-                                            {{
-                                                Form::radio(
-                                                    'jawaban[7]', 
-                                                    3,
-                                                    false,
-                                                    [
-                                                        'class' => 'control-label'
-                                                    ]
-                                                )
-                                            }} 
-                                            Lebih dari 2 kali dalam setahun
-                                        </label>
-                                    </div>            
+                                        @foreach ($opsi_motivasi[6] as $id_opsi => $opsi)
+                                            <div class="radio">
+                                                <label>
+                                                    {{
+                                                        Form::radio(
+                                                            'jawaban[7]', 
+                                                            $id_opsi,
+                                                            false,
+                                                            [
+                                                                'class' => 'control-label'
+                                                            ]
+                                                        )
+                                                    }}
+                                                    {{$opsi}}
+                                                </label>
+                                            </div>
+                                        @endforeach      
                                     </td>                                                                                                           
                                 </tr>                                
                             </tbody>
@@ -425,116 +202,62 @@
                                 <tr>
                                     <td>{{$item -> fasilitas_pendukung}}</td>
                                     @if($item -> is_pertanyaan == 1)
-                                    <td>                                    
-                                    <div class="radio">
-                                        <label>
-                                            {{
-                                                Form::radio(
-                                                    'ketersediaan[' . $id_fasilitas_Pendukung . ']' , 
-                                                    1,
-                                                    false,
-                                                    [
-                                                        'class' => 'control-label'
-                                                    ]
-                                                )
-                                            }} 
-                                            Ya
-                                        </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label>
-                                            {{
-                                                Form::radio(
-                                                    'ketersediaan[' . $id_fasilitas_Pendukung . ']' ,  
-                                                    2,
-                                                    false,
-                                                    [
-                                                        'class' => 'control-label'
-                                                    ]
-                                                )
-                                            }} 
-                                            Tidak
-                                        </label>
-                                    </div>                                         
+                                    <td>        
+                                        @foreach ($opsi_fasilitas['ketersediaan'] as $id_opsi => $opsi)
+                                            <div class="radio">
+                                                <label>
+                                                    {{
+                                                        Form::radio(
+                                                            'ketersediaan[' . $id_fasilitas_Pendukung . ']' , 
+                                                            $id_opsi,
+                                                            false,
+                                                            [
+                                                                'class' => 'control-label'
+                                                            ]
+                                                        )
+                                                    }} 
+                                                    {{$opsi}}
+                                                </label>
+                                            </div>
+                                        @endforeach                                         
                                     </td>
                                     <td>
-                                    <div class="radio">
-                                        <label>
-                                            {{
-                                                Form::radio(
-                                                    'jumlah[' . $id_fasilitas_Pendukung . ']' ,  
-                                                    1,
-                                                    false,
-                                                    [
-                                                        'class' => 'control-label'
-                                                    ]
-                                                )
-                                            }} 
-                                            Memadai
-                                        </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label>
-                                            {{
-                                                Form::radio(
-                                                    'jumlah[' . $id_fasilitas_Pendukung . ']' , 
-                                                    2,
-                                                    false,
-                                                    [
-                                                        'class' => 'control-label'
-                                                    ]
-                                                )
-                                            }} 
-                                            Tidak Memadai
-                                        </label>
-                                    </div>                                     
+                                        @foreach ($opsi_fasilitas['jumlah'] as $id_opsi => $opsi)
+                                            <div class="radio">
+                                                <label>
+                                                    {{
+                                                        Form::radio(
+                                                            'jumlah[' . $id_fasilitas_Pendukung . ']' , 
+                                                            $id_opsi,
+                                                            false,
+                                                            [
+                                                                'class' => 'control-label'
+                                                            ]
+                                                        )
+                                                    }} 
+                                                    {{$opsi}}
+                                                </label>
+                                            </div>
+                                        @endforeach                             
                                     </td>
                                     <td>
-                                    <div class="radio">
-                                        <label>
-                                            {{
-                                                Form::radio(
-                                                    'kondisi[' . $id_fasilitas_Pendukung . ']' ,  
-                                                    1,
-                                                    false,
-                                                    [
-                                                        'class' => 'control-label'
-                                                    ]
-                                                )
-                                            }} 
-                                            Baik
-                                        </label>
-                                    </div> 
-                                    <div class="radio">
-                                        <label>
-                                            {{
-                                                Form::radio(
-                                                    'kondisi[' . $id_fasilitas_Pendukung . ']' , 
-                                                    2,
-                                                    false,
-                                                    [
-                                                        'class' => 'control-label'
-                                                    ]
-                                                )
-                                            }} 
-                                            Cukup Baik
-                                        </label>
-                                    </div> 
-                                    <div class="radio">
-                                        <label>
-                                            {{
-                                                Form::radio(
-                                                    'kondisi[' . $id_fasilitas_Pendukung . ']' , 
-                                                    3,
-                                                    false,
-                                                    [
-                                                        'class' => 'control-label'
-                                                    ]
-                                                )
-                                            }} 
-                                            Kurang Baik
-                                        </label>
-                                    </div>     
+                                        @foreach ($opsi_fasilitas['kondisi'] as $id_opsi => $opsi)
+                                            <div class="radio">
+                                                <label>
+                                                    {{
+                                                        Form::radio(
+                                                            'kondisi[' . $id_fasilitas_Pendukung . ']' , 
+                                                            $id_opsi,
+                                                            false,
+                                                            [
+                                                                'class' => 'control-label'
+                                                            ]
+                                                        )
+                                                    }} 
+                                                    {{$opsi}}
+                                                </label>
+                                            </div>
+                                        @endforeach 
                                     </td>
                                     @else
                                     <td></td><td></td><td></td>
@@ -554,127 +277,77 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>Dengan siapa datang ke kawasan?
-                                    <div class="radio">
-                                        <label>
-                                            {{
-                                                Form::radio(
-                                                    'jenis_rombongan', 
-                                                    1,
-                                                    false,
-                                                    [
-                                                        'class' => 'control-label'
-                                                    ]
-                                                )
-                                            }} 
-                                            Sendirian
-                                        </label>
-                                    </div> 
-                                    <div class="radio">
-                                        <label>
-                                            {{
-                                                Form::radio(
-                                                    'jenis_rombongan', 
-                                                    2,
-                                                    false,
-                                                    [
-                                                        'class' => 'control-label'
-                                                    ]
-                                                )
-                                            }} 
-                                            Rombongan
-
-                                            {{  
-                                                Form::text(
-                                                    'jumlah_orang', 
-                                                    '', 
-                                                    [
-                                                        'class'       => 'form-control',
-                                                        'placeholder' => ''
-                                                    ]
-                                                )
-                                            }}                                              
-                                        </label>
-                                    </div>                                    
+                                    <td>
+                                        Dengan siapa datang ke kawasan?
+                                        @foreach ($opsi_perjalanan[1] as $id_opsi => $opsi)
+                                            <div class="radio">
+                                                <label>
+                                                    {{
+                                                        Form::radio(
+                                                            'jenis_rombongan', 
+                                                            $id_opsi,
+                                                            false,
+                                                            [
+                                                                'class' => 'control-label'
+                                                            ]
+                                                        )
+                                                    }} 
+                                                    {{$opsi}}
+                                                    @if ($id_opsi == 2)
+                                                        {{  
+                                                            Form::text(
+                                                                'jumlah_orang', 
+                                                                '', 
+                                                                [
+                                                                    'class'       => 'form-control',
+                                                                    'placeholder' => ''
+                                                                ]
+                                                            )
+                                                        }}
+                                                    @endif
+                                                </label>
+                                            </div> 
+                                        @endforeach                          
                                     </td>
-                                    <td>Penyelenggara menuju kawasan
-                                    <div class="radio">
-                                        <label>
-                                            {{
-                                                Form::radio(
-                                                    'penyelenggara', 
-                                                    1,
-                                                    false,
-                                                    [
-                                                        'class' => 'control-label'
-                                                    ]
-                                                )
-                                            }} 
-                                            Perseorangan
-                                        </label>
-                                    </div> 
-                                    <div class="radio">
-                                        <label>
-                                            {{
-                                                Form::radio(
-                                                    'penyelenggara', 
-                                                    2,
-                                                    false,
-                                                    [
-                                                        'class' => 'control-label'
-                                                    ]
-                                                )
-                                            }} 
-                                            Travel Agent
-                                        </label>
-                                    </div> 
+                                    <td>
+                                        Penyelenggara menuju kawasan
+                                        @foreach ($opsi_perjalanan[2] as $id_opsi => $opsi)
+                                            <div class="radio">
+                                                <label>
+                                                    {{
+                                                        Form::radio(
+                                                            'penyelenggara', 
+                                                            $id_opsi,
+                                                            false,
+                                                            [
+                                                                'class' => 'control-label'
+                                                            ]
+                                                        )
+                                                    }} 
+                                                    {{$opsi}}
+                                                </label>
+                                            </div> 
+                                        @endforeach 
                                     </td>
-                                    <td>Jenis Transportasi yang Digunakan:
-                                    <div class="radio">
-                                        <label>
-                                            {{
-                                                Form::radio(
-                                                    'jenis_transportasi', 
-                                                    1,
-                                                    false,
-                                                    [
-                                                        'class' => 'control-label'
-                                                    ]
-                                                )
-                                            }} 
-                                            Pribadi
-                                        </label>
-                                    </div> 
-                                    <div class="radio">
-                                        <label>
-                                            {{
-                                                Form::radio(
-                                                    'jenis_transportasi', 
-                                                    2,
-                                                    false,
-                                                    [
-                                                        'class' => 'control-label'
-                                                    ]
-                                                )
-                                            }} 
-                                            Sewa
-                                        </label>
-                                    </div> 
-                                    <div class="radio">
-                                        <label>
-                                            {{
-                                                Form::radio(
-                                                    'jenis_transportasi', 
-                                                    3,
-                                                    false,
-                                                    [
-                                                        'class' => 'control-label'
-                                                    ]
-                                                )
-                                            }} 
-                                            Umum
-                                        </label>
-                                    </div>                                                                         
+                                    <td>
+                                        Jenis Transportasi yang Digunakan:
+                                        @foreach ($opsi_perjalanan[1] as $id_opsi => $opsi)
+                                            <div class="radio">
+                                                <label>
+                                                    {{
+                                                        Form::radio(
+                                                            'jenis_transportasi', 
+                                                            $id_opsi,
+                                                            false,
+                                                            [
+                                                                'class' => 'control-label'
+                                                            ]
+                                                        )
+                                                    }} 
+                                                    {{$opsi}}
+                                                </label>
+                                            </div> 
+                                        @endforeach                                                                         
                                     </td>
                                 </tr>
                             </tbody>                            
@@ -697,7 +370,7 @@
                                     <td>
                                             {{  
                                                 Form::text(
-                                                    'biaya', 
+                                                    'biaya_wisata[biaya]', 
                                                     '', 
                                                     [
                                                         'class'       => 'form-control',
@@ -709,7 +382,7 @@
                                     <td>
                                             {{  
                                                 Form::text(
-                                                    'jumlah', 
+                                                    'biaya_wisata[jumlah]', 
                                                     '', 
                                                     [
                                                         'class'       => 'form-control',
@@ -721,7 +394,7 @@
                                     <td>
                                             {{  
                                                 Form::text(
-                                                    'satuan_jumlah', 
+                                                    'biaya_wisata[satuan_jumlah]', 
                                                     '', 
                                                     [
                                                         'class'       => 'form-control',
@@ -733,7 +406,7 @@
                                     <td>
                                             {{  
                                                 Form::text(
-                                                    'total_biaya', 
+                                                    'biaya_wisata[total]', 
                                                     '', 
                                                     [
                                                         'class'       => 'form-control',
