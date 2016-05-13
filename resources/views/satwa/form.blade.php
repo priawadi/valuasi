@@ -73,291 +73,85 @@
                                 </tr>
                                 <tr>
                                     <td>3. Apabila benar, jenis satwa apa saja yang Bapak/Ibu/Sdr(i) biasanya peroleh ?
-                                        <div class="checkbox">
-                                            <label>
-                                                {{
-                                                    Form::checkbox(
-                                                        'jenis_satwa', 
-                                                        1,
-                                                        false,
-                                                        [
-                                                            'class' => 'control-label'
-                                                        ]
-                                                    )
-                                                }} 
-                                                Kelelawar
-                                            </label>
-                                        </div>
-                                        <div class="checkbox">
-                                            <label>
-                                                {{
-                                                    Form::checkbox(
-                                                        'jenis_satwa', 
-                                                        2,
-                                                        false,
-                                                        [
-                                                            'class' => 'control-label'
-                                                        ]
-                                                    )
-                                                }} 
-                                                Ular
-                                            </label>
-                                        </div>
-                                        <div class="checkbox">
-                                            <label>
-                                                {{
-                                                    Form::checkbox(
-                                                        'jenis_satwa', 
-                                                        3,
-                                                        false,
-                                                        [
-                                                            'class' => 'control-label'
-                                                        ]
-                                                    )
-                                                }} 
-                                                Burung
-                                            </label>
-                                        </div>
-                                        <div class="checkbox">
-                                            <label>
-                                                {{
-                                                    Form::checkbox(
-                                                        'jenis_satwa', 
-                                                        4,
-                                                        false,
-                                                        [
-                                                            'class' => 'control-label'
-                                                        ]
-                                                    )
-                                                }} 
-                                                Buaya
-                                            </label>
-                                        </div>
+                                        <br>
+                                        {{
+                                            Form::select(
+                                                'jenis_satwa[]', 
+                                                $jenis_satwa, 
+                                                [], 
+                                                [
+                                                    'class'    => 'form-control',
+                                                    'multiple' => 'multiple',
+                                                    'id'       => 'jenis-satwa'
+                                                ]
+                                            )
+                                        }}
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>4. Seberapa sering Bapak/Ibu/Saudara(i) melakukan pemburuan satwa ?
-                                    <div class="radio">
-                                        <label>
-                                            {{
-                                                Form::radio(
-                                                    'lama_buru', 
-                                                    1,
-                                                    false,
-                                                    [
-                                                        'class' => 'control-label'
-                                                    ]
-                                                )
-                                            }} 
-                                            1 hari sekali
-                                        </label>
-                                    </div>  
-                                    <div class="radio">
-                                        <label>
-                                            {{
-                                                Form::radio(
-                                                    'lama_buru', 
-                                                    1,
-                                                    false,
-                                                    [
-                                                        'class' => 'control-label'
-                                                    ]
-                                                )
-                                            }} 
-                                            1 hari sekali
-                                        </label>
-                                    </div> 
-                                    <div class="radio">
-                                        <label>
-                                            {{
-                                                Form::radio(
-                                                    'lama_buru', 
-                                                    2,
-                                                    false,
-                                                    [
-                                                        'class' => 'control-label'
-                                                    ]
-                                                )
-                                            }} 
-                                            2 hari sekali
-                                        </label>
-                                    </div> 
-                                    <div class="radio">
-                                        <label>
-                                            {{
-                                                Form::radio(
-                                                    'lama_buru', 
-                                                    3,
-                                                    false,
-                                                    [
-                                                        'class' => 'control-label'
-                                                    ]
-                                                )
-                                            }} 
-                                            3 hari sekali
-                                        </label>
-                                    </div> 
-                                    <div class="radio">
-                                        <label>
-                                            {{
-                                                Form::radio(
-                                                    'lama_buru', 
-                                                    4,
-                                                    false,
-                                                    [
-                                                        'class' => 'control-label'
-                                                    ]
-                                                )
-                                            }} 
-                                            4 hari sekali
-                                        </label>
-                                    </div> 
-                                    <div class="radio">
-                                        <label>
-                                            {{
-                                                Form::radio(
-                                                    'lama_buru', 
-                                                    5,
-                                                    false,
-                                                    [
-                                                        'class' => 'control-label'
-                                                    ]
-                                                )
-                                            }} 
-                                            Seminggu sekali
-                                        </label>
-                                    </div> 
-                                    <div class="radio">
-                                        <label>
-                                            {{
-                                                Form::radio(
-                                                    'lama_buru', 
-                                                    6,
-                                                    false,
-                                                    [
-                                                        'class' => 'control-label'
-                                                    ]
-                                                )
-                                            }} 
-                                            Sebulan sekali
-                                        </label>
-                                    </div> 
-                                    <div class="radio">
-                                        <label>
-                                            {{
-                                                Form::radio(
-                                                    'lama_buru', 
-                                                    7,
-                                                    false,
-                                                    [
-                                                        'class' => 'control-label'
-                                                    ]
-                                                )
-                                            }} 
-                                            Lainnya
-
-                                            {{  
-                                                Form::text(
-                                                    'lama_buru_txt', 
-                                                    '', 
-                                                    [
-                                                        'class'       => 'form-control',
-                                                        'placeholder' => ''
-                                                    ]
-                                                )
-                                            }}                                            
-                                        </label>
-                                    </div>                                                                                                                                                                                                                         
+                                    @foreach ($master_lama_buru as $k => $v)
+                                        <div class="radio">
+                                            <label>
+                                                {{
+                                                    Form::radio(
+                                                        'lama_buru', 
+                                                        $k,
+                                                        false,
+                                                        [
+                                                            'class' => 'control-label'
+                                                        ]
+                                                    )
+                                                }} 
+                                                {{$v}}
+                                                @if ($k == 7)
+                                                    {{  
+                                                        Form::text(
+                                                            'lama_buru_txt', 
+                                                            '', 
+                                                            [
+                                                                'class'       => 'form-control',
+                                                                'placeholder' => ''
+                                                            ]
+                                                        )
+                                                    }}
+                                                @endif
+                                            </label>
+                                        </div>  
+                                    @endforeach                                                                                                                                                                                                                        
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>5. Dalam satu tahun berapa kali Bapak/Ibu/Sdr(i) melakukan operasi perburuan satwa? 
-                                    <div class="radio">
-                                        <label>
-                                            {{
-                                                Form::radio(
-                                                    'setahun_buru', 
-                                                    1,
-                                                    false,
-                                                    [
-                                                        'class' => 'control-label'
-                                                    ]
-                                                )
-                                            }} 
-                                            12 kali
-                                        </label>
-                                    </div> 
-                                    <div class="radio">
-                                        <label>
-                                            {{
-                                                Form::radio(
-                                                    'setahun_buru', 
-                                                    2,
-                                                    false,
-                                                    [
-                                                        'class' => 'control-label'
-                                                    ]
-                                                )
-                                            }} 
-                                            24 kali
-                                        </label>
-                                    </div> 
-                                    <div class="radio">
-                                        <label>
-                                            {{
-                                                Form::radio(
-                                                    'setahun_buru', 
-                                                    3,
-                                                    false,
-                                                    [
-                                                        'class' => 'control-label'
-                                                    ]
-                                                )
-                                            }} 
-                                            36 kali
-                                        </label>
-                                    </div> 
-                                    <div class="radio">
-                                        <label>
-                                            {{
-                                                Form::radio(
-                                                    'setahun_buru', 
-                                                    4,
-                                                    false,
-                                                    [
-                                                        'class' => 'control-label'
-                                                    ]
-                                                )
-                                            }} 
-                                            48 kali
-                                        </label>
-                                    </div> 
-                                    <div class="radio">
-                                        <label>
-                                            {{
-                                                Form::radio(
-                                                    'setahun_buru', 
-                                                    5,
-                                                    false,
-                                                    [
-                                                        'class' => 'control-label'
-                                                    ]
-                                                )
-                                            }} 
-                                            Lainnya
-
-                                            {{  
-                                                Form::text(
-                                                    'setahun_buru_txt', 
-                                                    '', 
-                                                    [
-                                                        'class'       => 'form-control',
-                                                        'placeholder' => ''
-                                                    ]
-                                                )
-                                            }}                                              
-                                        </label>
-                                    </div>                                                                                                                                                 
+                                        @foreach ($master_setahun_buru as $k => $v)
+                                        <div class="radio">
+                                            <label>
+                                                {{
+                                                    Form::radio(
+                                                        'setahun_buru', 
+                                                        $k,
+                                                        false,
+                                                        [
+                                                            'class' => 'control-label'
+                                                        ]
+                                                    )
+                                                }} 
+                                                {{$v}}
+                                                @if ($k == 5)
+                                                    {{  
+                                                        Form::text(
+                                                            'setahun_buru_txt', 
+                                                            '', 
+                                                            [
+                                                                'class'       => 'form-control',
+                                                                'placeholder' => ''
+                                                            ]
+                                                        )
+                                                    }}   
+                                                @endif
+                                            </label>
+                                        </div> 
+                                    @endforeach                                                                                                                                        
                                     </td>
                                 </tr>
                             </tbody>
@@ -540,4 +334,9 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#jenis-satwa').multiselect();
+    });
+</script>
 @endsection

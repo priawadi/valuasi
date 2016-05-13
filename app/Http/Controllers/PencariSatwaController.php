@@ -62,11 +62,14 @@ class PencariSatwaController extends Controller
             return redirect('responden/lihat/' . $request->session()->get('id_responden'));
         }
         return view('satwa.form', [
-            'action'                    => 'satwa/tambah',
-            'subtitle'                  => 'Pencari Satwa',
-            'hasil_satwa'               => MasterPencariSatwa::where('kategori', \Config::get('constants.PENCARI_SATWA.HASIL_PENERIMAAN'))->get(),
-            'biaya_satwa'               => MasterPencariSatwa::where('kategori', \Config::get('constants.PENCARI_SATWA.BIAYA_INVESTASI'))->get(),
-            'ops_satwa'                 => MasterPencariSatwa::where('kategori', \Config::get('constants.PENCARI_SATWA.BIAYA_OPERASIONAL'))->get(),
+			'action'              => 'satwa/tambah',
+			'subtitle'            => 'Pencari Satwa',
+			'master_lama_buru'    => $this->master_lama_buru,
+			'master_setahun_buru' => $this->master_setahun_buru,
+			'jenis_satwa'         => $this->jenis_satwa,
+			'hasil_satwa'         => MasterPencariSatwa::where('kategori', \Config::get('constants.PENCARI_SATWA.HASIL_PENERIMAAN'))->get(),
+			'biaya_satwa'         => MasterPencariSatwa::where('kategori', \Config::get('constants.PENCARI_SATWA.BIAYA_INVESTASI'))->get(),
+			'ops_satwa'           => MasterPencariSatwa::where('kategori', \Config::get('constants.PENCARI_SATWA.BIAYA_OPERASIONAL'))->get(),
 
         ]);
     }
@@ -94,9 +97,9 @@ class PencariSatwaController extends Controller
         $pencarisatwa->pengalaman_usaha     = $request->input('pengalaman_usaha', null);
         $pencarisatwa->jenis_satwa          = $jenis_satwa;
         $pencarisatwa->lama_buru            = $request->input('lama_buru', null);
-        $pencarisatwa->lama_buru_txt        = $request->input('lama_buru_txt', null);
+        $pencarisatwa->lama_buru_txt        = $request->input('lama_buru', null) == 7? $request->input('lama_buru_txt', null): '';
         $pencarisatwa->setahun_buru         = $request->input('setahun_buru', null);
-        $pencarisatwa->setahun_buru_txt     = $request->input('setahun_buru_txt', null);
+        $pencarisatwa->setahun_buru_txt     = $request->input('setahun_buru', null) == 5? $request->input('setahun_buru_txt', null): '';
 
         $pencarisatwa->save();
 
