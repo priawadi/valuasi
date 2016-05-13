@@ -140,7 +140,18 @@ class KayuController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        foreach ($request->input('satuan') as $id_kayu_prod => $item) {
+        $kayuprod                       = KayuProd::find($id_kayu_prod);
+        $kayuprod->satuan               = $request->input('satuan.' .$id_kayu_prod, null);
+        $kayuprod->produksi             = $request->input('produksi.' .$id_kayu_prod, null);
+        $kayuprod->harga                = $request->input('harga.' .$id_kayu_prod, null);
+        $kayuprod->nilai_prod           = $request->input('nilai_prod.' .$id_kayu_prod, null);
+
+        $kayuprod->save();
+        }
+
+        return redirect('responden/lihat/' . $request->session()->get('id_responden'));
     }
 
     /**

@@ -30,7 +30,6 @@
                             @foreach ($master_kayu as $idx => $item)
                             <tr>
                                 <td>{{$item['rincian']}}</td>
-                                
                                 <td>
                                     {{  
                                         Form::text(
