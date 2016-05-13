@@ -2,9 +2,10 @@
 
 @section('content')
 <script type="text/javascript">
-    function show_modal(url)
+    function show_modal(url, kuesioner)
     {
         form_delete.action = url;
+        $('#delete-info').text(kuesioner);
         $('#modal-delete').modal('show');
 
     }
@@ -19,7 +20,8 @@
                 <h4 class="modal-title">Konfirmasi</h4>
             </div>
             <div class="modal-body">
-                <p>Apakah Anda yakin akan menghapus data ini?</p>
+                <p>Apakah Anda yakin akan menghapus data:</p>
+                <b><p id="delete-info"></p></b>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
@@ -69,7 +71,7 @@
                                 <td>
                                     <center>
                                         @if ($item['is_done'])
-                                            <button type="button" onclick="show_modal('{{url($item['link'])}}/hapus/{{$responden['id_responden']}}')" class="btn btn-sm btn-danger">Hapus</button>
+                                            <button type="button" onclick="show_modal('{{url($item['link'])}}/hapus/{{$responden['id_responden']}}', '{{$item['no']}}. {{$item['kuesioner']}}')" class="btn btn-sm btn-danger">Hapus</button>
                                             <a class="btn btn-success btn-sm" href="{{url($item['link'])}}/edit/{{$responden['id_responden']}}">Edit</a>
                                         @else
                                             <a class="btn btn-primary btn-sm" href="{{url($item['link'])}}/tambah">Tambah</a>
