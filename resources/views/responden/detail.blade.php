@@ -49,7 +49,7 @@
                     <b>Nama Responden : {{$responden->nama}}</b>
                     <br>
                     <br>
-                    <table class="table table-bordered">
+                    <table class="table table-bordered table-hover">
                         <thead>
                             <tr> 
                                 <th width="40px">#</th> 
