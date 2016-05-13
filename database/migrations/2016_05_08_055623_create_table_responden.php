@@ -29,6 +29,8 @@ class CreateTableResponden extends Migration
             $table->integer('pendapatan')->nullable();
             $table->integer('pekerjaan_utama')->nullable();
             $table->integer('pekerjaan_sampingan')->nullable();
+            $table->string('nama_pencacah', 255)->nullable();
+            $table->timestamp('tanggal_input')->nullable();
             
             $table->timestamps();
             $table->softDeletes();

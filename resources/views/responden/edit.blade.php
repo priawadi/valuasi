@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+<link href="{!! asset('bootstrap-datetimepicker/bootstrap-datetimepicker.min.css') !!}" media="all" rel="stylesheet" type="text/css" />
 @section('content')
 <div class="container">
     <div class="row">
@@ -13,6 +13,62 @@
                 </ul>
                 <div class="panel-body">
                     {!! Form::open(array('url' => $action, 'class' => 'form-horizontal', 'method' => 'patch')) !!}
+                        <div class="form-grup">
+                            <b>A. DATA PENCACAH</b>
+                            <div class="col-sm-2"></div>
+                        </div>                    
+                        <div class="form-group">
+                            {{
+                                Form::label(
+                                    'nama_pencacah', 
+                                    'Nama Pencacah', 
+                                    [
+                                        'class' => 'col-sm-4 control-label'
+                                    ]
+                                )
+                            }}
+                        
+                            <div class="col-sm-6">
+                                {{
+                                    Form::text(
+                                        'nama_pencacah', 
+                                        $responden->nama_pencacah, 
+                                        [
+                                            'class'       => 'form-control',
+                                            'placeholder' => 'Nama Pencacah'
+                                        ]
+                                    )
+                                }}
+                            </div>
+                        </div>   
+                        <div class="form-group">
+                            {{
+                                Form::label(
+                                    'tanggal_input', 
+                                    'Tanggal Input', 
+                                    [
+                                        'class' => 'col-sm-4 control-label'
+                                    ]
+                                )
+                            }}
+                        
+                            <div class="col-sm-6">
+                                {{
+                                    Form::text(
+                                        'tanggal_input', 
+                                        $responden->tanggal_input, 
+                                        [
+                                            'class'       => 'form-control datepicker',
+                                            'placeholder' => 'Tanggal Input'
+                                        ]
+                                    )
+                                }}
+                            </div>
+                        </div>      
+                        <div class="form-grup">
+                            <b>B. DATA RESPONDEN</b>
+                            <div class="col-sm-2"></div>
+                        </div>               
                         <div class="form-group @if ($errors->has('nama_responden')) has-error @endif">
                             {{
                                 Form::label(
@@ -418,7 +474,7 @@
                                     </div>
                                 @endforeach
                             </div>
-                        </div>
+                        </div>                                               
                       <div class="form-group">
                         <div class="col-sm-offset-4 col-sm-4">
                             <a href="{{ url('responden') }}" class="btn btn-link btn-sm">Batal</a>
@@ -431,4 +487,11 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    $(function () {
+        $('.datepicker').datetimepicker({
+            format: 'YYYY-MM-DD'
+        });
+    });
+</script>
 @endsection

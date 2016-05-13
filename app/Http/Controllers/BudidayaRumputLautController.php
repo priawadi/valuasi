@@ -75,7 +75,7 @@ class BudidayaRumputLautController extends Controller
         8  => 'Agustus',
         9  => 'September',
         10 => 'Oktober',
-        11 => 'Nopember',
+        11 => 'November',
         12 => 'Desember',
     ];
 

@@ -14,6 +14,7 @@
                 </ul>
                 <div class="panel-body">
                     {!! Form::open(array('url' => $action, 'class' => 'form-horizontal')) !!}
+                    <b>B. Usaha Budidaya Tambak</b>
                     <table class="table">
                         <thead>
                             <tr>
@@ -213,14 +214,10 @@
                                         )
                                     }}
                                 </td>
-                            </tr> 
-                            <tr>
-                                <td>9. Biaya Investasi</td>
-                                <td></td>
                             </tr>                                                   
                         </tbody>
                     </table>
-
+                    9. Biaya Investasi
                     <table class="table">
                         <thead>
                             <tr>
@@ -276,7 +273,7 @@
                             @endforeach
                         </tbody>
                     </table>    
-
+                    10. Biaya Variabel
                     <table class="table">
                         <thead>
                             <tr>
@@ -332,7 +329,7 @@
                             @endforeach
                         </tbody>
                     </table>       
-
+                    11. Biaya Tetap
                     <table class="table">
                         <thead>
                             <tr>
@@ -388,7 +385,7 @@
                             @endforeach
                         </tbody>
                     </table>    
-
+                    12. Hasil panen per-siklus
                     <table class="table">
                         <thead>
                             <tr>

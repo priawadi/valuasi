@@ -39,6 +39,7 @@ use App\BiayaWisata;
 use App\LokasiRumputLaut;
 use App\ProduksiRumputLaut;
 use App\DetilProduksi;
+use Carbon\Carbon;
 
 class RespondenController extends Controller
 {
@@ -157,6 +158,8 @@ class RespondenController extends Controller
         $responden->pendapatan          = $request->input('pendapatan', null);
         $responden->pekerjaan_utama     = $request->input('pekerjaan_utama', null);
         $responden->pekerjaan_sampingan = $request->input('pekerjaan_sampingan', null);
+        $responden->nama_pencacah       = $request->input('nama_pencacah', null);
+        $responden->tanggal_input       = Carbon::createFromFormat('Y-m-d', $request->input('tanggal_input', null)); 
 
 
         $responden->save();
@@ -220,6 +223,8 @@ class RespondenController extends Controller
         $responden->pendapatan          = $request->input('pendapatan', null);
         $responden->pekerjaan_utama     = $request->input('pekerjaan_utama', null);
         $responden->pekerjaan_sampingan = $request->input('pekerjaan_sampingan', null);
+        $responden->nama_pencacah       = $request->input('nama_pencacah', null);
+        $responden->tanggal_input       = Carbon::createFromFormat('Y-m-d', $request->input('tanggal_input', null));        
 
         $responden->save();
 
