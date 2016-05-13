@@ -1,6 +1,38 @@
 @extends('layouts.app')
 
 @section('content')
+<script type="text/javascript">
+    function show_modal(url)
+    {
+        form_delete.action = url;
+        $('#modal-delete').modal('show');
+
+    }
+</script>
+
+<div id="modal-delete" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        {!! Form::open(array('url' => '', 'class' => 'form-horizontal', 'method' => 'delete', 'name' => 'form_delete')) !!}
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Konfirmasi</h4>
+            </div>
+            <div class="modal-body">
+                <p>Apakah Anda yakin akan menghapus data ini?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                <button type="submit" class="btn btn-primary">Hapus</button>
+            </div>
+        </div>
+        {!! Form::close() !!}
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -37,7 +69,7 @@
                                 <td>
                                     <center>
                                         @if ($item['is_done'])
-                                            <a class="btn btn-danger btn-sm" href="{{url($item['link'])}}/hapus/{{$responden['id_responden']}}">Hapus</a>
+                                            <button type="button" onclick="show_modal('{{url($item['link'])}}/hapus/{{$responden['id_responden']}}')" class="btn btn-sm btn-danger">Hapus</button>
                                             <a class="btn btn-success btn-sm" href="{{url($item['link'])}}/edit/{{$responden['id_responden']}}">Edit</a>
                                         @else
                                             <a class="btn btn-primary btn-sm" href="{{url($item['link'])}}/tambah">Tambah</a>

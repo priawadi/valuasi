@@ -22,7 +22,7 @@ Route::post('/responden/tambah', 'RespondenController@store');
 Route::get('/responden/edit/{id_responden}', 'RespondenController@edit');
 Route::patch('/responden/edit/{id_responden}', 'RespondenController@update');
 Route::get('/responden/lihat/{id_responden}', 'RespondenController@detail');
-Route::get('/responden/hapus/{id_responden}', 'RespondenController@destroy');
+Route::delete('/responden/hapus/{id_responden}', 'RespondenController@destroy');
 
 // PEMBUDIDAYA IKAN
 // Informasi Umum
@@ -32,7 +32,7 @@ Route::post('/budidaya-keramba/info/tambah', 'BudidayaKerambaController@store');
 Route::get('/budidaya-keramba/info/edit/{id_responden}', 'BudidayaKerambaController@edit');
 Route::patch('/budidaya-keramba/info/edit/{id_responden}', 'BudidayaKerambaController@update');
 Route::get('/budidaya-keramba/info/lihat/{id_responden}', 'BudidayaKerambaController@detail');
-Route::get('/budidaya-keramba/info/hapus/{id_responden}', 'BudidayaKerambaController@destroy');
+Route::delete('/budidaya-keramba/info/hapus/{id_responden}', 'BudidayaKerambaController@destroy');
 
 // Tambak
 Route::get('/tambak', 'TambakController@index');
@@ -41,7 +41,7 @@ Route::post('/tambak/tambah', 'TambakController@store');
 Route::get('/tambak/edit/{id_responden}', 'TambakController@edit');
 Route::patch('/tambak/edit/{id_responden}', 'TambakController@update');
 Route::get('/tambak/lihat/{id_responden}', 'TambakController@detail');
-Route::get('/tambak/hapus/{id_responden}', 'TambakController@destroy');
+Route::delete('/tambak/hapus/{id_responden}', 'TambakController@destroy');
 
 // Existence Value
 Route::get('/eval', 'EvalController@index');
@@ -50,7 +50,7 @@ Route::post('/eval/tambah', 'EvalController@store');
 Route::get('/eval/edit/{id_responden}', 'EvalController@edit');
 Route::patch('/eval/edit/{id_responden}', 'EvalController@update');
 Route::get('/eval/lihat/{id_responden}', 'EvalController@detail');
-Route::get('/eval/hapus/{id_responden}', 'EvalController@destroy');
+Route::delete('/eval/hapus/{id_responden}', 'EvalController@destroy');
 
 // Pemanfaatan Kayu
 Route::get('/kayu', 'KayuController@index');
@@ -59,7 +59,7 @@ Route::post('/kayu/tambah', 'KayuController@store');
 Route::get('/kayu/edit/{id_responden}', 'KayuController@edit');
 Route::patch('/kayu/edit/{id_responden}', 'KayuController@update');
 Route::get('/kayu/lihat/{id_responden}', 'KayuController@detail');
-Route::get('/kayu/hapus/{id_responden}', 'KayuController@destroy');
+Route::delete('/kayu/hapus/{id_responden}', 'KayuController@destroy');
 
 // Pencari Satwa
 Route::get('/satwa', 'PencariSatwaController@index');
@@ -68,6 +68,7 @@ Route::post('/satwa/tambah', 'PencariSatwaController@store');
 Route::get('/satwa/edit/{id_responden}', 'PencariSatwaController@edit');
 Route::patch('/satwa/edit/{id_responden}', 'PencariSatwaController@update');
 Route::get('/satwa/lihat/{id_responden}', 'PencariSatwaController@detail');
+Route::delete('/satwa/hapus/{id_responden}', 'PencariSatwaController@destroy');
 
 // Nelayan
 Route::get('/nelayan', 'NelayanController@index');
@@ -76,7 +77,7 @@ Route::post('/nelayan/tambah', 'NelayanController@store');
 Route::get('/nelayan/edit/{id_responden}', 'NelayanController@edit');
 Route::patch('/nelayan/edit/{id_responden}', 'NelayanController@update');
 Route::get('/nelayan/lihat/{id_responden}', 'NelayanController@detail');
-Route::get('/nelayan/hapus/{id_responden}', 'NelayanController@destroy');
+Route::delete('/nelayan/hapus/{id_responden}', 'NelayanController@destroy');
 
 // Valuasi Wisata
 Route::get('/wisata', 'WisataController@index');
@@ -85,6 +86,7 @@ Route::post('/wisata/tambah', 'WisataController@store');
 Route::get('/wisata/edit/{id_responden}', 'WisataController@edit');
 Route::patch('/wisata/edit/{id_responden}', 'WisataController@update');
 Route::get('/wisata/lihat/{id_responden}', 'WisataController@detail');
+Route::delete('/wisata/hapus/{id_responden}', 'WisataController@destroy');
 
 // Buydidaya Rumput Laut
 Route::get('/budidaya-rumput-laut', 'BudidayaRumputLautController@index');
@@ -93,4 +95,4 @@ Route::post('/budidaya-rumput-laut/tambah', 'BudidayaRumputLautController@store'
 Route::get('/budidaya-rumput-laut/edit/{id_responden}', 'BudidayaRumputLautController@edit');
 Route::patch('/budidaya-rumput-laut/edit/{id_responden}', 'BudidayaRumputLautController@update');
 Route::get('/budidaya-rumput-laut/lihat/{id_responden}', 'BudidayaRumputLautController@detail');
-Route::get('/budidaya-rumput-laut/hapus/{id_responden}', 'BudidayaRumputLautController@destroy');
+Route::delete('/budidaya-rumput-laut/hapus/{id_responden}', 'BudidayaRumputLautController@destroy');
