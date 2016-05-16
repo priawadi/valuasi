@@ -331,7 +331,7 @@
                                     </td>
                                     <td>
                                         Jenis Transportasi yang Digunakan:
-                                        @foreach ($opsi_perjalanan[1] as $id_opsi => $opsi)
+                                        @foreach ($opsi_perjalanan[3] as $id_opsi => $opsi)
                                             <div class="radio">
                                                 <label>
                                                     {{
