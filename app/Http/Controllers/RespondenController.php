@@ -483,17 +483,17 @@ class RespondenController extends Controller
                 $item['telepon'],
                 $item['alamat'],
                 $item['umur'],
-                $this->jenis_kelamin[$item['jenis_kelamin']],
-                $this->pendidikan[$item['pendidikan']],
+                isset($this->jenis_kelamin[$item['jenis_kelamin']])? $this->jenis_kelamin[$item['jenis_kelamin']]: null,
+                isset($this->pendidikan[$item['pendidikan']])? $this->pendidikan[$item['pendidikan']]: null,
                 $item['lama_pendidikan'],
-                $this->status_kawin[$item['stat_kawin']],
+                isset($this->status_kawin[$item['stat_kawin']])? $this->status_kawin[$item['stat_kawin']]: null,
                 $item['jum_ang_kel_total'],
                 $item['jum_ang_kel_anak'],
                 $item['jum_ang_kel_dewasa'],
-                $this->status_keluarga[$item['stat_keluarga']],
-                $this->jenis_pendapatan[$item['pendapatan']],
-                $this->pekerjaan[$item['pekerjaan_utama']],
-                $this->pekerjaan[$item['pekerjaan_sampingan']],
+                isset($this->status_keluarga[$item['stat_keluarga']])? $this->status_keluarga[$item['stat_keluarga']]: null,
+                isset($this->jenis_pendapatan[$item['pendapatan']])? $this->jenis_pendapatan[$item['pendapatan']]: null,
+                isset($this->pekerjaan[$item['pekerjaan_utama']])? $this->pekerjaan[$item['pekerjaan_utama']]: null,
+                isset($this->pekerjaan[$item['pekerjaan_sampingan']])? $this->pekerjaan[$item['pekerjaan_sampingan']]: null,
             ]);
             $merge_data = array_merge($merge_data, $this->get_keramba($item->id_responden));
             $data[] = $merge_data;
@@ -543,22 +543,22 @@ class RespondenController extends Controller
             8 => 'Udang',
         ];
         $budidaya_keramba = BudidayaKeramba::where('id_responden', $id_responden)->first();
-        $jenis_komunitas = explode(',', $budidaya_keramba->jenis_komoditas);
+        $komoditas = explode(',', $budidaya_keramba->jenis_komoditas);
         $keramba = [
             $budidaya_keramba->lama_usaha,
-            $status_usaha[$budidaya_keramba->status_usaha],
+            isset($status_usaha[$budidaya_keramba->status_usaha])? $status_usaha[$budidaya_keramba->status_usaha]: $status_usaha[$budidaya_keramba->status_usaha],
             $budidaya_keramba->mapen_sblm_keramba,
             $budidaya_keramba->luas_lahan,
             $budidaya_keramba->keramba_total,
             $budidaya_keramba->keramba_aktif,
             $budidaya_keramba->keramba_tidak_aktif,
-            in_array('1', $jenis_komunitas)? 'Ya': 'Tidak',
-            in_array('2', $jenis_komunitas)? 'Ya': 'Tidak',
-            in_array('3', $jenis_komunitas)? 'Ya': 'Tidak',
-            in_array('4', $jenis_komunitas)? 'Ya': 'Tidak',
-            in_array('5', $jenis_komunitas)? 'Ya': 'Tidak',
-            in_array('6', $jenis_komunitas)? 'Ya': 'Tidak',
-            in_array('7', $jenis_komunitas)? 'Ya': 'Tidak',
+            in_array('1', $komoditas)? 'Ya': 'Tidak',
+            in_array('2', $komoditas)? 'Ya': 'Tidak',
+            in_array('3', $komoditas)? 'Ya': 'Tidak',
+            in_array('4', $komoditas)? 'Ya': 'Tidak',
+            in_array('5', $komoditas)? 'Ya': 'Tidak',
+            in_array('6', $komoditas)? 'Ya': 'Tidak',
+            in_array('7', $komoditas)? 'Ya': 'Tidak',
             $budidaya_keramba->waktu_pemeliharaan,
             $budidaya_keramba->jum_siklus_panen,
         ];
