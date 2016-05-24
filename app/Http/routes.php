@@ -23,6 +23,8 @@ Route::get('/responden/edit/{id_responden}', 'RespondenController@edit');
 Route::patch('/responden/edit/{id_responden}', 'RespondenController@update');
 Route::get('/responden/lihat/{id_responden}', 'RespondenController@detail');
 Route::delete('/responden/hapus/{id_responden}', 'RespondenController@destroy');
+Route::get('/export', 'RespondenController@export');
+Route::get('/export_to_excel/{kuesioner}', 'RespondenController@export_to_excel');
 
 // PEMBUDIDAYA IKAN
 // Informasi Umum

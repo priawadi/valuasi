@@ -40,6 +40,7 @@ use App\LokasiRumputLaut;
 use App\ProduksiRumputLaut;
 use App\DetilProduksi;
 use Carbon\Carbon;
+use Excel;
 
 class RespondenController extends Controller
 {
@@ -371,5 +372,221 @@ class RespondenController extends Controller
             'responden'  => Responden::find($id_responden),
             'kuesioner'  => $kuesioner,
         ]);
+    }
+
+    public function export(Request $request)
+    {
+        // Excel::create('Filename', function($excel) {
+
+        //     // Our first sheet
+        //     $excel->sheet('First sheet', function($sheet) {
+        //         $sheet->fromArray(
+        //             [
+        //                 ['data1', 'data2'],
+        //                 ['data3', 'data4']
+        //             ]
+        //         );
+        //     });
+
+        //     // Our second sheet
+        //     $excel->sheet('Second sheet', function($sheet) {
+
+        //     });
+
+        // })->export('xls');
+        // 
+        $kuesioner = [];
+
+        // EOP Pembudidaya Ikan
+        $kuesioner['vanelkanas'] = [
+            [
+                'no'        => 'A',
+                'kuesioner' => 'PEMBUDIDAYA IKAN',
+                'link'      => 'keramba',
+            ],
+            [
+                'no'        => 'B',
+                'kuesioner' => 'PETAMBAK',
+                'link'      => 'tambak',
+            ],
+            [
+                'no'        => 'C',
+                'kuesioner' => 'EXISTENCE VALUE)',
+                'link'      => 'eval',
+            ],
+            [
+                'no'        => 'D',
+                'kuesioner' => 'VALUASI PEMANFAAT KAYU',
+                'link'      => 'kayu',
+            ],
+            [
+                'no'        => 'E',
+                'kuesioner' => 'VALUASI PENCARI SATWA',
+                'link'      => 'satwa',
+            ],
+            [
+                'no'        => 'F',
+                'kuesioner' => 'VALUASI TERUMBU KARANG',
+                'link'      => 'nelayan',
+            ],
+            [
+                'no'        => 'G',
+                'kuesioner' => 'VALUASI WISATA',
+                'link'      => 'wisata',
+            ],
+            [
+                'no'        => 'H',
+                'kuesioner' => 'BUDIDAYA RUMPUT LAUT',
+                'link'      => 'budidaya-rumput-laut',
+            ],
+        ];
+        
+        
+        return view('responden.export', [
+            'kuesioner'  => $kuesioner,
+        ]);
+    }
+
+    public function export_to_excel(Request $request, $kuesioner)
+    {
+        $data = [];
+
+        // Set column Reponden
+        $columns = [
+            'Nama', 
+            'NoKontak', 
+            'Alamat', 
+            'Umur', 
+            'JenisKelamin', 
+            'Pendidikan', 
+            'LamaPendidikan', 
+            'StatusPerkawinan', 
+            'JumlahAnggotaKeluarga', 
+            'Anak_anak', 
+            'Dewasa', 
+            'StatusDalamKeluarga', 
+            'PendapatanRumahTangga', 
+            'PekerjaanUtama', 
+            'PekerjaanSampingan'];
+
+        // Keramba
+        // if ($kuesioner == 'keramba')
+        $columns = array_merge($columns, $this->get_column_keramba());
+        
+        $data[] = $columns;
+
+        foreach (Responden::all() as $index => $item) {
+            $merge_data = [];
+            // Responden
+            $merge_data = array_merge($merge_data, [
+                $item['nama'],
+                $item['telepon'],
+                $item['alamat'],
+                $item['umur'],
+                $this->jenis_kelamin[$item['jenis_kelamin']],
+                $this->pendidikan[$item['pendidikan']],
+                $item['lama_pendidikan'],
+                $this->status_kawin[$item['stat_kawin']],
+                $item['jum_ang_kel_total'],
+                $item['jum_ang_kel_anak'],
+                $item['jum_ang_kel_dewasa'],
+                $this->status_keluarga[$item['stat_keluarga']],
+                $this->jenis_pendapatan[$item['pendapatan']],
+                $this->pekerjaan[$item['pekerjaan_utama']],
+                $this->pekerjaan[$item['pekerjaan_sampingan']],
+            ]);
+            $merge_data = array_merge($merge_data, $this->get_keramba($item->id_responden));
+            $data[] = $merge_data;
+        }
+
+        // print_r($data);
+        Excel::create($kuesioner, function($excel) use($data){
+            // Our first sheet
+            $excel->sheet('First sheet', function($sheet) use($data){
+                
+                $sheet->fromArray(
+                    $data,
+                    null,
+                    'A1',
+                    false,
+                    false
+                );
+
+
+                // Set format of cell
+                $sheet->row(1, function($row) {
+                    // call cell manipulation methods
+                    $row->setFontWeight('bold');
+
+                });
+            });
+
+        })->export('xls');
+    }
+
+    public function get_keramba($id_responden)
+    {
+        $status_usaha = [
+            1 => 'Pemilik',
+            2 => 'Penggarap',
+            3 => 'Penyewa',
+        ]; 
+
+        $jenis_komoditas = [
+            1 => 'Kerapu Macam',
+            2 => 'Kerapu Bebek/Kerapu Tikus',
+            3 => 'Kerapu Sunu',
+            4 => 'Kerapu Lodi',
+            5 => 'Kerapu Sunu',
+            6 => 'Kerapu Lobster Pasir',
+            7 => 'Lobster Mutiara',
+            8 => 'Udang',
+        ];
+        $budidaya_keramba = BudidayaKeramba::where('id_responden', $id_responden)->first();
+        $jenis_komunitas = explode(',', $budidaya_keramba->jenis_komoditas);
+        $keramba = [
+            $budidaya_keramba->lama_usaha,
+            $status_usaha[$budidaya_keramba->status_usaha],
+            $budidaya_keramba->mapen_sblm_keramba,
+            $budidaya_keramba->luas_lahan,
+            $budidaya_keramba->keramba_total,
+            $budidaya_keramba->keramba_aktif,
+            $budidaya_keramba->keramba_tidak_aktif,
+            in_array('1', $jenis_komunitas)? 'Ya': 'Tidak',
+            in_array('2', $jenis_komunitas)? 'Ya': 'Tidak',
+            in_array('3', $jenis_komunitas)? 'Ya': 'Tidak',
+            in_array('4', $jenis_komunitas)? 'Ya': 'Tidak',
+            in_array('5', $jenis_komunitas)? 'Ya': 'Tidak',
+            in_array('6', $jenis_komunitas)? 'Ya': 'Tidak',
+            in_array('7', $jenis_komunitas)? 'Ya': 'Tidak',
+            $budidaya_keramba->waktu_pemeliharaan,
+            $budidaya_keramba->jum_siklus_panen,
+        ];
+
+
+        return $keramba;
+    }
+
+    public function get_column_keramba()
+    {
+        return 
+        [
+            'LamaUsaha',
+            'StatusUsaha',
+            'MataPencaharianSebelum',
+            'LuasLahanBudidaya',
+            'JumlahTotalKeramba',
+            'JumlahKerambaAktif',
+            'JumlahKerambaTidakAktif',
+            'Komoditas_Kerapu_Macam',
+            'Komoditas_Kerapu_Bebek',
+            'Komoditas_Kerapu_Sunu',
+            'Komoditas_Kerapu_Lodi',
+            'Komoditas_Lobster_Pasir',
+            'Komoditas_Lobster_Mutiara',
+            'Komoditas_Udang',
+            'WaktuPemeliharaan',
+            'JumlahPanen',
+        ];
     }
 }
