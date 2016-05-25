@@ -35,6 +35,7 @@ Route::get('/budidaya-keramba/info/edit/{id_responden}', 'BudidayaKerambaControl
 Route::patch('/budidaya-keramba/info/edit/{id_responden}', 'BudidayaKerambaController@update');
 Route::get('/budidaya-keramba/info/lihat/{id_responden}', 'BudidayaKerambaController@detail');
 Route::delete('/budidaya-keramba/info/hapus/{id_responden}', 'BudidayaKerambaController@destroy');
+Route::get('/budidaya-keramba/info/export', 'BudidayaKerambaController@export');
 
 // Tambak
 Route::get('/tambak', 'TambakController@index');

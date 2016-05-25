@@ -402,42 +402,42 @@ class RespondenController extends Controller
             [
                 'no'        => 'A',
                 'kuesioner' => 'PEMBUDIDAYA IKAN',
-                'link'      => 'keramba',
+                'link'      => 'budidaya-keramba/info/export',
             ],
             [
                 'no'        => 'B',
                 'kuesioner' => 'PETAMBAK',
-                'link'      => 'tambak',
+                'link'      => 'tambak/export',
             ],
             [
                 'no'        => 'C',
                 'kuesioner' => 'EXISTENCE VALUE)',
-                'link'      => 'eval',
+                'link'      => 'eval/export',
             ],
             [
                 'no'        => 'D',
                 'kuesioner' => 'VALUASI PEMANFAAT KAYU',
-                'link'      => 'kayu',
+                'link'      => 'kayu/export',
             ],
             [
                 'no'        => 'E',
                 'kuesioner' => 'VALUASI PENCARI SATWA',
-                'link'      => 'satwa',
+                'link'      => 'satwa/export',
             ],
             [
                 'no'        => 'F',
                 'kuesioner' => 'VALUASI TERUMBU KARANG',
-                'link'      => 'nelayan',
+                'link'      => 'nelayan/export',
             ],
             [
                 'no'        => 'G',
                 'kuesioner' => 'VALUASI WISATA',
-                'link'      => 'wisata',
+                'link'      => 'wisata/export',
             ],
             [
                 'no'        => 'H',
                 'kuesioner' => 'BUDIDAYA RUMPUT LAUT',
-                'link'      => 'budidaya-rumput-laut',
+                'link'      => 'budidaya-rumput-laut/export',
             ],
         ];
         

@@ -27,7 +27,7 @@
                                 <td>{{$item['kuesioner']}}</td>
                                 <td>
                                     <center>
-                                        <a class="btn btn-primary btn-sm" href="{{url('export_to_excel/' . $item['link'])}}">Export</a>
+                                        <a class="btn btn-primary btn-sm" href="{{url($item['link'])}}">Export</a>
                                     </center>
                                 </td>
                             </tr>
