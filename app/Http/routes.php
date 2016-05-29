@@ -99,3 +99,8 @@ Route::get('/budidaya-rumput-laut/edit/{id_responden}', 'BudidayaRumputLautContr
 Route::patch('/budidaya-rumput-laut/edit/{id_responden}', 'BudidayaRumputLautController@update');
 Route::get('/budidaya-rumput-laut/lihat/{id_responden}', 'BudidayaRumputLautController@detail');
 Route::delete('/budidaya-rumput-laut/hapus/{id_responden}', 'BudidayaRumputLautController@destroy');
+
+Route::controller('datatables', 'RespondenController', [
+    'anyData'  => 'datatables.data',
+    'getIndex' => 'responden',
+]);

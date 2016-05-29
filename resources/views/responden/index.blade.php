@@ -48,7 +48,7 @@
                 <div class="panel-body">
                     <a href="{{url('responden/tambah')}}" class="btn btn-warning btn-sm"><i class="glyphicon glyphicon-plus"></i> Tambah</a>
                     <br><br>
-                    <table class="table table-bordered">
+                    <table class="table table-bordered" id="responden-table">
                         <thead> 
                             <tr> 
                                 <th>#</th> 
@@ -58,7 +58,7 @@
                             </tr> 
                         </thead> 
                         <tbody> 
-                            @foreach ($responden as $index => $item)
+<!--                             @foreach ($responden as $index => $item)
                             <tr> 
                                 <th scope="row">{{ $index + 1 }}</th> 
                                 <td>{{$item->nama}}</td> 
@@ -69,7 +69,7 @@
                                     <a href="{{url('responden/lihat/' . $item->id_responden)}}" title="Lihat data responden"><i class="glyphicon glyphicon-file"></i></a>
                                 </td> 
                             </tr>
-                            @endforeach
+                            @endforeach -->
                         </tbody> 
                     </table>
                 </div>
@@ -77,4 +77,24 @@
         </div>
     </div>
 </div>
+
+<script>
+$(function() {
+    $('#responden-table').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: '{!! route('datatables.data') !!}',
+        columns: [
+            { data: 'id_responden', name: 'id_responden' },
+            { data: 'nama', name: 'nama' },
+            { data: 'telepon', name: 'telepon' },
+            { data: null, orderable: false, searchable: false, 
+             render: function(data, type, full) {
+                return '<a class="btn btn-danger btn-sm" onclick=show_modal(responden/hapus/'+ full.id_responden +')>' + 'Hapus' + '</a> <a class="btn btn-info btn-sm" href=responden/edit/' + full.id_responden + '>' + 'Edit' + '</a> <a class="btn btn-primary btn-sm" href=responden/lihat/' + full.id_responden + '>' + 'Isi Kuesioner' + '</a>';
+            }}
+        ],
+    });
+});
+</script>
 @endsection
+

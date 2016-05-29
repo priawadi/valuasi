@@ -41,6 +41,7 @@ use App\ProduksiRumputLaut;
 use App\DetilProduksi;
 use Carbon\Carbon;
 use Excel;
+use Yajra\Datatables\Datatables;
 
 class RespondenController extends Controller
 {
@@ -373,6 +374,11 @@ class RespondenController extends Controller
             'kuesioner'  => $kuesioner,
         ]);
     }
+
+    public function anyData()
+    {
+        return Datatables::of(Responden::query())->make(true);
+    }    
 
     public function export(Request $request)
     {
