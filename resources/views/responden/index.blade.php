@@ -51,9 +51,10 @@
                     <table class="table table-bordered" id="responden-table">
                         <thead> 
                             <tr> 
-                                <th>#</th> 
+                                <!-- <th>#</th>  -->
                                 <th>Nama Responden</th> 
                                 <th>Telepon</th> 
+                                <th>Alamat</th> 
                                 <th>Aksi</th> 
                             </tr> 
                         </thead> 
@@ -79,21 +80,29 @@
 </div>
 
 <script>
-$(function() {
-    $('#responden-table').DataTable({
+$(document).ready(function() {
+    $.fn.dataTable.ext.errMode = 'throw';
+    var t = $('#responden-table').DataTable({
         processing: true,
         serverSide: true,
         ajax: '{!! route('datatables.data') !!}',
         columns: [
-            { data: 'id_responden', name: 'id_responden' },
+            // { data: null, searchable: false, orderable: false, targets: 0 },
             { data: 'nama', name: 'nama' },
             { data: 'telepon', name: 'telepon' },
+            { data: 'alamat', name: 'alamat' },
             { data: null, orderable: false, searchable: false, 
              render: function(data, type, full) {
-                return '<a class="btn btn-danger btn-sm" onclick=show_modal(responden/hapus/'+ full.id_responden +')>' + 'Hapus' + '</a> <a class="btn btn-info btn-sm" href=responden/edit/' + full.id_responden + '>' + 'Edit' + '</a> <a class="btn btn-primary btn-sm" href=responden/lihat/' + full.id_responden + '>' + 'Isi Kuesioner' + '</a>';
+                return '<a class="btn btn-danger btn-sm" onclick="show_modal(\'responden/hapus/'+ full.id_responden +'\',\''+ full.nama +'\')">' + 'Hapus' + '</a> <a class="btn btn-info btn-sm" href=responden/edit/' + full.id_responden + '>' + 'Edit' + '</a> <a class="btn btn-primary btn-sm" href=responden/lihat/' + full.id_responden + '>' + 'Isi Kuesioner' + '</a>';
             }}
         ],
+        // order: [[1, 'asc']],
     });
+    // t.on( 'order.dt search.dt', function () {
+    //     t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+    //         cell.innerHTML = i+1;
+    //     } );
+    // } ).draw();    
 });
 </script>
 @endsection
