@@ -274,10 +274,13 @@ class WisataController extends Controller
     public function update(Request $request, $id)
     {
         // Save motivasi responden: jawaban
-        foreach ($request->input('jawaban') as $id_motivasi_responden => $value1) {
-            $motivasi          = MotivasiResponden::find($id_motivasi_responden);
-            $motivasi->jawaban = $request->input('jawaban.' . $id_motivasi_responden, null);
-            $motivasi->save();
+        if($request->input('jawaban'))
+        {
+            foreach ($request->input('jawaban') as $id_motivasi_responden => $value1) {
+                $motivasi          = MotivasiResponden::find($id_motivasi_responden);
+                $motivasi->jawaban = $request->input('jawaban.' . $id_motivasi_responden, null);
+                $motivasi->save();
+            }
         }
 
         // Save motivasi responden: jawaban
@@ -288,13 +291,16 @@ class WisataController extends Controller
         }
         
         // Save persepsi responden
-        foreach ($request->input('persepsi_responden.jumlah') as $id_persepsi_responden => $item) {
-            $persepsi                         = PersepsiResponden::find($id_persepsi_responden);
-            $persepsi->ketersediaan           = $request->input('persepsi_responden.ketersediaan.' . $id_persepsi_responden, null);;
-            $persepsi->jumlah                 = $request->input('persepsi_responden.jumlah.' . $id_persepsi_responden, null);
-            $persepsi->kondisi                = $request->input('persepsi_responden.kondisi.' . $id_persepsi_responden, null);
+        if ($request->input('persepsi_responden.jumlah'))
+        {
+            foreach ($request->input('persepsi_responden.jumlah') as $id_persepsi_responden => $item) {
+                $persepsi                         = PersepsiResponden::find($id_persepsi_responden);
+                $persepsi->ketersediaan           = $request->input('persepsi_responden.ketersediaan.' . $id_persepsi_responden, null);;
+                $persepsi->jumlah                 = $request->input('persepsi_responden.jumlah.' . $id_persepsi_responden, null);
+                $persepsi->kondisi                = $request->input('persepsi_responden.kondisi.' . $id_persepsi_responden, null);
 
-            $persepsi->save();
+                $persepsi->save();
+            }
         }
 
         $perjalanan                     = BiayaPerjalanan::where('id_responden', $id)->first();
