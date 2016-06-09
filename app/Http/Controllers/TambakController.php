@@ -10,15 +10,17 @@ use App\MasterBiaya;
 use App\Biaya;
 use App\HasilPanen;
 use App\MasterKomoditas;
+use App\Responden;
+use Excel;
 
 class TambakController extends Controller
 {
 
         var $jenis_komoditas_tambak = [
-            1 => 'Udang Vaname',
-            2 => 'Udang Windu',
-            3 => 'Bandeng',
-            4 => 'Kepiting/Rajungan'
+            8  => 'Udang Vaname',
+            9  => 'Udang Windu',
+            10 => 'Bandeng',
+            11 => 'Kepiting/Rajungan'
         ];
 
     /**
@@ -364,6 +366,7 @@ class TambakController extends Controller
             13 => 'Lainnya',
         ];
 
+        $master_komoditas    = MasterKomoditas::where('kateg_modul', \Config::get('constants.MODULE.TAMBAK'))->get();
         $master_biaya_invest = MasterBiaya::where('kateg_modul', \Config::get('constants.MODULE.TAMBAK'))->where('kateg_biaya', \Config::get('constants.BIAYA.INVESTASI'))->get();
         $master_biaya_var    = MasterBiaya::where('kateg_modul', \Config::get('constants.MODULE.TAMBAK'))->where('kateg_biaya', \Config::get('constants.BIAYA.VARIABEL'))->get();
         $master_biaya_tetap  = MasterBiaya::where('kateg_modul', \Config::get('constants.MODULE.TAMBAK'))->where('kateg_biaya', \Config::get('constants.BIAYA.TETAP'))->get();
@@ -392,61 +395,59 @@ class TambakController extends Controller
         $columns = array_merge($columns, $this->get_column_tambak($master_biaya_invest, $master_biaya_var, $master_biaya_tetap, $this->jenis_komoditas_tambak));
         
         $data[] = $columns;
-        print_r($data);
-        die();
+        
+        foreach (Responden::all() as $index => $item) {
+            $merge_data = [];
+            // Responden
+            $merge_data = array_merge($merge_data, [
+                $item['nama'],
+                $item['telepon'],
+                $item['alamat'],
+                $item['umur'],
+                isset($jenis_kelamin[$item['jenis_kelamin']])? $jenis_kelamin[$item['jenis_kelamin']]: null,
+                isset($pendidikan[$item['pendidikan']])? $pendidikan[$item['pendidikan']]: null,
+                $item['lama_pendidikan'],
+                isset($status_kawin[$item['stat_kawin']])? $status_kawin[$item['stat_kawin']]: null,
+                $item['jum_ang_kel_total'],
+                $item['jum_ang_kel_anak'],
+                $item['jum_ang_kel_dewasa'],
+                isset($status_keluarga[$item['stat_keluarga']])? $status_keluarga[$item['stat_keluarga']]: null,
+                isset($jenis_pendapatan[$item['pendapatan']])? $jenis_pendapatan[$item['pendapatan']]: null,
+                isset($pekerjaan[$item['pekerjaan_utama']])? $pekerjaan[$item['pekerjaan_utama']]: null,
+                isset($pekerjaan[$item['pekerjaan_sampingan']])? $pekerjaan[$item['pekerjaan_sampingan']]: null,
+            ]);
 
-        // foreach (Responden::all() as $index => $item) {
-        //     $merge_data = [];
-        //     // Responden
-        //     $merge_data = array_merge($merge_data, [
-        //         $item['nama'],
-        //         $item['telepon'],
-        //         $item['alamat'],
-        //         $item['umur'],
-        //         isset($jenis_kelamin[$item['jenis_kelamin']])? $jenis_kelamin[$item['jenis_kelamin']]: null,
-        //         isset($pendidikan[$item['pendidikan']])? $pendidikan[$item['pendidikan']]: null,
-        //         $item['lama_pendidikan'],
-        //         isset($status_kawin[$item['stat_kawin']])? $status_kawin[$item['stat_kawin']]: null,
-        //         $item['jum_ang_kel_total'],
-        //         $item['jum_ang_kel_anak'],
-        //         $item['jum_ang_kel_dewasa'],
-        //         isset($status_keluarga[$item['stat_keluarga']])? $status_keluarga[$item['stat_keluarga']]: null,
-        //         isset($jenis_pendapatan[$item['pendapatan']])? $jenis_pendapatan[$item['pendapatan']]: null,
-        //         isset($pekerjaan[$item['pekerjaan_utama']])? $pekerjaan[$item['pekerjaan_utama']]: null,
-        //         isset($pekerjaan[$item['pekerjaan_sampingan']])? $pekerjaan[$item['pekerjaan_sampingan']]: null,
-        //     ]);
+            // Budidaya Tambak
+            $merge_data = array_merge($merge_data, $this->get_data($item['id_responden'], $master_biaya_invest, $master_biaya_var, $master_biaya_tetap, $this->jenis_komoditas_tambak));
+            $data[]     = $merge_data;
+        }
 
-        //     // Budidata keramba
-        //     $merge_data = array_merge($merge_data, $this->get_keramba($item['id_responden'], $master_biaya_invest, $master_biaya_var, $master_biaya_tetap, $jenis_komoditas));
-        //     $data[]     = $merge_data;
-        // }
-
-        // // print_r($data);
-        // Excel::create('Keramba', function($excel) use($data){
-        //     // Our first sheet
-        //     $excel->sheet('First sheet', function($sheet) use($data){
+        // print_r($data);
+        Excel::create('Tambak', function($excel) use($data){
+            // Our first sheet
+            $excel->sheet('Sheet1', function($sheet) use($data){
                 
-        //         $sheet->fromArray(
-        //             $data,
-        //             null,
-        //             'A1',
-        //             false,
-        //             false
-        //         );
+                $sheet->fromArray(
+                    $data,
+                    null,
+                    'A1',
+                    false,
+                    false
+                );
 
 
-        //         // Set format of cell
-        //         $sheet->row(1, function($row) {
-        //             // call cell manipulation methods
-        //             $row->setFontWeight('bold');
+                // Set format of cell
+                $sheet->row(1, function($row) {
+                    // call cell manipulation methods
+                    $row->setFontWeight('bold');
 
-        //         });
-        //     });
+                });
+            });
 
-        // })->export('xls');
+        })->export('xls');
     }
 
-    public function get_keramba($id_responden, $master_biaya_invest, $master_biaya_var, $master_biaya_tetap)
+    public function get_data($id_responden, $master_biaya_invest, $master_biaya_var, $master_biaya_tetap)
     {
         $status_usaha = [
             1 => 'Pemilik',
@@ -454,30 +455,32 @@ class TambakController extends Controller
             3 => 'Penyewa',
         ]; 
 
-        $budidaya_keramba = BudidayaKeramba::where('id_responden', $id_responden)->first();
-        $komoditas = explode(',', $budidaya_keramba->jenis_komoditas);
-        $keramba = [
-            $budidaya_keramba->lama_usaha,
-            isset($status_usaha[$budidaya_keramba->status_usaha])? $status_usaha[$budidaya_keramba->status_usaha]: $status_usaha[$budidaya_keramba->status_usaha],
-            $budidaya_keramba->mapen_sblm_keramba,
-            $budidaya_keramba->luas_lahan,
-            $budidaya_keramba->keramba_total,
-            $budidaya_keramba->keramba_aktif,
-            $budidaya_keramba->keramba_tidak_aktif,
-            in_array('1', $komoditas)? 'Ya': 'Tidak',
-            in_array('2', $komoditas)? 'Ya': 'Tidak',
-            in_array('3', $komoditas)? 'Ya': 'Tidak',
-            in_array('4', $komoditas)? 'Ya': 'Tidak',
-            in_array('5', $komoditas)? 'Ya': 'Tidak',
-            in_array('6', $komoditas)? 'Ya': 'Tidak',
-            in_array('7', $komoditas)? 'Ya': 'Tidak',
-            $budidaya_keramba->waktu_pemeliharaan,
-            $budidaya_keramba->jum_siklus_panen,
+        $status_kepem_tambak = [
+            1 => 'Milik Sendiri',
+            2 => 'Sewa',
+            3 => 'Bagi Hasil',
+        ]; 
+
+        $tambak = Tambak::where('id_responden', $id_responden)->first();
+        $komoditas = explode(',', $tambak->jenis_komoditas_tambak);
+
+        $column_data = [
+            $tambak->lama_tambak,
+            isset($status_usaha[$tambak->status_tambak])? $status_usaha[$tambak->status_tambak]: $status_usaha[$tambak->status_tambak],
+            $tambak->mapen_sblm_tambak,
+            $tambak->luas_tambak,
+            isset($status_kepem_tambak[$tambak->status_kepem_tambak])? $status_kepem_tambak[$tambak->status_kepem_tambak]: $status_kepem_tambak[$tambak->status_kepem_tambak],
+            in_array(8, $komoditas)? 'Ya': 'Tidak',
+            in_array(9, $komoditas)? 'Ya': 'Tidak',
+            in_array(10, $komoditas)? 'Ya': 'Tidak',
+            in_array(11, $komoditas)? 'Ya': 'Tidak',
+            $tambak->waktu_pemeliharaan_tambak,
+            $tambak->jum_panen_tambak,
         ];
 
         // data biaya investasi
         $jwb_biaya_invest = [];
-        foreach (Biaya::where('id_responden', $id_responden)->where('kateg_modul', \Config::get('constants.MODULE.KERAMBA'))->where('kateg_biaya', \Config::get('constants.BIAYA.INVESTASI'))->get() as $idx => $item) {
+        foreach (Biaya::where('id_responden', $id_responden)->where('kateg_modul', \Config::get('constants.MODULE.TAMBAK'))->where('kateg_biaya', \Config::get('constants.BIAYA.INVESTASI'))->get() as $idx => $item) {
             $jwb_biaya_invest[$item->id_master_biaya] = 
             [
                 'id_biaya'     => $item->id_biaya,
@@ -489,7 +492,7 @@ class TambakController extends Controller
 
         // data biaya variabel
         $jwb_biaya_var = [];
-        foreach (Biaya::where('id_responden', $id_responden)->where('kateg_modul', \Config::get('constants.MODULE.KERAMBA'))->where('kateg_biaya', \Config::get('constants.BIAYA.VARIABEL'))->get() as $idx => $item) {
+        foreach (Biaya::where('id_responden', $id_responden)->where('kateg_modul', \Config::get('constants.MODULE.TAMBAK'))->where('kateg_biaya', \Config::get('constants.BIAYA.VARIABEL'))->get() as $idx => $item) {
             $jwb_biaya_var[$item->id_master_biaya] = 
             [
                 'id_biaya'     => $item->id_biaya,
@@ -501,7 +504,7 @@ class TambakController extends Controller
 
         // data biaya tetap
         $jwb_biaya_tetap = [];
-        foreach (Biaya::where('id_responden', $id_responden)->where('kateg_modul', \Config::get('constants.MODULE.KERAMBA'))->where('kateg_biaya', \Config::get('constants.BIAYA.TETAP'))->get() as $idx => $item) {
+        foreach (Biaya::where('id_responden', $id_responden)->where('kateg_modul', \Config::get('constants.MODULE.TAMBAK'))->where('kateg_biaya', \Config::get('constants.BIAYA.TETAP'))->get() as $idx => $item) {
             $jwb_biaya_tetap[$item->id_master_biaya] = 
             [
                 'id_biaya'     => $item->id_biaya,
@@ -513,7 +516,7 @@ class TambakController extends Controller
 
         // data hasil panen
         $hasil_panen = [];
-        foreach (HasilPanen::where('kateg_modul', \Config::get('constants.MODULE.KERAMBA'))->where('id_responden', $id_responden)->get() as $idx => $item) {
+        foreach (HasilPanen::where('kateg_modul', \Config::get('constants.MODULE.TAMBAK'))->where('id_responden', $id_responden)->get() as $idx => $item) {
             $hasil_panen[$item->id_master_komoditas] = 
             [
                 'id_hasil_panen'    => $item->id_hasil_panen,
@@ -523,36 +526,39 @@ class TambakController extends Controller
             ];
         }
 
+        // print_r($hasil_panen);
+        // die();
+
         // Biaya investasi
         foreach ($master_biaya_invest as $key => $item) {
-            $keramba[] = $jwb_biaya_invest[$item->id_master_biaya]['volume'];
-            $keramba[] = $jwb_biaya_invest[$item->id_master_biaya]['harga_satuan'];
-            $keramba[] = $jwb_biaya_invest[$item->id_master_biaya]['total'];
+            $column_data[] = $jwb_biaya_invest[$item->id_master_biaya]['volume'];
+            $column_data[] = $jwb_biaya_invest[$item->id_master_biaya]['harga_satuan'];
+            $column_data[] = $jwb_biaya_invest[$item->id_master_biaya]['total'];
         }
 
         // Biaya variabel
         foreach ($master_biaya_var as $key => $item) {
-            $keramba[] = $jwb_biaya_var[$item->id_master_biaya]['volume'];
-            $keramba[] = $jwb_biaya_var[$item->id_master_biaya]['harga_satuan'];
-            $keramba[] = $jwb_biaya_var[$item->id_master_biaya]['total'];
+            $column_data[] = $jwb_biaya_var[$item->id_master_biaya]['volume'];
+            $column_data[] = $jwb_biaya_var[$item->id_master_biaya]['harga_satuan'];
+            $column_data[] = $jwb_biaya_var[$item->id_master_biaya]['total'];
         }
 
         // Biaya tetap
         foreach ($master_biaya_tetap as $key => $item) {
-            $keramba[] = $jwb_biaya_tetap[$item->id_master_biaya]['volume'];
-            $keramba[] = $jwb_biaya_tetap[$item->id_master_biaya]['harga_satuan'];
-            $keramba[] = $jwb_biaya_tetap[$item->id_master_biaya]['total'];
+            $column_data[] = $jwb_biaya_tetap[$item->id_master_biaya]['volume'];
+            $column_data[] = $jwb_biaya_tetap[$item->id_master_biaya]['harga_satuan'];
+            $column_data[] = $jwb_biaya_tetap[$item->id_master_biaya]['total'];
         }
 
         // Biaya hasil panen
-        foreach ($this->jenis_komoditas as $key => $value) {
-            $keramba[] = $hasil_panen[$key]['jumlah'];
-            $keramba[] = $hasil_panen[$key]['harga_jual'];
-            $keramba[] = $hasil_panen[$key]['jumlah_penerimaan'];
+        foreach ($this->jenis_komoditas_tambak as $key => $value) {
+            $column_data[] = $hasil_panen[$key]['jumlah'];
+            $column_data[] = $hasil_panen[$key]['harga_jual'];
+            $column_data[] = $hasil_panen[$key]['jumlah_penerimaan'];
         }
 
 
-        return $keramba;
+        return $column_data;
     }
 
     public function get_column_tambak($master_biaya_invest, $master_biaya_var, $master_biaya_tetap)
