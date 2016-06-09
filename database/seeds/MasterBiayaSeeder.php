@@ -110,19 +110,10 @@ class MasterBiayaSeeder extends Seeder
         		'biaya'				=> 'Obat-obatan',
         		'satuan'			=> 'Paket',
         		'created_at'		=> \Carbon\Carbon::now()->toDateTimeString(),
-        	],
+        	], 	
 
         	[
         		'id_master_biaya' 	=> 12,
-        		'kateg_biaya'		=> Config::get('constants.BIAYA.VARIABEL'),
-        		'kateg_modul'		=> Config::get('constants.MODULE.TAMBAK'),
-        		'biaya'				=> 'Obat-Obatan',
-        		'satuan'			=> 'Paket',
-        		'created_at'		=> \Carbon\Carbon::now()->toDateTimeString(),
-        	],        	
-
-        	[
-        		'id_master_biaya' 	=> 13,
         		'kateg_biaya'		=> Config::get('constants.BIAYA.VARIABEL'),
         		'kateg_modul'		=> Config::get('constants.MODULE.TAMBAK'),
         		'biaya'				=> 'Pakan',
@@ -131,7 +122,7 @@ class MasterBiayaSeeder extends Seeder
         	],        	
 
         	[
-        		'id_master_biaya' 	=> 14,
+        		'id_master_biaya' 	=> 13,
         		'kateg_biaya'		=> Config::get('constants.BIAYA.VARIABEL'),
         		'kateg_modul'		=> Config::get('constants.MODULE.TAMBAK'),
         		'biaya'				=> 'Pupuk',
@@ -140,7 +131,7 @@ class MasterBiayaSeeder extends Seeder
         	],        	
 
         	[
-        		'id_master_biaya' 	=> 15,
+        		'id_master_biaya' 	=> 14,
         		'kateg_biaya'		=> Config::get('constants.BIAYA.VARIABEL'),
         		'kateg_modul'		=> Config::get('constants.MODULE.TAMBAK'),
         		'biaya'				=> 'Listrik',
@@ -149,7 +140,7 @@ class MasterBiayaSeeder extends Seeder
         	],        	
 
         	[
-        		'id_master_biaya' 	=> 16,
+        		'id_master_biaya' 	=> 15,
         		'kateg_biaya'		=> Config::get('constants.BIAYA.VARIABEL'),
         		'kateg_modul'		=> Config::get('constants.MODULE.TAMBAK'),
         		'biaya'				=> 'BBM',
@@ -158,7 +149,7 @@ class MasterBiayaSeeder extends Seeder
         	], 
 
         	[
-        		'id_master_biaya' 	=> 17,
+        		'id_master_biaya' 	=> 16,
         		'kateg_biaya'		=> Config::get('constants.BIAYA.TETAP'),
         		'kateg_modul'		=> Config::get('constants.MODULE.TAMBAK'),
         		'biaya'				=> 'Pajak',
@@ -167,7 +158,7 @@ class MasterBiayaSeeder extends Seeder
         	], 
 
         	[
-        		'id_master_biaya' 	=> 18,
+        		'id_master_biaya' 	=> 17,
         		'kateg_biaya'		=> Config::get('constants.BIAYA.TETAP'),
         		'kateg_modul'		=> Config::get('constants.MODULE.TAMBAK'),
         		'biaya'				=> 'Retribusi',
@@ -176,7 +167,7 @@ class MasterBiayaSeeder extends Seeder
         	],         	       	       	
 
         	[
-        		'id_master_biaya' 	=> 19,
+        		'id_master_biaya' 	=> 18,
         		'kateg_biaya'		=> Config::get('constants.BIAYA.TETAP'),
         		'kateg_modul'		=> Config::get('constants.MODULE.TAMBAK'),
         		'biaya'				=> 'Perawatan Lahan',
@@ -185,7 +176,7 @@ class MasterBiayaSeeder extends Seeder
         	],         	
 
         	[
-        		'id_master_biaya' 	=> 20,
+        		'id_master_biaya' 	=> 19,
         		'kateg_biaya'		=> Config::get('constants.BIAYA.TETAP'),
         		'kateg_modul'		=> Config::get('constants.MODULE.TAMBAK'),
         		'biaya'				=> 'Perawatan Mesin',
