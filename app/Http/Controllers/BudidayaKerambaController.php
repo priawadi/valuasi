@@ -485,7 +485,7 @@ class BudidayaKerambaController extends Controller
         $komoditas = explode(',', $budidaya_keramba->jenis_komoditas);
         $keramba = [
             $budidaya_keramba->lama_usaha,
-            isset($status_usaha[$budidaya_keramba->status_usaha])? $status_usaha[$budidaya_keramba->status_usaha]: $status_usaha[$budidaya_keramba->status_usaha],
+            isset($status_usaha[$budidaya_keramba->status_usaha])? $status_usaha[$budidaya_keramba->status_usaha]: null,
             $budidaya_keramba->mapen_sblm_keramba,
             $budidaya_keramba->luas_lahan,
             $budidaya_keramba->keramba_total,
