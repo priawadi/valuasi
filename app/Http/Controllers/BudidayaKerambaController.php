@@ -26,7 +26,7 @@ class BudidayaKerambaController extends Controller
         2 => 'Kerapu Bebek/Kerapu Tikus',
         3 => 'Kerapu Sunu',
         4 => 'Kerapu Lodi',
-        5 => 'Kerapu Lobster Pasir',
+        5 => 'Lobster Pasir',
         6 => 'Lobster Mutiara',
         7 => 'Udang',
     ];
