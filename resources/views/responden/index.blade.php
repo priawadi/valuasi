@@ -91,7 +91,7 @@ $(document).ready(function() {
             { data: 'nama', name: 'nama' },
             { data: 'telepon', name: 'telepon' },
             { data: 'alamat', name: 'alamat' },
-            { data: null, orderable: false, searchable: false, 
+            { targets : [3], 
              render: function(data, type, full) {
                 return '<a class="btn btn-danger btn-sm" onclick="show_modal(\'responden/hapus/'+ full.id_responden +'\',\''+ full.nama +'\')">' + 'Hapus' + '</a> <a class="btn btn-info btn-sm" href=responden/edit/' + full.id_responden + '>' + 'Edit' + '</a> <a class="btn btn-primary btn-sm" href=responden/lihat/' + full.id_responden + '>' + 'Isi Kuesioner' + '</a>';
             }}

@@ -332,7 +332,7 @@ class RespondenController extends Controller
             ],
             [
                 'no'        => 'C',
-                'kuesioner' => 'EXISTENCE VALUE)',
+                'kuesioner' => 'EXISTENCE VALUE',
                 'is_done'   => (ExistenceValue::where('id_responden', $request->session()->get('id_responden'))->count()),
                 'link'      => 'eval',
             ],
@@ -417,7 +417,7 @@ class RespondenController extends Controller
             ],
             [
                 'no'        => 'C',
-                'kuesioner' => 'EXISTENCE VALUE)',
+                'kuesioner' => 'EXISTENCE VALUE',
                 'link'      => 'eval/export',
             ],
             [
@@ -543,10 +543,9 @@ class RespondenController extends Controller
             2 => 'Kerapu Bebek/Kerapu Tikus',
             3 => 'Kerapu Sunu',
             4 => 'Kerapu Lodi',
-            5 => 'Kerapu Sunu',
-            6 => 'Kerapu Lobster Pasir',
-            7 => 'Lobster Mutiara',
-            8 => 'Udang',
+            5 => 'Lobster Pasir',
+            6 => 'Lobster Mutiara',
+            7 => 'Udang',
         ];
         $budidaya_keramba = BudidayaKeramba::where('id_responden', $id_responden)->first();
         $komoditas = explode(',', $budidaya_keramba->jenis_komoditas);

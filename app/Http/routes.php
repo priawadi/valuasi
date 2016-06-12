@@ -55,6 +55,7 @@ Route::get('/eval/edit/{id_responden}', 'EvalController@edit');
 Route::patch('/eval/edit/{id_responden}', 'EvalController@update');
 Route::get('/eval/lihat/{id_responden}', 'EvalController@detail');
 Route::delete('/eval/hapus/{id_responden}', 'EvalController@destroy');
+Route::get('/eval/export', 'EvalController@export');
 
 // Pemanfaatan Kayu
 Route::get('/kayu', 'KayuController@index');
@@ -64,6 +65,7 @@ Route::get('/kayu/edit/{id_responden}', 'KayuController@edit');
 Route::patch('/kayu/edit/{id_responden}', 'KayuController@update');
 Route::get('/kayu/lihat/{id_responden}', 'KayuController@detail');
 Route::delete('/kayu/hapus/{id_responden}', 'KayuController@destroy');
+Route::get('/kayu/export', 'KayuController@export');
 
 // Pencari Satwa
 Route::get('/satwa', 'PencariSatwaController@index');

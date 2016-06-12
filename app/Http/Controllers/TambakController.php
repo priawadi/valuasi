@@ -466,14 +466,14 @@ class TambakController extends Controller
 
         $column_data = [
             $tambak->lama_tambak,
-            isset($status_usaha[$tambak->status_tambak])? $status_usaha[$tambak->status_tambak]: $status_usaha[$tambak->status_tambak],
+            isset($status_usaha[$tambak->status_tambak])? $status_usaha[$tambak->status_tambak]: null,
             $tambak->mapen_sblm_tambak,
             $tambak->luas_tambak,
-            isset($status_kepem_tambak[$tambak->status_kepem_tambak])? $status_kepem_tambak[$tambak->status_kepem_tambak]: $status_kepem_tambak[$tambak->status_kepem_tambak],
-            in_array(8, $komoditas)? 'Ya': 'Tidak',
-            in_array(9, $komoditas)? 'Ya': 'Tidak',
-            in_array(10, $komoditas)? 'Ya': 'Tidak',
-            in_array(11, $komoditas)? 'Ya': 'Tidak',
+            isset($status_kepem_tambak[$tambak->status_kepem_tambak])? $status_kepem_tambak[$tambak->status_kepem_tambak]: null,
+            in_array('8', $komoditas)? 'Ya': 'Tidak',
+            in_array('9', $komoditas)? 'Ya': 'Tidak',
+            in_array('10', $komoditas)? 'Ya': 'Tidak',
+            in_array('11', $komoditas)? 'Ya': 'Tidak',
             $tambak->waktu_pemeliharaan_tambak,
             $tambak->jum_panen_tambak,
         ];
