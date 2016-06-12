@@ -327,7 +327,7 @@ class KayuController extends Controller
             ]);
 
             // kayu
-            $merge_data = array_merge($merge_data, $this->get_kayu($item['id_responden'], $master_kayu, $master_kayu_non, $master_kayu_ops));
+            $merge_data = array_merge($merge_data, $this->get_kayu($item['id_responden'], $master_kayu, $master_kayu_ops, $master_kayu_non));
             $data[]     = $merge_data;
         }
 
