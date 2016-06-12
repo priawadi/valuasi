@@ -75,6 +75,7 @@ Route::get('/satwa/edit/{id_responden}', 'PencariSatwaController@edit');
 Route::patch('/satwa/edit/{id_responden}', 'PencariSatwaController@update');
 Route::get('/satwa/lihat/{id_responden}', 'PencariSatwaController@detail');
 Route::delete('/satwa/hapus/{id_responden}', 'PencariSatwaController@destroy');
+Route::get('/satwa/export', 'PencariSatwaController@export');
 
 // Nelayan
 Route::get('/nelayan', 'NelayanController@index');

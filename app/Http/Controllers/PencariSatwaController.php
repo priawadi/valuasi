@@ -10,6 +10,8 @@ use App\MasterPencariSatwa;
 use App\HasilSatwa;
 use App\BiayaSatwa;
 use App\OpsSatwa;
+use App\Responden;
+use Excel;
 
 class PencariSatwaController extends Controller
 {
@@ -301,4 +303,292 @@ class PencariSatwaController extends Controller
 
         return redirect('responden/lihat/' . $request->session()->get('id_responden'));   
     }
+
+    public function export()
+    {
+         $jenis_kelamin = [
+            1 => 'Laki-Laki',
+            2 => 'Perempuan',
+        ];
+
+        $pendidikan = [
+            1  => 'Tidak sekolah',
+            2  => 'SD',
+            3  => 'SLTP',
+            4  => 'SLTA',
+            5  => 'D1',
+            6  => 'D2',
+            7  => 'D3',
+            8  => 'S1',
+            9  => 'S2',
+            10 => 'S3',
+        ];
+
+        $status_kawin = [
+            1  => 'Belum Menikah',
+            2  => 'Menikah',
+            3  => 'Duda',
+            4  => 'Janda',
+        ];
+
+        $status_keluarga = [
+            1 => 'Suami',
+            2 => 'Istri',
+            3 => 'Anak',
+            4 => 'Sepupu',
+            5 => 'Keponakan',
+            6 => 'Mertua',
+        ];
+
+        $jenis_pendapatan = [
+            1 => 'kurang dari Rp. 10.000.000,-',
+            2 => 'Rp. 10.000.000,- hingga Rp. Rp. 20.000.000,-',
+            3 => 'Rp. 20.000.000,- hingga Rp. Rp. 30.000.000,-',
+            4 => 'Rp. 30.000.000,- hingga Rp. Rp. 40.000.000,-',
+            5 => 'lebih dari Rp. 40.000.000,-',
+        ];
+
+        $pekerjaan = [
+            1 => 'Pegawai Negeri',
+            2 => 'Pegawai Swasta',
+            3 => 'Wiraswasta',
+            4 => 'Petani',
+            5 => 'Pembudidaya',
+            6 => 'Nelayan',
+            7 => 'Pengrajin',
+            8 => 'Pengrajin Pengrajin',
+            9 => 'Buruh non perikanan',
+            10 => 'Buruh Nelayan',
+            11 => 'Penyedia jasa perikanan',
+            12 => 'Pedagang perikanan',
+            13 => 'Lainnya',
+        ];       
+
+        $hasil_satwa         = MasterPencariSatwa::where('kategori', \Config::get('constants.PENCARI_SATWA.HASIL_PENERIMAAN'))->get();
+        $biaya_satwa         = MasterPencariSatwa::where('kategori', \Config::get('constants.PENCARI_SATWA.BIAYA_INVESTASI'))->get();
+        $ops_satwa           = MasterPencariSatwa::where('kategori', \Config::get('constants.PENCARI_SATWA.BIAYA_OPERASIONAL'))->get();
+
+
+        // Set column
+        $data = [];
+        // Set column Reponden
+        $columns = [
+            'Nama', 
+            'NoKontak', 
+            'Alamat', 
+            'Umur', 
+            'JenisKelamin', 
+            'Pendidikan', 
+            'LamaPendidikan', 
+            'StatusPerkawinan', 
+            'JumlahAnggotaKeluarga', 
+            'Anak_anak', 
+            'Dewasa', 
+            'StatusDalamKeluarga', 
+            'PendapatanRumahTangga', 
+            'PekerjaanUtama', 
+            'PekerjaanSampingan'];
+
+        $columns = array_merge($columns, $this->get_column_satwa($hasil_satwa, $biaya_satwa, $ops_satwa));
+        
+        $data[] = $columns;
+
+        foreach (Responden::all() as $index => $item) {
+            $merge_data = [];
+            // Responden
+            $merge_data = array_merge($merge_data, [
+                $item['nama'],
+                $item['telepon'],
+                $item['alamat'],
+                $item['umur'],
+                isset($jenis_kelamin[$item['jenis_kelamin']])? $jenis_kelamin[$item['jenis_kelamin']]: null,
+                isset($pendidikan[$item['pendidikan']])? $pendidikan[$item['pendidikan']]: null,
+                $item['lama_pendidikan'],
+                isset($status_kawin[$item['stat_kawin']])? $status_kawin[$item['stat_kawin']]: null,
+                $item['jum_ang_kel_total'],
+                $item['jum_ang_kel_anak'],
+                $item['jum_ang_kel_dewasa'],
+                isset($status_keluarga[$item['stat_keluarga']])? $status_keluarga[$item['stat_keluarga']]: null,
+                isset($jenis_pendapatan[$item['pendapatan']])? $jenis_pendapatan[$item['pendapatan']]: null,
+                isset($pekerjaan[$item['pekerjaan_utama']])? $pekerjaan[$item['pekerjaan_utama']]: null,
+                isset($pekerjaan[$item['pekerjaan_sampingan']])? $pekerjaan[$item['pekerjaan_sampingan']]: null,
+            ]);
+
+            // Budidata keramba
+            $merge_data = array_merge($merge_data, $this->get_satwa($item['id_responden'], $hasil_satwa, $biaya_satwa, $ops_satwa));
+            $data[]     = $merge_data;        
+    }
+
+        // print_r($data);
+        Excel::create('Satwa', function($excel) use($data){
+            // Our first sheet
+            $excel->sheet('First sheet', function($sheet) use($data){
+                
+                $sheet->fromArray(
+                    $data,
+                    null,
+                    'A1',
+                    false,
+                    false
+                );
+
+
+                // Set format of cell
+                $sheet->row(1, function($row) {
+                    // call cell manipulation methods
+                    $row->setFontWeight('bold');
+
+                });
+            });
+
+        })->export('xls');
+    }
+
+    public function get_satwa($id_responden, $hasil_satwa, $biaya_satwa, $ops_satwa)
+    {
+
+        $pilihan = [
+            1 => 'Benar',
+            2 => 'Tidak',
+        ];
+
+        $master_lama_buru = 
+        [
+            1 => '1 hari sekali',
+            2 => '2 hari sekali',
+            3 => '3 hari sekali',
+            4 => '4 hari sekali',
+            5 => 'Seminggu sekali',
+            6 => 'Sebulan sekali',
+            7 => 'Lainnya',
+        ];
+
+        $master_setahun_buru = 
+        [
+            1 => '12 sekali',
+            2 => '24 sekali',
+            3 => '36 sekali',
+            4 => '48 sekali',
+            5 => 'Lainnya',
+        ];
+
+        $jenis_satwa = 
+        [
+            1 => 'Kelelawar',
+            2 => 'Ular',
+            3 => 'Burung',
+            4 => 'Buaya',
+        ];   
+
+        $pencarisatwa = PencariSatwa::where('id_responden', $id_responden)->first();
+        $jenissatwa = explode(',', $pencarisatwa->jenis_satwa);
+        $satwa  = [
+            isset($pilihan[$pencarisatwa->pencari_satwa_mgv])? $pilihan[$pencarisatwa->pencari_satwa_mgv]: null,
+            $pencarisatwa->pengalaman_usaha,
+            in_array(1, $jenissatwa)? 'Ya': 'Tidak',
+            in_array(2, $jenissatwa)? 'Ya': 'Tidak',
+            in_array(3, $jenissatwa)? 'Ya': 'Tidak',
+            in_array(4, $jenissatwa)? 'Ya': 'Tidak',
+            isset($master_lama_buru[$pencarisatwa->lama_buru])? $master_lama_buru[$pencarisatwa->lama_buru]: null,
+            $pencarisatwa->lama_buru_txt,
+            isset($master_setahun_buru[$pencarisatwa->setahun_buru])? $master_setahun_buru[$pencarisatwa->setahun_buru]: null,
+            $pencarisatwa->setahun_buru_txt,
+        ];
+
+        // data Hasil Satwa
+        $dt_hasil_satwa = [];
+        foreach (HasilSatwa::where('id_responden', $id_responden)->get() as $idx => $item) {
+            $dt_hasil_satwa[$item->id_master_pencari_satwa] = 
+            [
+                'id_hasil_satwa' => $item->id_hasil_satwa,
+                'jumlah_satwa'   => $item->jumlah_satwa,
+                'harga_jual'     => $item->harga_jual,
+            ];
+        }
+
+        // data Biaya Satwa
+        $dt_biaya_satwa = [];
+        foreach (BiayaSatwa::where('id_responden', $id_responden)->get() as $idx => $item) {
+            $dt_biaya_satwa[$item->id_master_pencari_satwa] = 
+            [
+                'id_biaya_satwa' => $item->id_biaya_satwa,
+                'volume'         => $item->volume,
+                'harga_beli'     => $item->harga_beli,
+                'umur_ekonomis'  => $item->umur_ekonomis,
+            ];
+        }
+
+        // data Ops Satwa
+        $dt_ops_satwa = [];
+        foreach (OpsSatwa::where('id_responden', $id_responden)->get() as $idx => $item) {
+            $dt_ops_satwa[$item->id_master_pencari_satwa] = 
+            [
+                'id_ops_satwa' => $item->id_ops_satwa,
+                'volume'       => $item->volume,
+                'harga_satuan' => $item->harga_satuan,
+                'jumlah'       => $item->jumlah,
+            ];
+        }   
+
+        //data hasil satwa
+        foreach ($hasil_satwa as $key => $value) {
+            $satwa[]    = $dt_hasil_satwa[$value->id_master_pencari_satwa]['jumlah_satwa'];
+            $satwa[]    = $dt_hasil_satwa[$value->id_master_pencari_satwa]['harga_jual'];
+        }     
+
+        //data biaya satwa
+        foreach ($biaya_satwa as $key => $value) {
+            $satwa[]    = $dt_biaya_satwa[$value->id_master_pencari_satwa]['volume'];
+            $satwa[]    = $dt_biaya_satwa[$value->id_master_pencari_satwa]['harga_beli'];
+            $satwa[]    = $dt_biaya_satwa[$value->id_master_pencari_satwa]['umur_ekonomis'];
+        }
+
+        //data ops satwa
+        foreach ($ops_satwa as $key => $value) {
+            $satwa[]    = $dt_ops_satwa[$value->id_master_pencari_satwa]['volume'];
+            $satwa[]    = $dt_ops_satwa[$value->id_master_pencari_satwa]['harga_satuan'];
+            $satwa[]    = $dt_ops_satwa[$value->id_master_pencari_satwa]['jumlah'];
+        }
+
+        return $satwa;
+
+    }
+
+    public function get_column_satwa($hasil_satwa, $biaya_satwa, $ops_satwa)
+    {
+
+        $columns = 
+        [
+            'PencariSatwa',
+            'LamaUsaha',
+            'SatwaPeroleh_Kelelawar',
+            'SatwaPeroleh_Ular',
+            'SatwaPeroleh_Burung',
+            'SatwaPeroleh_Buaya',
+            'FrekuensiBerburuSatwa',
+            'FrekuensiBerburuSatwa_lainnya',
+            'OperasiPerburuanSatwa',
+            'OperasiPerburuanSatwa_lainnya',
+        ];
+
+        foreach ($hasil_satwa as $key => $value) {
+            $columns[]  = 'JumlahSatwa_' . $value['rincian'];
+            $columns[]  = 'HargaJual_' . $value['rincian'];
+        }
+
+        foreach ($biaya_satwa as $key => $value) {
+            $columns[]  = 'Volume_' . $value['rincian'];
+            $columns[]  = 'HargaBeli_' . $value['rincian'];
+            $columns[]  = 'UmurEkonomis_' . $value['rincian'];
+        }
+
+        foreach ($ops_satwa as $key => $value) {
+            $columns[]  = 'Volume_' . $value['rincian'];
+            $columns[]  = 'HargaSatuan_' . $value['rincian'];
+            $columns[]  = 'JumlahBiaya_' . $value['rincian'];
+        }
+
+        return $columns;
+    }
+
 }
