@@ -15,6 +15,12 @@ Route::get('/', function () {
     return redirect('responden');
 });
 
+Route::get('bladeTest', 'HomeController@index');
+Route::resource('users', 'UserController');
+Route::auth();
+
+Route::get('/home', 'HomeController@index');
+
 // Responden
 Route::get('/responden', 'RespondenController@index');
 Route::get('/responden/tambah', 'RespondenController@create');
@@ -85,6 +91,7 @@ Route::get('/nelayan/edit/{id_responden}', 'NelayanController@edit');
 Route::patch('/nelayan/edit/{id_responden}', 'NelayanController@update');
 Route::get('/nelayan/lihat/{id_responden}', 'NelayanController@detail');
 Route::delete('/nelayan/hapus/{id_responden}', 'NelayanController@destroy');
+Route::get('/nelayan/export', 'NelayanController@export');
 
 // Valuasi Wisata
 Route::get('/wisata', 'WisataController@index');
@@ -94,6 +101,7 @@ Route::get('/wisata/edit/{id_responden}', 'WisataController@edit');
 Route::patch('/wisata/edit/{id_responden}', 'WisataController@update');
 Route::get('/wisata/lihat/{id_responden}', 'WisataController@detail');
 Route::delete('/wisata/hapus/{id_responden}', 'WisataController@destroy');
+Route::get('/wisata/export', 'WisataController@export');
 
 // Buydidaya Rumput Laut
 Route::get('/budidaya-rumput-laut', 'BudidayaRumputLautController@index');
@@ -103,6 +111,7 @@ Route::get('/budidaya-rumput-laut/edit/{id_responden}', 'BudidayaRumputLautContr
 Route::patch('/budidaya-rumput-laut/edit/{id_responden}', 'BudidayaRumputLautController@update');
 Route::get('/budidaya-rumput-laut/lihat/{id_responden}', 'BudidayaRumputLautController@detail');
 Route::delete('/budidaya-rumput-laut/hapus/{id_responden}', 'BudidayaRumputLautController@destroy');
+Route::get('/budidaya-rumput-laut/export', 'BudidayaRumputLautController@export');
 
 Route::controller('datatables', 'RespondenController', [
     'anyData'  => 'datatables.data',
