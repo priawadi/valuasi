@@ -45,23 +45,26 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/responden') }}">
-                    Kuesioner Valuasi
+                    Kuesioner
                 </a>
             </div>
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/responden') }}">Responden</a></li>
-                    <li><a href="{{ url('/export') }}">Export</a></li>
+					@if (Auth::guest())
+					<!-- <li><a href="{{ url('/') }}">Home</a></li> -->
+					@else
+                    <!-- <li><a href="{{ url('/responden') }}">Responden</a></li> -->
+ 					<li><a href="{{ url('/export') }}">Export</a></li>
+					@endif
                 </ul>
 
                 <!-- Right Side Of Navbar -->
-                <ul class="nav navbar-nav navbar-right">
-                    <!-- Authentication Links -->
+                 <ul class="nav navbar-nav navbar-right">
                     @if (Auth::guest())
-<!--                         <li><a href="{{ url('/login') }}">Login</a></li>
-                        <li><a href="{{ url('/register') }}">Register</a></li> -->
+                        <li><a href="{{ url('/login') }}">Login</a></li>
+						<!-- <li><a href="{{ url('/register') }}">Register</a></li> -->
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
